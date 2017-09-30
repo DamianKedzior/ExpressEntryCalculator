@@ -15,7 +15,7 @@ namespace _CRS__Criteria___Express_Entry
             System.Console.WriteLine("Nazwisko");
             string lastname = System.Console.ReadLine();
             System.Console.WriteLine("Date of birth");
-
+            // test gita
             string DateOfBirth = System.Console.ReadLine();
             DateTime ParsedDateOfBirth = DateTime.Parse(DateOfBirth);
             
