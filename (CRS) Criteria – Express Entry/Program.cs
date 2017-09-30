@@ -47,9 +47,21 @@ namespace _CRS__Criteria___Express_Entry
         {
             DateTime now = DateTime.UtcNow;
             int age = now.Year - birthday.Year;
-            //if (now < birthday.AddYears(age)) age--;
 
-            return age;
+            if (now.Month < birthday.Month)
+            {
+                age = age - 1;
+                return age;
+            }
+            if (now.Month == birthday.Month && now.Day < birthday.Day)
+            {
+                age = age - 1;
+                return age;
+            }
+            else
+            {
+                return age;
+            }
         }
 
         
