@@ -14,11 +14,15 @@ namespace _CRS__Criteria___Express_Entry
             string firstname = System.Console.ReadLine();
             System.Console.WriteLine("Nazwisko");
             string lastname = System.Console.ReadLine();
-            System.Console.WriteLine("Date of birth");
-            
+            System.Console.WriteLine("Date of birth (format: yyyy-mm-dd)");
             string DateOfBirth = System.Console.ReadLine();
+
             DateTime ParsedDateOfBirth = DateTime.Parse(DateOfBirth);
-            
+
+            int age = CountAge(ParsedDateOfBirth);
+
+            System.Console.WriteLine("Your age is " + age);
+           
             System.Console.WriteLine("FullName Spouse or common - law partner if exist");
             string spouseFullname = System.Console.ReadLine();
             bool NoSpouse = String.IsNullOrWhiteSpace(spouseFullname);
@@ -39,7 +43,16 @@ namespace _CRS__Criteria___Express_Entry
         }
 
 
+        static int CountAge(DateTime birthday)
+        {
+            DateTime now = DateTime.UtcNow;
+            int age = now.Year - birthday.Year;
+            //if (now < birthday.AddYears(age)) age--;
 
+            return age;
+        }
+
+        
         static int CountPointsForAgeWithSpouse(int age)
         {
             if (age <= 17 || age >= 45)
