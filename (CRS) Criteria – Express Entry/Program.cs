@@ -63,8 +63,32 @@ namespace _CRS__Criteria___Express_Entry
             string fullEducationSentence = educationSentence + PointForEducation.ToString();
             System.Console.WriteLine(fullEducationSentence);
 
+            System.Console.WriteLine("What type of exam did you pass? (enter the number from 1 to 3)");
+            System.Console.WriteLine("1.IELTS");
+            System.Console.WriteLine("2.CELPIP");
+            System.Console.WriteLine("3.TEF");
+            string NumberOfExam = System.Console.ReadLine();
+            LanguagePoints.LanguageExamTypes TypeOfExam  = IdentifyingTheTypeOfExam (NumberOfExam);
+            
+            LanguagePoints primaryAplicantPoints = new LanguagePoints();
+            primaryAplicantPoints.LanguageExamType = TypeOfExam;
 
             Console.Read();
+        }
+
+        static LanguagePoints.LanguageExamTypes IdentifyingTheTypeOfExam(string TypeOfExam)
+        {
+            switch (TypeOfExam)
+            {
+                case "1":
+                    return LanguagePoints.LanguageExamTypes.IELTS;
+                case "2":
+                    return LanguagePoints.LanguageExamTypes.CELPIP;
+                case "3":
+                    return LanguagePoints.LanguageExamTypes.TEF;
+                default:
+                    return LanguagePoints.LanguageExamTypes.IELTS;
+            }
         }
 
 
