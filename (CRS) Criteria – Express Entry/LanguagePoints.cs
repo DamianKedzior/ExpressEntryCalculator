@@ -151,31 +151,31 @@ namespace _CRS__Criteria___Express_Entry
             }
             else if (SpeakingPoints == 7.0)
             {
-                clbreadingPoints = 9;
+                clbspeakingPoints = 9;
             }
             else if (SpeakingPoints == 6.5)
             {
-                clbreadingPoints = 8;
+                clbspeakingPoints = 8;
             }
             else if (SpeakingPoints == 6)
             {
-                clbreadingPoints = 7;
+                clbspeakingPoints = 7;
             }
             else if (SpeakingPoints == 5.5)
             {
-                clbreadingPoints = 6;
+                clbspeakingPoints = 6;
             }
             else if (SpeakingPoints == 5)
             {
-                clbreadingPoints = 5;
+                clbspeakingPoints = 5;
             }
             else if (SpeakingPoints < 5 && SpeakingPoints>=4)
             {
-                clbreadingPoints = 4;
+                clbspeakingPoints = 4;
             }
             else
             {
-                clbreadingPoints = 0;
+                clbspeakingPoints = 0;
             }
 
             if (WritingPoints >= 7.5)
