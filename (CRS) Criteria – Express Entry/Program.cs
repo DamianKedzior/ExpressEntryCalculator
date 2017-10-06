@@ -69,16 +69,36 @@ namespace _CRS__Criteria___Express_Entry
             System.Console.WriteLine("3.TEF");
             string NumberOfExam = System.Console.ReadLine();
             LanguagePoints.LanguageExamTypes TypeOfExam  = IdentifyingTheTypeOfExam (NumberOfExam);
-            
+
             LanguagePoints primaryAplicantPoints = new LanguagePoints();
             primaryAplicantPoints.LanguageExamType = TypeOfExam;
+
+            System.Console.WriteLine("How many points did you get for reading?");
+            string ReadingPoints = System.Console.ReadLine();
+            primaryAplicantPoints.ReadingPoints = double.Parse(ReadingPoints);
+
+            System.Console.WriteLine("How many points did you get for listening?");
+            string ListeningPoints = System.Console.ReadLine();
+            primaryAplicantPoints.ListeningPoints = double.Parse(ListeningPoints);
+
+            System.Console.WriteLine("How many points did you get for speaking?");
+            string SpeakingPoints = System.Console.ReadLine();
+            primaryAplicantPoints.SpeakingPoints = double.Parse(SpeakingPoints);
+
+            System.Console.WriteLine("How many points did you get for writing?");
+            string WritingPoints = System.Console.ReadLine();
+            primaryAplicantPoints.WritingPoints = double.Parse(WritingPoints);
+
+            primaryAplicantPoints.CalculateCLBPoints();
+
 
             Console.Read();
         }
 
-        static LanguagePoints.LanguageExamTypes IdentifyingTheTypeOfExam(string TypeOfExam)
+        
+        static LanguagePoints.LanguageExamTypes IdentifyingTheTypeOfExam(string Exam)
         {
-            switch (TypeOfExam)
+            switch (Exam)
             {
                 case "1":
                     return LanguagePoints.LanguageExamTypes.IELTS;
