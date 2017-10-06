@@ -122,6 +122,10 @@ namespace _CRS__Criteria___Express_Entry
                 return clblisteningPoints;
             }
         }
-                  
+         
+        public void CalculateCLBPoints()
+        {
+            // zaimplementowac przeliczanie punktow na CLB punkty
+        }
     }
 }
