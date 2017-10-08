@@ -70,26 +70,26 @@ namespace _CRS__Criteria___Express_Entry
             string NumberOfExam = System.Console.ReadLine();
             LanguagePoints.LanguageExamTypes TypeOfExam  = IdentifyingTheTypeOfExam (NumberOfExam);
 
-            LanguagePoints primaryAplicantPoints = new LanguagePoints();
-            primaryAplicantPoints.LanguageExamType = TypeOfExam;
+            LanguagePoints primaryAplicantFirstLangPoints = new LanguagePoints();
+            primaryAplicantFirstLangPoints.LanguageExamType = TypeOfExam;
 
             System.Console.WriteLine("How many points did you get for reading?");
             string ReadingPoints = System.Console.ReadLine();
-            primaryAplicantPoints.ReadingPoints = double.Parse(ReadingPoints);
+            primaryAplicantFirstLangPoints.ReadingPoints = double.Parse(ReadingPoints);
 
             System.Console.WriteLine("How many points did you get for listening?");
             string ListeningPoints = System.Console.ReadLine();
-            primaryAplicantPoints.ListeningPoints = double.Parse(ListeningPoints);
+            primaryAplicantFirstLangPoints.ListeningPoints = double.Parse(ListeningPoints);
 
             System.Console.WriteLine("How many points did you get for speaking?");
             string SpeakingPoints = System.Console.ReadLine();
-            primaryAplicantPoints.SpeakingPoints = double.Parse(SpeakingPoints);
+            primaryAplicantFirstLangPoints.SpeakingPoints = double.Parse(SpeakingPoints);
 
             System.Console.WriteLine("How many points did you get for writing?");
             string WritingPoints = System.Console.ReadLine();
-            primaryAplicantPoints.WritingPoints = double.Parse(WritingPoints);
+            primaryAplicantFirstLangPoints.WritingPoints = double.Parse(WritingPoints);
 
-            primaryAplicantPoints.CalculateCLBPoints();
+            primaryAplicantFirstLangPoints.CalculateCLBPoints();
 
 
             Console.Read();
