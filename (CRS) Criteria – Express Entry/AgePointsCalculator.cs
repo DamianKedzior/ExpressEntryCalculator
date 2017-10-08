@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace _CRS__Criteria___Express_Entry
 {
-    class AgePointsCalculator
+    static class AgePointsCalculator
     {
         public static int CountPointsForAgeWithSpouse(int age)
         {

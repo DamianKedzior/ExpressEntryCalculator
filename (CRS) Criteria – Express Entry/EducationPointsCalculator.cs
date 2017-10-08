@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace _CRS__Criteria___Express_Entry
 {
-    class EducationPointsCalculator
+    static class EducationPointsCalculator
     {
         public static int CountPointsForEducationWithSpouse(int EduLevel)
         {
