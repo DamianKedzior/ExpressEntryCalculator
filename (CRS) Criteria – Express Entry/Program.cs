@@ -92,6 +92,85 @@ namespace _CRS__Criteria___Express_Entry
             primaryAplicantFirstLangPoints.CalculateCLBPoints();
 
 
+            int PointsForSpeaking;
+            int PointsForWriting;
+            int PointsForReading;
+            int PointsForListening;
+            int PointsForLanguage;
+            if (NoSpouse == true)
+            {
+                PointsForSpeaking = LanguagePointsCalculator.LanguagePointsCalculatorWithoutSpouse(primaryAplicantFirstLangPoints.CLBSpeakingPoints);
+                PointsForWriting = LanguagePointsCalculator.LanguagePointsCalculatorWithoutSpouse(primaryAplicantFirstLangPoints.CLBWritingPoints);
+                PointsForReading = LanguagePointsCalculator.LanguagePointsCalculatorWithoutSpouse(primaryAplicantFirstLangPoints.CLBReadingPoints);
+                PointsForListening = LanguagePointsCalculator.LanguagePointsCalculatorWithoutSpouse(primaryAplicantFirstLangPoints.CLBListeningPoints);
+            }
+            else
+            {
+                PointsForSpeaking = LanguagePointsCalculator.LanguagePointsCalculatorWithSpouse(primaryAplicantFirstLangPoints.CLBSpeakingPoints);
+                PointsForWriting = LanguagePointsCalculator.LanguagePointsCalculatorWithSpouse(primaryAplicantFirstLangPoints.CLBWritingPoints);
+                PointsForReading = LanguagePointsCalculator.LanguagePointsCalculatorWithSpouse(primaryAplicantFirstLangPoints.CLBReadingPoints);
+                PointsForListening = LanguagePointsCalculator.LanguagePointsCalculatorWithSpouse(primaryAplicantFirstLangPoints.CLBListeningPoints);
+            }
+            PointsForLanguage = PointsForSpeaking + PointsForWriting + PointsForReading + PointsForListening;
+            string TotalPointsForLanguage = PointsForLanguage.ToString();
+            System.Console.WriteLine("Point For Language" + " " + TotalPointsForLanguage);
+
+
+            System.Console.WriteLine("Did you pass Second Language Exam? (YES or NO)");
+            string SecondLanguage = System.Console.ReadLine();
+            if (SecondLanguage == "YES" ^ SecondLanguage == "yes" ^ SecondLanguage == "Yes")
+            {
+                System.Console.WriteLine("What type of exam of your second language did you pass? (enter the number from 1 to 3)");
+                System.Console.WriteLine("1.IELTS");
+                System.Console.WriteLine("2.CELPIP");
+                System.Console.WriteLine("3.TEF");
+                string NumberOfSecondLangExam = System.Console.ReadLine();
+                LanguagePoints.LanguageExamTypes TypeOfSecondLangExam = IdentifyingTheTypeOfExam(NumberOfSecondLangExam);
+
+                LanguagePoints primaryAplicantSecondLangPoints = new LanguagePoints();
+
+                primaryAplicantSecondLangPoints.LanguageExamType = TypeOfSecondLangExam;
+
+                System.Console.WriteLine("How many points did you get for speaking?");
+                string SpeakingPointsOfSecondLangExam = System.Console.ReadLine();
+                primaryAplicantFirstLangPoints.SpeakingPoints = double.Parse(SpeakingPointsOfSecondLangExam);
+
+                System.Console.WriteLine("How many points did you get for writing?");
+                string WritingPointsOfSecondLangExam = System.Console.ReadLine();
+                primaryAplicantFirstLangPoints.WritingPoints = double.Parse(WritingPointsOfSecondLangExam);
+
+                System.Console.WriteLine("How many points did you get for reading?");
+                string ReadingPointsOfSecondLangExam = System.Console.ReadLine();
+                primaryAplicantSecondLangPoints.ReadingPoints = double.Parse(ReadingPointsOfSecondLangExam);
+
+                System.Console.WriteLine("How many points did you get for listening?");
+                string ListeningPointsOfSecondLangExam = System.Console.ReadLine();
+                primaryAplicantFirstLangPoints.ListeningPoints = double.Parse(ListeningPointsOfSecondLangExam);
+
+                primaryAplicantSecondLangPoints.CalculateCLBPoints();
+
+                int PointsForSecondLangSpeaking;
+                int PointsForSecondLangWriting;
+                int PointsForSecondLangReading;
+                int PointsForSecondLangListening;
+                int PointsForSecondLanguage;
+                PointsForSecondLangSpeaking = SecondLanguagePointsCalculator.SecondLangPointsCalculator(primaryAplicantSecondLangPoints.CLBSpeakingPoints);
+                PointsForSecondLangWriting = SecondLanguagePointsCalculator.SecondLangPointsCalculator(primaryAplicantSecondLangPoints.CLBWritingPoints);
+                PointsForSecondLangReading = SecondLanguagePointsCalculator.SecondLangPointsCalculator(primaryAplicantSecondLangPoints.CLBReadingPoints);
+                PointsForSecondLangListening = SecondLanguagePointsCalculator.SecondLangPointsCalculator(primaryAplicantSecondLangPoints.CLBListeningPoints);
+
+                PointsForSecondLanguage = PointsForSecondLangSpeaking + PointsForSecondLangWriting + PointsForSecondLangReading + PointsForSecondLangListening;
+                string TotalPointsForSecondLanguage = PointsForSecondLanguage.ToString();
+                System.Console.WriteLine("Point For Second Language" + " " + TotalPointsForSecondLanguage);
+            }
+
+
+            else
+            {
+                System.Console.WriteLine("No points for the second language");
+            }
+
+
             Console.Read();
         }
 

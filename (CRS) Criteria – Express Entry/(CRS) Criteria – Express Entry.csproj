@@ -43,10 +43,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AgePointsCalculator.cs" />
+    <Compile Include="LanguagePointsCalculator.cs" />
     <Compile Include="EducationPointsCalculator.cs" />
     <Compile Include="LanguagePoints.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SecondLanguagePointsCalculator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
