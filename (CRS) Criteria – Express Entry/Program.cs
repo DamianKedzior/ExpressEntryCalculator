@@ -170,6 +170,23 @@ namespace _CRS__Criteria___Express_Entry
                 System.Console.WriteLine("No points for the second language");
             }
 
+            System.Console.WriteLine("How many years of work experience do you have in the Canadian labour market? (warning!: The year of experience is calculated after having completed the full year worked. If you have worked less than a year, enter 0. There is no rounding up)");
+            string ExperienceTime = System.Console.ReadLine();
+            int ParsedExperienceTime = Int32.Parse(ExperienceTime);
+
+            int PointsForExperience;
+            if (NoSpouse == true)
+            {
+                PointsForExperience = ExperiencePointsCalculator.CountPointsForExperienceWithSpouse(ParsedExperienceTime);
+            }
+            else
+            {
+                PointsForExperience = ExperiencePointsCalculator.CountPointsForExperienceWithoutSpouse(ParsedExperienceTime);
+            }
+            string experienceSentence = "Points For Experience ";
+            string fullExperienceSentence = experienceSentence + PointsForExperience.ToString();
+            System.Console.WriteLine(fullExperienceSentence);
+
 
             Console.Read();
         }

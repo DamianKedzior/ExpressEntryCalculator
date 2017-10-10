@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AgePointsCalculator.cs" />
+    <Compile Include="ExperiencePointsCalculator.cs" />
     <Compile Include="LanguagePointsCalculator.cs" />
     <Compile Include="EducationPointsCalculator.cs" />
     <Compile Include="LanguagePoints.cs" />
