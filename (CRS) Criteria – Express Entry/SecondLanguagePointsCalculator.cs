@@ -14,11 +14,11 @@ namespace _CRS__Criteria___Express_Entry
             {
                 return 6;
             }
-            else if (CLBPoints == 8 ^ CLBPoints == 7)
+            else if (CLBPoints == 8 || CLBPoints == 7)
             {
                 return 3;
             }
-            else if (CLBPoints == 6 ^ CLBPoints == 5)
+            else if (CLBPoints == 6 || CLBPoints == 5)
             {
                 return 1;
             }

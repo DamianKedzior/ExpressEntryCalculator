@@ -31,7 +31,7 @@ namespace _CRS__Criteria___Express_Entry
             {
                 return 8;
             }
-            else if (CLBPoints == 5 ^ CLBPoints == 4)
+            else if (CLBPoints == 5 || CLBPoints == 4)
             {
                 return 6;
             }
@@ -63,7 +63,7 @@ namespace _CRS__Criteria___Express_Entry
             {
                 return 9;
             }
-            else if (CLBPoints == 5 ^ CLBPoints == 4)
+            else if (CLBPoints == 5 || CLBPoints == 4)
             {
                 return 6;
             }

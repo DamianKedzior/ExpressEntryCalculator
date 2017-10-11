@@ -113,12 +113,13 @@ namespace _CRS__Criteria___Express_Entry
             }
             PointsForLanguage = PointsForSpeaking + PointsForWriting + PointsForReading + PointsForListening;
             string TotalPointsForLanguage = PointsForLanguage.ToString();
-            System.Console.WriteLine("Point For Language" + " " + TotalPointsForLanguage);
+            System.Console.WriteLine("Points for 1st language " + TotalPointsForLanguage);
 
 
-            System.Console.WriteLine("Did you pass Second Language Exam? (YES or NO)");
+            System.Console.WriteLine("Did you pass second language exam? (YES or NO)");
             string SecondLanguage = System.Console.ReadLine();
-            if (SecondLanguage == "YES" ^ SecondLanguage == "yes" ^ SecondLanguage == "Yes")
+            int PointsForSecondLanguage = 0;
+            if (SecondLanguage.ToUpper() == "YES")
             {
                 System.Console.WriteLine("What type of exam of your second language did you pass? (enter the number from 1 to 3)");
                 System.Console.WriteLine("1.IELTS");
@@ -133,11 +134,11 @@ namespace _CRS__Criteria___Express_Entry
 
                 System.Console.WriteLine("How many points did you get for speaking?");
                 string SpeakingPointsOfSecondLangExam = System.Console.ReadLine();
-                primaryAplicantFirstLangPoints.SpeakingPoints = double.Parse(SpeakingPointsOfSecondLangExam);
+                primaryAplicantSecondLangPoints.SpeakingPoints = double.Parse(SpeakingPointsOfSecondLangExam);
 
                 System.Console.WriteLine("How many points did you get for writing?");
                 string WritingPointsOfSecondLangExam = System.Console.ReadLine();
-                primaryAplicantFirstLangPoints.WritingPoints = double.Parse(WritingPointsOfSecondLangExam);
+                primaryAplicantSecondLangPoints.WritingPoints = double.Parse(WritingPointsOfSecondLangExam);
 
                 System.Console.WriteLine("How many points did you get for reading?");
                 string ReadingPointsOfSecondLangExam = System.Console.ReadLine();
@@ -145,7 +146,7 @@ namespace _CRS__Criteria___Express_Entry
 
                 System.Console.WriteLine("How many points did you get for listening?");
                 string ListeningPointsOfSecondLangExam = System.Console.ReadLine();
-                primaryAplicantFirstLangPoints.ListeningPoints = double.Parse(ListeningPointsOfSecondLangExam);
+                primaryAplicantSecondLangPoints.ListeningPoints = double.Parse(ListeningPointsOfSecondLangExam);
 
                 primaryAplicantSecondLangPoints.CalculateCLBPoints();
 
@@ -153,7 +154,7 @@ namespace _CRS__Criteria___Express_Entry
                 int PointsForSecondLangWriting;
                 int PointsForSecondLangReading;
                 int PointsForSecondLangListening;
-                int PointsForSecondLanguage;
+
                 PointsForSecondLangSpeaking = SecondLanguagePointsCalculator.SecondLangPointsCalculator(primaryAplicantSecondLangPoints.CLBSpeakingPoints);
                 PointsForSecondLangWriting = SecondLanguagePointsCalculator.SecondLangPointsCalculator(primaryAplicantSecondLangPoints.CLBWritingPoints);
                 PointsForSecondLangReading = SecondLanguagePointsCalculator.SecondLangPointsCalculator(primaryAplicantSecondLangPoints.CLBReadingPoints);
@@ -161,10 +162,8 @@ namespace _CRS__Criteria___Express_Entry
 
                 PointsForSecondLanguage = PointsForSecondLangSpeaking + PointsForSecondLangWriting + PointsForSecondLangReading + PointsForSecondLangListening;
                 string TotalPointsForSecondLanguage = PointsForSecondLanguage.ToString();
-                System.Console.WriteLine("Point For Second Language" + " " + TotalPointsForSecondLanguage);
+                System.Console.WriteLine("Point For Second Language " + TotalPointsForSecondLanguage);
             }
-
-
             else
             {
                 System.Console.WriteLine("No points for the second language");
@@ -177,16 +176,21 @@ namespace _CRS__Criteria___Express_Entry
             int PointsForExperience;
             if (NoSpouse == true)
             {
-                PointsForExperience = ExperiencePointsCalculator.CountPointsForExperienceWithSpouse(ParsedExperienceTime);
+                PointsForExperience = ExperiencePointsCalculator.CountPointsForExperienceWithoutSpouse(ParsedExperienceTime);
             }
             else
             {
-                PointsForExperience = ExperiencePointsCalculator.CountPointsForExperienceWithoutSpouse(ParsedExperienceTime);
+                PointsForExperience = ExperiencePointsCalculator.CountPointsForExperienceWithSpouse(ParsedExperienceTime);
             }
             string experienceSentence = "Points For Experience ";
             string fullExperienceSentence = experienceSentence + PointsForExperience.ToString();
             System.Console.WriteLine(fullExperienceSentence);
 
+            int TotalPointsForHumanCapitalFactors;
+            TotalPointsForHumanCapitalFactors = PointForAge + PointForEducation + PointsForLanguage + PointsForSecondLanguage + PointsForExperience;
+            string totalPointsSentence = "Points earned by you ";
+            string fullTotalPointsSentence = totalPointsSentence + TotalPointsForHumanCapitalFactors.ToString();
+            System.Console.WriteLine(fullTotalPointsSentence);
 
             Console.Read();
         }
