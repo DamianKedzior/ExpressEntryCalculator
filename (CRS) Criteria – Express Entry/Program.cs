@@ -63,12 +63,7 @@ namespace _CRS__Criteria___Express_Entry
             string fullEducationSentence = educationSentence + PointForEducation.ToString();
             System.Console.WriteLine(fullEducationSentence);
 
-            System.Console.WriteLine("What type of exam did you pass? (enter the number from 1 to 3)");
-            System.Console.WriteLine("1.IELTS");
-            System.Console.WriteLine("2.CELPIP");
-            System.Console.WriteLine("3.TEF");
-            string NumberOfExam = System.Console.ReadLine();
-            LanguagePoints.LanguageExamTypes TypeOfExam  = IdentifyingTheTypeOfExam (NumberOfExam);
+            LanguagePoints.LanguageExamTypes TypeOfExam = GetLanguageExamType();
 
             LanguagePoints primaryAplicantFirstLangPoints = new LanguagePoints();
             primaryAplicantFirstLangPoints.LanguageExamType = TypeOfExam;
@@ -121,12 +116,7 @@ namespace _CRS__Criteria___Express_Entry
             int PointsForSecondLanguage = 0;
             if (SecondLanguage.ToUpper() == "YES")
             {
-                System.Console.WriteLine("What type of exam of your second language did you pass? (enter the number from 1 to 3)");
-                System.Console.WriteLine("1.IELTS");
-                System.Console.WriteLine("2.CELPIP");
-                System.Console.WriteLine("3.TEF");
-                string NumberOfSecondLangExam = System.Console.ReadLine();
-                LanguagePoints.LanguageExamTypes TypeOfSecondLangExam = IdentifyingTheTypeOfExam(NumberOfSecondLangExam);
+                LanguagePoints.LanguageExamTypes TypeOfSecondLangExam = GetLanguageExamType();
 
                 LanguagePoints primaryAplicantSecondLangPoints = new LanguagePoints();
 
@@ -195,6 +185,18 @@ namespace _CRS__Criteria___Express_Entry
             Console.Read();
         }
 
+        static LanguagePoints.LanguageExamTypes GetLanguageExamType()
+        {
+            System.Console.WriteLine("What type of exam of your second language did you pass? (enter the number from 1 to 3)");
+            System.Console.WriteLine("1.IELTS");
+            System.Console.WriteLine("2.CELPIP");
+            System.Console.WriteLine("3.TEF");
+
+            string langExamNumber = System.Console.ReadLine();
+            LanguagePoints.LanguageExamTypes langExamType = IdentifyingTheTypeOfExam(langExamNumber);
+
+            return langExamType;
+        }
         
         static LanguagePoints.LanguageExamTypes IdentifyingTheTypeOfExam(string Exam)
         {
@@ -210,7 +212,6 @@ namespace _CRS__Criteria___Express_Entry
                     return LanguagePoints.LanguageExamTypes.IELTS;
             }
         }
-
 
         static int CountAge(DateTime birthday)
         {
