@@ -35,20 +35,19 @@ namespace _CRS__Criteria___Express_Entry
             }
             System.Console.WriteLine("Points for age " + PointForAge.ToString());
 
-            GetEducationalLevel();
-            string NumberOfLevel = System.Console.ReadLine();
-            int EduLevel = Int32.Parse(NumberOfLevel);
+            System.Console.WriteLine("Select the level of education (enter the number from 1 to 8)");
 
             int PointForEducation;
             if (NoSpouse == true)
             {
-                PointForEducation = EducationPointsCalculator.CountPointsForEducation(EduLevel);
+                PointForEducation = EducationPointsCalculator.CountPointsForEducation(GetEducationalLevel());
             }
             else
             {
-                PointForEducation = EducationPointsCalculator.CountPointsForEducationWithSpouse(EduLevel);
+                PointForEducation = EducationPointsCalculator.CountPointsForEducationWithSpouse(GetEducationalLevel());
             }
             System.Console.WriteLine("Points for education " + PointForEducation.ToString());
+
 
             LanguagePoints primaryAplicantFirstLangPoints = new LanguagePoints();
 
@@ -123,17 +122,16 @@ namespace _CRS__Criteria___Express_Entry
             TotalPointsForHumanCapitalFactors = PointForAge + PointForEducation + PointsForLanguage + PointsForSecondLanguage + PointsForExperience;
             System.Console.WriteLine("Points earned by you " + TotalPointsForHumanCapitalFactors.ToString());
 
+
             if (NoSpouse == true)
             {
                 System.Console.WriteLine("No points earned by spouse or common-law partner");
             }
             else
             {
-                GetEducationalLevel();
-                string NumberOfSpouseLevel = System.Console.ReadLine();
-                int SpouseEduLevel = Int32.Parse(NumberOfLevel);
+                System.Console.WriteLine("Select the level of education of spouse or common-law partner (enter the number from 1 to 8)");
                 int PointsForSpouseEducation;
-                PointsForSpouseEducation = SpouseEducationPointsCalculator.CountPointsForSpouseEducation(SpouseEduLevel);
+                PointsForSpouseEducation = EducationPointsCalculator.CountPointsForSpouseEducation(GetEducationalLevel());
                 System.Console.WriteLine("Points for education of spouse or common-law partner" + PointsForSpouseEducation.ToString());
 
                 LanguagePoints spouseFirstLangPoints = new LanguagePoints();
@@ -146,10 +144,10 @@ namespace _CRS__Criteria___Express_Entry
                 int PointsForSpouseListening;
                 int PointsForSpouseLanguage;
 
-                PointsForSpouseSpeaking = SpouseLanguagePointsCalculator.CalculatorOfSpouseLanguagePoints(spouseFirstLangPoints.CLBSpeakingPoints);
-                PointsForSpouseWriting = SpouseLanguagePointsCalculator.CalculatorOfSpouseLanguagePoints(spouseFirstLangPoints.CLBWritingPoints);
-                PointsForSpouseReading = SpouseLanguagePointsCalculator.CalculatorOfSpouseLanguagePoints(spouseFirstLangPoints.CLBReadingPoints);
-                PointsForSpouseListening = SpouseLanguagePointsCalculator.CalculatorOfSpouseLanguagePoints(spouseFirstLangPoints.CLBListeningPoints);
+                PointsForSpouseSpeaking = LanguagePointsCalculator.CalculatorOfSpouseLanguagePoints(spouseFirstLangPoints.CLBSpeakingPoints);
+                PointsForSpouseWriting = LanguagePointsCalculator.CalculatorOfSpouseLanguagePoints(spouseFirstLangPoints.CLBWritingPoints);
+                PointsForSpouseReading = LanguagePointsCalculator.CalculatorOfSpouseLanguagePoints(spouseFirstLangPoints.CLBReadingPoints);
+                PointsForSpouseListening = LanguagePointsCalculator.CalculatorOfSpouseLanguagePoints(spouseFirstLangPoints.CLBListeningPoints);
 
                 PointsForSpouseLanguage = PointsForSpouseSpeaking + PointsForSpouseWriting + PointsForSpouseReading + PointsForSpouseListening;
                 System.Console.WriteLine("Points for language of spouse or common-law partner " + PointsForSpouseLanguage.ToString());
@@ -158,7 +156,7 @@ namespace _CRS__Criteria___Express_Entry
                 string SpouseExperienceTime = System.Console.ReadLine();
                 int ParsedSpouseExperienceTime = Int32.Parse(ExperienceTime);
                 int PointsForSpouseExperience;
-                PointsForSpouseExperience = SpouseExperiencePointsCalculator.CountPointsForSpouseExperience(ParsedSpouseExperienceTime);
+                PointsForSpouseExperience = ExperiencePointsCalculator.CountPointsForSpouseExperience(ParsedSpouseExperienceTime);
 
                 System.Console.WriteLine("Points for spouse experience " + PointsForSpouseExperience.ToString());
 
@@ -170,9 +168,8 @@ namespace _CRS__Criteria___Express_Entry
             Console.Read();
         }
 
-        static void GetEducationalLevel()
+        static int GetEducationalLevel()
         {
-            System.Console.WriteLine("Select the spouse’s or common-law partner’s level of education(enter the number from 1 to 8)");
             System.Console.WriteLine("1.Less than secondary school (high school)");
             System.Console.WriteLine("2.Secondary diploma (high school graduation)");
             System.Console.WriteLine("3.One-year degree, diploma or certificate from  a university, college, trade or technical school, or other institute");
@@ -181,6 +178,9 @@ namespace _CRS__Criteria___Express_Entry
             System.Console.WriteLine("6.Two or more certificates, diplomas, or degrees. One must be for a program of three or more years");
             System.Console.WriteLine("7.Master's degree, OR professional degree needed to practice in a licensed profession (For “professional degree,” the degree program must have been in: medicine, veterinary medicine, dentistry, optometry, law, chiropractic medicine, or pharmacy.)");
             System.Console.WriteLine("8.Doctoral level university degree (Ph.D.)");
+            string levelNumber = System.Console.ReadLine();
+            int EduLevel = Int32.Parse(levelNumber);
+            return EduLevel;
         }
 
         static void SetAndCalculateLanguagePoints(LanguagePoints langPoints)
