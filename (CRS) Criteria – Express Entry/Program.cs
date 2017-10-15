@@ -20,7 +20,7 @@ namespace _CRS__Criteria___Express_Entry
             int age = CountAge(ParsedDateOfBirth);
             System.Console.WriteLine("Your age is " + age);
 
-            System.Console.WriteLine("FullName Spouse or common - law partner if exist");
+            System.Console.WriteLine("FullName spouse or common - law partner if exist");
             string spouseFullname = System.Console.ReadLine();
             bool NoSpouse = String.IsNullOrWhiteSpace(spouseFullname);
 
@@ -33,20 +33,9 @@ namespace _CRS__Criteria___Express_Entry
             {
                 PointForAge = AgePointsCalculator.CountPointsForAgeWithSpouse(age);
             }
-            string sentence = "Points For Age ";
-            string fullsentence = sentence + PointForAge.ToString();
-            System.Console.WriteLine(fullsentence);
+            System.Console.WriteLine("Points for age " + PointForAge.ToString());
 
-
-            System.Console.WriteLine("Select the level of education (enter the number from 1 to 8)");
-            System.Console.WriteLine("1.Less than secondary school (high school)");
-            System.Console.WriteLine("2.Secondary diploma (high school graduation)");
-            System.Console.WriteLine("3.One-year degree, diploma or certificate from  a university, college, trade or technical school, or other institute");
-            System.Console.WriteLine("4.Two-year program at a university, college, trade or technical school, or other institute");
-            System.Console.WriteLine("5.Bachelor's degree OR  a three or more year program at a university, college, trade or technical school, or other institute");
-            System.Console.WriteLine("6.Two or more certificates, diplomas, or degrees. One must be for a program of three or more years");
-            System.Console.WriteLine("7.Master's degree, OR professional degree needed to practice in a licensed profession (For “professional degree,” the degree program must have been in: medicine, veterinary medicine, dentistry, optometry, law, chiropractic medicine, or pharmacy.)");
-            System.Console.WriteLine("8.Doctoral level university degree (Ph.D.)");
+            GetEducationalLevel();
             string NumberOfLevel = System.Console.ReadLine();
             int EduLevel = Int32.Parse(NumberOfLevel);
 
@@ -59,33 +48,11 @@ namespace _CRS__Criteria___Express_Entry
             {
                 PointForEducation = EducationPointsCalculator.CountPointsForEducationWithSpouse(EduLevel);
             }
-            string educationSentence = "Points For Education ";
-            string fullEducationSentence = educationSentence + PointForEducation.ToString();
-            System.Console.WriteLine(fullEducationSentence);
-
-            LanguagePoints.LanguageExamTypes TypeOfExam = GetLanguageExamType();
+            System.Console.WriteLine("Points for education " + PointForEducation.ToString());
 
             LanguagePoints primaryAplicantFirstLangPoints = new LanguagePoints();
-            primaryAplicantFirstLangPoints.LanguageExamType = TypeOfExam;
 
-            System.Console.WriteLine("How many points did you get for reading?");
-            string ReadingPoints = System.Console.ReadLine();
-            primaryAplicantFirstLangPoints.ReadingPoints = double.Parse(ReadingPoints);
-
-            System.Console.WriteLine("How many points did you get for listening?");
-            string ListeningPoints = System.Console.ReadLine();
-            primaryAplicantFirstLangPoints.ListeningPoints = double.Parse(ListeningPoints);
-
-            System.Console.WriteLine("How many points did you get for speaking?");
-            string SpeakingPoints = System.Console.ReadLine();
-            primaryAplicantFirstLangPoints.SpeakingPoints = double.Parse(SpeakingPoints);
-
-            System.Console.WriteLine("How many points did you get for writing?");
-            string WritingPoints = System.Console.ReadLine();
-            primaryAplicantFirstLangPoints.WritingPoints = double.Parse(WritingPoints);
-
-            primaryAplicantFirstLangPoints.CalculateCLBPoints();
-
+            SetAndCalculateLanguagePoints(primaryAplicantFirstLangPoints);
 
             int PointsForSpeaking;
             int PointsForWriting;
@@ -107,8 +74,7 @@ namespace _CRS__Criteria___Express_Entry
                 PointsForListening = LanguagePointsCalculator.LanguagePointsCalculatorWithSpouse(primaryAplicantFirstLangPoints.CLBListeningPoints);
             }
             PointsForLanguage = PointsForSpeaking + PointsForWriting + PointsForReading + PointsForListening;
-            string TotalPointsForLanguage = PointsForLanguage.ToString();
-            System.Console.WriteLine("Points for 1st language " + TotalPointsForLanguage);
+            System.Console.WriteLine("Points for 1st language " + PointsForLanguage.ToString());
 
 
             System.Console.WriteLine("Did you pass second language exam? (YES or NO)");
@@ -116,30 +82,10 @@ namespace _CRS__Criteria___Express_Entry
             int PointsForSecondLanguage = 0;
             if (SecondLanguage.ToUpper() == "YES")
             {
-                LanguagePoints.LanguageExamTypes TypeOfSecondLangExam = GetLanguageExamType();
-
                 LanguagePoints primaryAplicantSecondLangPoints = new LanguagePoints();
 
-                primaryAplicantSecondLangPoints.LanguageExamType = TypeOfSecondLangExam;
-
-                System.Console.WriteLine("How many points did you get for speaking?");
-                string SpeakingPointsOfSecondLangExam = System.Console.ReadLine();
-                primaryAplicantSecondLangPoints.SpeakingPoints = double.Parse(SpeakingPointsOfSecondLangExam);
-
-                System.Console.WriteLine("How many points did you get for writing?");
-                string WritingPointsOfSecondLangExam = System.Console.ReadLine();
-                primaryAplicantSecondLangPoints.WritingPoints = double.Parse(WritingPointsOfSecondLangExam);
-
-                System.Console.WriteLine("How many points did you get for reading?");
-                string ReadingPointsOfSecondLangExam = System.Console.ReadLine();
-                primaryAplicantSecondLangPoints.ReadingPoints = double.Parse(ReadingPointsOfSecondLangExam);
-
-                System.Console.WriteLine("How many points did you get for listening?");
-                string ListeningPointsOfSecondLangExam = System.Console.ReadLine();
-                primaryAplicantSecondLangPoints.ListeningPoints = double.Parse(ListeningPointsOfSecondLangExam);
-
-                primaryAplicantSecondLangPoints.CalculateCLBPoints();
-
+                SetAndCalculateLanguagePoints(primaryAplicantSecondLangPoints);
+     
                 int PointsForSecondLangSpeaking;
                 int PointsForSecondLangWriting;
                 int PointsForSecondLangReading;
@@ -151,8 +97,7 @@ namespace _CRS__Criteria___Express_Entry
                 PointsForSecondLangListening = SecondLanguagePointsCalculator.SecondLangPointsCalculator(primaryAplicantSecondLangPoints.CLBListeningPoints);
 
                 PointsForSecondLanguage = PointsForSecondLangSpeaking + PointsForSecondLangWriting + PointsForSecondLangReading + PointsForSecondLangListening;
-                string TotalPointsForSecondLanguage = PointsForSecondLanguage.ToString();
-                System.Console.WriteLine("Point For Second Language " + TotalPointsForSecondLanguage);
+                System.Console.WriteLine("Point for second language " + PointsForSecondLanguage.ToString());
             }
             else
             {
@@ -172,17 +117,94 @@ namespace _CRS__Criteria___Express_Entry
             {
                 PointsForExperience = ExperiencePointsCalculator.CountPointsForExperienceWithSpouse(ParsedExperienceTime);
             }
-            string experienceSentence = "Points For Experience ";
-            string fullExperienceSentence = experienceSentence + PointsForExperience.ToString();
-            System.Console.WriteLine(fullExperienceSentence);
+            System.Console.WriteLine("Points for experience " + PointsForExperience.ToString());
 
             int TotalPointsForHumanCapitalFactors;
             TotalPointsForHumanCapitalFactors = PointForAge + PointForEducation + PointsForLanguage + PointsForSecondLanguage + PointsForExperience;
-            string totalPointsSentence = "Points earned by you ";
-            string fullTotalPointsSentence = totalPointsSentence + TotalPointsForHumanCapitalFactors.ToString();
-            System.Console.WriteLine(fullTotalPointsSentence);
+            System.Console.WriteLine("Points earned by you " + TotalPointsForHumanCapitalFactors.ToString());
+
+            if (NoSpouse == true)
+            {
+                System.Console.WriteLine("No points earned by spouse or common-law partner");
+            }
+            else
+            {
+                GetEducationalLevel();
+                string NumberOfSpouseLevel = System.Console.ReadLine();
+                int SpouseEduLevel = Int32.Parse(NumberOfLevel);
+                int PointsForSpouseEducation;
+                PointsForSpouseEducation = SpouseEducationPointsCalculator.CountPointsForSpouseEducation(SpouseEduLevel);
+                System.Console.WriteLine("Points for education of spouse or common-law partner" + PointsForSpouseEducation.ToString());
+
+                LanguagePoints spouseFirstLangPoints = new LanguagePoints();
+
+                SetAndCalculateLanguagePoints(spouseFirstLangPoints);
+
+                int PointsForSpouseSpeaking;
+                int PointsForSpouseWriting;
+                int PointsForSpouseReading;
+                int PointsForSpouseListening;
+                int PointsForSpouseLanguage;
+
+                PointsForSpouseSpeaking = SpouseLanguagePointsCalculator.CalculatorOfSpouseLanguagePoints(spouseFirstLangPoints.CLBSpeakingPoints);
+                PointsForSpouseWriting = SpouseLanguagePointsCalculator.CalculatorOfSpouseLanguagePoints(spouseFirstLangPoints.CLBWritingPoints);
+                PointsForSpouseReading = SpouseLanguagePointsCalculator.CalculatorOfSpouseLanguagePoints(spouseFirstLangPoints.CLBReadingPoints);
+                PointsForSpouseListening = SpouseLanguagePointsCalculator.CalculatorOfSpouseLanguagePoints(spouseFirstLangPoints.CLBListeningPoints);
+
+                PointsForSpouseLanguage = PointsForSpouseSpeaking + PointsForSpouseWriting + PointsForSpouseReading + PointsForSpouseListening;
+                System.Console.WriteLine("Points for language of spouse or common-law partner " + PointsForSpouseLanguage.ToString());
+
+                System.Console.WriteLine("How many years of work experience in the Canadian labour market has your spouse or common-law partner? (warning!: The year of experience is calculated after having completed the full year worked. If your spouse or common-law partner has worked less than a year, enter 0. There is no rounding up)");
+                string SpouseExperienceTime = System.Console.ReadLine();
+                int ParsedSpouseExperienceTime = Int32.Parse(ExperienceTime);
+                int PointsForSpouseExperience;
+                PointsForSpouseExperience = SpouseExperiencePointsCalculator.CountPointsForSpouseExperience(ParsedSpouseExperienceTime);
+
+                System.Console.WriteLine("Points for spouse experience " + PointsForSpouseExperience.ToString());
+
+                int TotalPointsForSpouseOrCommonLawPartnerFactors;
+                TotalPointsForSpouseOrCommonLawPartnerFactors = PointsForSpouseEducation + PointsForSpouseLanguage + PointsForSpouseExperience;
+                System.Console.WriteLine("Points earned by spouse or common-law partner " + TotalPointsForSpouseOrCommonLawPartnerFactors.ToString());
+            }
 
             Console.Read();
+        }
+
+        static void GetEducationalLevel()
+        {
+            System.Console.WriteLine("Select the spouse’s or common-law partner’s level of education(enter the number from 1 to 8)");
+            System.Console.WriteLine("1.Less than secondary school (high school)");
+            System.Console.WriteLine("2.Secondary diploma (high school graduation)");
+            System.Console.WriteLine("3.One-year degree, diploma or certificate from  a university, college, trade or technical school, or other institute");
+            System.Console.WriteLine("4.Two-year program at a university, college, trade or technical school, or other institute");
+            System.Console.WriteLine("5.Bachelor's degree OR  a three or more year program at a university, college, trade or technical school, or other institute");
+            System.Console.WriteLine("6.Two or more certificates, diplomas, or degrees. One must be for a program of three or more years");
+            System.Console.WriteLine("7.Master's degree, OR professional degree needed to practice in a licensed profession (For “professional degree,” the degree program must have been in: medicine, veterinary medicine, dentistry, optometry, law, chiropractic medicine, or pharmacy.)");
+            System.Console.WriteLine("8.Doctoral level university degree (Ph.D.)");
+        }
+
+        static void SetAndCalculateLanguagePoints(LanguagePoints langPoints)
+        {
+            langPoints.LanguageExamType = GetLanguageExamType();
+
+            System.Console.WriteLine("How many points did you get for speaking?");
+            string SpeakingPointsOfLangExam = System.Console.ReadLine();
+            langPoints.SpeakingPoints = double.Parse(SpeakingPointsOfLangExam);
+
+            System.Console.WriteLine("How many points did you get for writing?");
+            string WritingPointsOfLangExam = System.Console.ReadLine();
+            langPoints.WritingPoints = double.Parse(WritingPointsOfLangExam);
+
+            System.Console.WriteLine("How many points did you get for reading?");
+            string ReadingPointsOfLangExam = System.Console.ReadLine();
+            langPoints.ReadingPoints = double.Parse(ReadingPointsOfLangExam);
+
+            System.Console.WriteLine("How many points did you get for listening?");
+            string ListeningPointsOfLangExam = System.Console.ReadLine();
+            langPoints.ListeningPoints = double.Parse(ListeningPointsOfLangExam);
+
+            langPoints.CalculateCLBPoints();
+
         }
 
         static LanguagePoints.LanguageExamTypes GetLanguageExamType()

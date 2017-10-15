@@ -50,6 +50,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SecondLanguagePointsCalculator.cs" />
+    <Compile Include="SpouseEducationPointsCalculator.cs" />
+    <Compile Include="SpouseExperiencePointsCalculator.cs" />
+    <Compile Include="SpouseLanguagePointsCalculator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
