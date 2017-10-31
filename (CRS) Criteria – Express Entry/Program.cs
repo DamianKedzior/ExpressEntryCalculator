@@ -37,14 +37,17 @@ namespace _CRS__Criteria___Express_Entry
 
             System.Console.WriteLine("Select the level of education (enter the number from 1 to 8)");
 
+            int EducationLevel = GetEducationalLevel();
+
             int PointForEducation;
+
             if (NoSpouse == true)
             {
-                PointForEducation = EducationPointsCalculator.CountPointsForEducation(GetEducationalLevel());
+                PointForEducation = EducationPointsCalculator.CountPointsForEducation(EducationLevel);
             }
             else
             {
-                PointForEducation = EducationPointsCalculator.CountPointsForEducationWithSpouse(GetEducationalLevel());
+                PointForEducation = EducationPointsCalculator.CountPointsForEducationWithSpouse(EducationLevel);
             }
             System.Console.WriteLine("Points for education " + PointForEducation.ToString());
 
@@ -84,7 +87,7 @@ namespace _CRS__Criteria___Express_Entry
                 LanguagePoints primaryAplicantSecondLangPoints = new LanguagePoints();
 
                 SetAndCalculateLanguagePoints(primaryAplicantSecondLangPoints);
-     
+
                 int PointsForSecondLangSpeaking;
                 int PointsForSecondLangWriting;
                 int PointsForSecondLangReading;
@@ -130,8 +133,9 @@ namespace _CRS__Criteria___Express_Entry
             else
             {
                 System.Console.WriteLine("Select the level of education of spouse or common-law partner (enter the number from 1 to 8)");
+                int SpouseEducationLevel = GetEducationalLevel();
                 int PointsForSpouseEducation;
-                PointsForSpouseEducation = EducationPointsCalculator.CountPointsForSpouseEducation(GetEducationalLevel());
+                PointsForSpouseEducation = EducationPointsCalculator.CountPointsForSpouseEducation(SpouseEducationLevel);
                 System.Console.WriteLine("Points for education of spouse or common-law partner" + PointsForSpouseEducation.ToString());
 
                 LanguagePoints spouseFirstLangPoints = new LanguagePoints();
@@ -164,6 +168,15 @@ namespace _CRS__Criteria___Express_Entry
                 TotalPointsForSpouseOrCommonLawPartnerFactors = PointsForSpouseEducation + PointsForSpouseLanguage + PointsForSpouseExperience;
                 System.Console.WriteLine("Points earned by spouse or common-law partner " + TotalPointsForSpouseOrCommonLawPartnerFactors.ToString());
             }
+
+            System.Console.WriteLine("How many years of foreign work experiencein (outside Canada) do you have? (warning!: The year of experience is calculated after having completed the full year worked. If your spouse or common-law partner has worked less than a year, enter 0. There is no rounding up) ");
+            string foreignExperienceTime = System.Console.ReadLine();
+            int ParsedForeignExperienceTime = Int32.Parse(foreignExperienceTime);
+
+
+            int PointsForSkillTransferabilityFactors;
+            PointsForSkillTransferabilityFactors = AdditionalPointsCalculator.CalculateAdditionalPoints(primaryAplicantFirstLangPoints, EducationLevel, ParsedExperienceTime, ParsedForeignExperienceTime);
+            System.Console.WriteLine("Points for skill transferability factor " + PointsForSkillTransferabilityFactors.ToString());
 
             Console.Read();
         }

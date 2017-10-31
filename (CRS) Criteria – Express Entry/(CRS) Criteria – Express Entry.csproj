@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdditionalPointsCalculator.cs" />
     <Compile Include="AgePointsCalculator.cs" />
     <Compile Include="ExperiencePointsCalculator.cs" />
     <Compile Include="LanguagePointsCalculator.cs" />
