@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace _CRS__Criteria___Express_Entry
 {
-    static class AdditionalPointsCalculator
+    static class SkillTransferabilityFactorsCalculator
     {
-        public static int CalculateAdditionalPoints(LanguagePoints languagePoints, int educationLevel, int yearsOfExperience, int yearsOfForeignExperience)
+        public static int CalculateSkillTransferabilityFactorsPoints(LanguagePoints languagePoints, int educationLevel, int yearsOfExperience, int yearsOfForeignExperience)
         {
-            int additionalPointsForEduAndLang = EduAndLangPoints(languagePoints, educationLevel);
-            int additionalPointsForExpAndEd = ExpAndEduPoints(yearsOfExperience, educationLevel);
-            int additionalPointsForLangAndForeighExp = LangAndForeighExpPoints(languagePoints, yearsOfForeignExperience);
-            int additionalPointsForExpAndForeignExp = ExpAndForeignExpPoints(yearsOfExperience, yearsOfForeignExperience);
-            int additionalPoints;
-            additionalPoints = additionalPointsForEduAndLang + additionalPointsForExpAndEd + additionalPointsForLangAndForeighExp + additionalPointsForExpAndForeignExp;
+            int PointsForEduAndLang = EduAndLangPoints(languagePoints, educationLevel);
+            int PointsForExpAndEd = ExpAndEduPoints(yearsOfExperience, educationLevel);
+            int PointsForLangAndForeighExp = LangAndForeighExpPoints(languagePoints, yearsOfForeignExperience);
+            int PointsForExpAndForeignExp = ExpAndForeignExpPoints(yearsOfExperience, yearsOfForeignExperience);
+            int skillTransferabilityFactorsPoints;
+            skillTransferabilityFactorsPoints = PointsForEduAndLang + PointsForExpAndEd + PointsForLangAndForeighExp + PointsForExpAndForeignExp;
 
             //// Dlugi IF (ponizej krotki IF)
             //if (additionalPoints > 100)
@@ -28,7 +28,7 @@ namespace _CRS__Criteria___Express_Entry
             //}
 
             // krotki IF (robi to samo co kod powyzej)
-            return additionalPoints > 100 ? 100 : additionalPoints;
+            return skillTransferabilityFactorsPoints > 100 ? 100 : skillTransferabilityFactorsPoints;
         }
 
 
