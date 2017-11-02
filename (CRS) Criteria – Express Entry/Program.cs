@@ -82,10 +82,11 @@ namespace _CRS__Criteria___Express_Entry
             System.Console.WriteLine("Did you pass second language exam? (YES or NO)");
             string SecondLanguage = System.Console.ReadLine();
             int PointsForSecondLanguage = 0;
+            LanguagePoints primaryAplicantSecondLangPoints = null;
+
             if (SecondLanguage.ToUpper() == "YES")
             {
-                LanguagePoints primaryAplicantSecondLangPoints = new LanguagePoints();
-
+                primaryAplicantSecondLangPoints = new LanguagePoints();
                 SetAndCalculateLanguagePoints(primaryAplicantSecondLangPoints);
 
                 int PointsForSecondLangSpeaking;
@@ -103,7 +104,7 @@ namespace _CRS__Criteria___Express_Entry
             }
             else
             {
-                System.Console.WriteLine("No points for the second language");
+                System.Console.WriteLine("No points for the second language ");
             }
 
             System.Console.WriteLine("How many years of work experience do you have in the Canadian labour market? (warning!: The year of experience is calculated after having completed the full year worked. If you have worked less than a year, enter 0. There is no rounding up)");
@@ -179,39 +180,47 @@ namespace _CRS__Criteria___Express_Entry
             System.Console.WriteLine("Points for skill transferability factor " + PointsForSkillTransferabilityFactors.ToString());
 
 
-            System.Console.WriteLine("Does your Brother or sister who is a citizen or permanent resident of Canada live in Canada? (YES or NO)");
+            System.Console.WriteLine("Does your brother or sister who is a citizen or permanent resident of Canada live in Canada? (YES or NO)");
             string CanadianFamilyMember = System.Console.ReadLine();
             int CanadianFamilyMemberPoints;
-            CanadianFamilyMemberPoints = AdditionalPoints.GiveAdditionalPoints(CanadianFamilyMember);
+            CanadianFamilyMemberPoints = AdditionalPointsCalculator.GiveAdditionalPoints(CanadianFamilyMember);
 
             System.Console.WriteLine("Have you graduated post-secondary education in Canada - credential of one or two years (YES or NO)");
             string CanadianEducation = System.Console.ReadLine();
             int CanadianEducationPoints;
-            CanadianEducationPoints = AdditionalPoints.GiveAdditionalPoints(CanadianEducation);
+            CanadianEducationPoints = AdditionalPointsCalculator.GiveAdditionalPoints(CanadianEducation);
 
             System.Console.WriteLine("Have you graduated post-secondary education in Canada - credential three years or longer (YES or NO)");
             string CanadianLongerEducation = System.Console.ReadLine();
             int CanadianLongerEducationPoints;
-            CanadianLongerEducationPoints = AdditionalPoints.GiveDoubleAdditionalPoints(CanadianLongerEducation);
+            CanadianLongerEducationPoints = AdditionalPointsCalculator.GiveDoubleAdditionalPoints(CanadianLongerEducation);
 
             System.Console.WriteLine("Arranged employment – any other NOC 0, A or B (YES or NO)");
             string CanadianArrangedEmployment = System.Console.ReadLine();
             int CanadianArrangedEmploymentPoints;
-            CanadianArrangedEmploymentPoints = AdditionalPoints.GiveAdditionalPointsForArrangedEmployment(CanadianArrangedEmployment);
+            CanadianArrangedEmploymentPoints = AdditionalPointsCalculator.GiveAdditionalPointsForArrangedEmployment(CanadianArrangedEmployment);
 
             System.Console.WriteLine("Arranged employment – any other NOC 00 (YES or NO)");
             string CanadianArrangedEmploymentPlus = System.Console.ReadLine();
             int CanadianArrangedEmploymentPlusPoints;
-            CanadianArrangedEmploymentPlusPoints = AdditionalPoints.GiveMoreAdditionalPointsForArrangedEmployment(CanadianArrangedEmploymentPlus);
+            CanadianArrangedEmploymentPlusPoints = AdditionalPointsCalculator.GiveMoreAdditionalPointsForArrangedEmployment(CanadianArrangedEmploymentPlus);
 
             System.Console.WriteLine("Have you got provincial or territorial nomination? (YES or NO)");
             string CanadianProvincialOrTerritorialNomination = System.Console.ReadLine();
             int CanadianProvincialOrTerritorialNominationPoints;
-            CanadianProvincialOrTerritorialNominationPoints = AdditionalPoints.GiveAdditionalPointsForProvincialOrTerritorialNomination(CanadianProvincialOrTerritorialNomination);
+            CanadianProvincialOrTerritorialNominationPoints = AdditionalPointsCalculator.GiveAdditionalPointsForProvincialOrTerritorialNomination(CanadianProvincialOrTerritorialNomination);
+
+
+            int AdditionalLanguagePoints = 0;
+            if (primaryAplicantFirstLangPoints.LanguageExamType == LanguagePoints.LanguageExamTypes.TEF)
+            {
+                AdditionalLanguagePoints = AdditionalPointsCalculator.GiveAdditionalPointsForLanguages(primaryAplicantFirstLangPoints, primaryAplicantSecondLangPoints);
+            }
 
             int additionalPoints;
-            additionalPoints = CanadianFamilyMemberPoints + CanadianEducationPoints + CanadianLongerEducationPoints + CanadianArrangedEmploymentPoints + CanadianArrangedEmploymentPlusPoints + CanadianProvincialOrTerritorialNominationPoints;
+            additionalPoints = CanadianFamilyMemberPoints + CanadianEducationPoints + CanadianLongerEducationPoints + CanadianArrangedEmploymentPoints + CanadianArrangedEmploymentPlusPoints + CanadianProvincialOrTerritorialNominationPoints + AdditionalLanguagePoints;
             System.Console.WriteLine("Additional points " + additionalPoints.ToString());
+
 
             Console.Read();
         }

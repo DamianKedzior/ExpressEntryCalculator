@@ -17,17 +17,6 @@ namespace _CRS__Criteria___Express_Entry
             int skillTransferabilityFactorsPoints;
             skillTransferabilityFactorsPoints = PointsForEduAndLang + PointsForExpAndEd + PointsForLangAndForeighExp + PointsForExpAndForeignExp;
 
-            //// Dlugi IF (ponizej krotki IF)
-            //if (additionalPoints > 100)
-            //{
-            //    return 100;
-            //}
-            //else
-            //{
-            //    return additionalPoints;
-            //}
-
-            // krotki IF (robi to samo co kod powyzej)
             return skillTransferabilityFactorsPoints > 100 ? 100 : skillTransferabilityFactorsPoints;
         }
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace _CRS__Criteria___Express_Entry
 {
-    static class AdditionalPoints
+    static class AdditionalPointsCalculator
     {
         public static int GiveAdditionalPoints(string answerToAddQuestion)
         {
@@ -70,5 +70,31 @@ namespace _CRS__Criteria___Express_Entry
         }
 
 
+        public static int GiveAdditionalPointsForLanguages(LanguagePoints frenchLanguagePoints, LanguagePoints englishLanguagePoints)
+        {
+            if (frenchLanguagePoints.CLBSpeakingPoints >= 7
+                 && frenchLanguagePoints.CLBWritingPoints >= 7
+                 && frenchLanguagePoints.CLBReadingPoints >= 7
+                 && frenchLanguagePoints.CLBListeningPoints >= 7)
+            {
+                if (englishLanguagePoints == null
+                    ||
+                 (englishLanguagePoints.CLBSpeakingPoints <= 4
+                 && englishLanguagePoints.CLBWritingPoints <= 4
+                 && englishLanguagePoints.CLBReadingPoints <= 4
+                 && englishLanguagePoints.CLBListeningPoints <= 4))
+                {
+                    return 15;
+                }
+                else
+                {
+                    return 30;
+                }
+            }
+            else
+            {
+                return 0;
+            }
+        }
     }
 }
