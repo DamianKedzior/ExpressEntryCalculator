@@ -14,9 +14,17 @@ namespace _CRS__Criteria___Express_Entry
             string firstname = System.Console.ReadLine();
             System.Console.WriteLine("Nazwisko");
             string lastname = System.Console.ReadLine();
-            System.Console.WriteLine("Date of birth (format: yyyy-mm-dd)");
-            string DateOfBirth = System.Console.ReadLine();
-            DateTime ParsedDateOfBirth = DateTime.Parse(DateOfBirth);
+
+            DateTime ParsedDateOfBirth;
+            string DateOfBirth;
+
+            do
+            {
+                System.Console.WriteLine("Date of birth (format: yyyy-mm-dd)");
+                DateOfBirth = System.Console.ReadLine();
+            }
+            while (DateTime.TryParse(DateOfBirth, out ParsedDateOfBirth) == false);
+
             int age = CountAge(ParsedDateOfBirth);
             System.Console.WriteLine("Your age is " + age);
 
