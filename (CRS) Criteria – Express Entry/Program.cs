@@ -126,7 +126,7 @@ namespace _CRS__Criteria___Express_Entry
             TotalPointsForHumanCapitalFactors = PointForAge + PointForEducation + PointsForLanguage + PointsForSecondLanguage + PointsForExperience;
             System.Console.WriteLine("Points earned by you " + TotalPointsForHumanCapitalFactors.ToString());
 
-
+            int TotalPointsForSpouseOrCommonLawPartnerFactors = 0;
             if (NoSpouse == true)
             {
                 System.Console.WriteLine("No points earned by spouse or common-law partner");
@@ -165,7 +165,6 @@ namespace _CRS__Criteria___Express_Entry
 
                 System.Console.WriteLine("Points for spouse experience " + PointsForSpouseExperience.ToString());
 
-                int TotalPointsForSpouseOrCommonLawPartnerFactors;
                 TotalPointsForSpouseOrCommonLawPartnerFactors = PointsForSpouseEducation + PointsForSpouseLanguage + PointsForSpouseExperience;
                 System.Console.WriteLine("Points earned by spouse or common-law partner " + TotalPointsForSpouseOrCommonLawPartnerFactors.ToString());
             }
@@ -221,6 +220,9 @@ namespace _CRS__Criteria___Express_Entry
             additionalPoints = CanadianFamilyMemberPoints + CanadianEducationPoints + CanadianLongerEducationPoints + CanadianArrangedEmploymentPoints + CanadianArrangedEmploymentPlusPoints + CanadianProvincialOrTerritorialNominationPoints + AdditionalLanguagePoints;
             System.Console.WriteLine("Additional points " + additionalPoints.ToString());
 
+            int totalPointsForExpressEntry;
+            totalPointsForExpressEntry = TotalPointsForHumanCapitalFactors + TotalPointsForSpouseOrCommonLawPartnerFactors + PointsForSkillTransferabilityFactors + additionalPoints;
+            System.Console.WriteLine("Total points for Express Entry " + totalPointsForExpressEntry.ToString());
 
             Console.Read();
         }
