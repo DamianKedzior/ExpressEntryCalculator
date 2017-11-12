@@ -18,10 +18,19 @@ namespace _CRS__Criteria___Express_Entry
             DateTime ParsedDateOfBirth;
             string DateOfBirth;
 
+            bool isFirstAttempt = true;
             do
             {
+                if (!isFirstAttempt)
+                {
+                    System.Console.ForegroundColor = ConsoleColor.Red;
+                    System.Console.WriteLine("Wrong date format. Please try again.");
+                    System.Console.ResetColor();
+                }
                 System.Console.WriteLine("Date of birth (format: yyyy-mm-dd)");
                 DateOfBirth = System.Console.ReadLine();
+
+                isFirstAttempt = false;
             }
             while (DateTime.TryParse(DateOfBirth, out ParsedDateOfBirth) == false);
 
