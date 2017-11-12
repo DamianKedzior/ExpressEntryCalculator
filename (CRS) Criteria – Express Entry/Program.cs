@@ -237,54 +237,78 @@ namespace _CRS__Criteria___Express_Entry
 
         static int GetEducationalLevel()
         {
-            System.Console.WriteLine("1.Less than secondary school (high school)");
-            System.Console.WriteLine("2.Secondary diploma (high school graduation)");
-            System.Console.WriteLine("3.One-year degree, diploma or certificate from  a university, college, trade or technical school, or other institute");
-            System.Console.WriteLine("4.Two-year program at a university, college, trade or technical school, or other institute");
-            System.Console.WriteLine("5.Bachelor's degree OR  a three or more year program at a university, college, trade or technical school, or other institute");
-            System.Console.WriteLine("6.Two or more certificates, diplomas, or degrees. One must be for a program of three or more years");
-            System.Console.WriteLine("7.Master's degree, OR professional degree needed to practice in a licensed profession (For “professional degree,” the degree program must have been in: medicine, veterinary medicine, dentistry, optometry, law, chiropractic medicine, or pharmacy.)");
-            System.Console.WriteLine("8.Doctoral level university degree (Ph.D.)");
-            string levelNumber = System.Console.ReadLine();
-            int EduLevel = Int32.Parse(levelNumber);
-            return EduLevel;
+            string levelNumber;
+            do
+            {
+                System.Console.WriteLine("1.Less than secondary school (high school)");
+                System.Console.WriteLine("2.Secondary diploma (high school graduation)");
+                System.Console.WriteLine("3.One-year degree, diploma or certificate from  a university, college, trade or technical school, or other institute");
+                System.Console.WriteLine("4.Two-year program at a university, college, trade or technical school, or other institute");
+                System.Console.WriteLine("5.Bachelor's degree OR  a three or more year program at a university, college, trade or technical school, or other institute");
+                System.Console.WriteLine("6.Two or more certificates, diplomas, or degrees. One must be for a program of three or more years");
+                System.Console.WriteLine("7.Master's degree, OR professional degree needed to practice in a licensed profession (For “professional degree,” the degree program must have been in: medicine, veterinary medicine, dentistry, optometry, law, chiropractic medicine, or pharmacy.)");
+                System.Console.WriteLine("8.Doctoral level university degree (Ph.D.)");
+                levelNumber = System.Console.ReadLine();
+            }
+            while (levelNumber != "1" && levelNumber != "2" && levelNumber != "3" && levelNumber != "4" && levelNumber != "5" && levelNumber != "6" && levelNumber != "7" && levelNumber != "8");
+            return Int32.Parse(levelNumber);
         }
 
         static void SetAndCalculateLanguagePoints(LanguagePoints langPoints)
         {
             langPoints.LanguageExamType = GetLanguageExamType();
+           
+            string points;
+            double parsedPoints;
+            do
+            {
+                System.Console.WriteLine("How many points did you get for speaking?");
+                points = System.Console.ReadLine();
+            }
+            while (Double.TryParse(points, out parsedPoints) == false);
+            langPoints.SpeakingPoints = parsedPoints;
 
-            System.Console.WriteLine("How many points did you get for speaking?");
-            string SpeakingPointsOfLangExam = System.Console.ReadLine();
-            langPoints.SpeakingPoints = double.Parse(SpeakingPointsOfLangExam);
+            do
+            {
+                System.Console.WriteLine("How many points did you get for writing?");
+                points = System.Console.ReadLine();
+            }
+            while (Double.TryParse(points, out parsedPoints) == false);
+            langPoints.WritingPoints = parsedPoints;
 
-            System.Console.WriteLine("How many points did you get for writing?");
-            string WritingPointsOfLangExam = System.Console.ReadLine();
-            langPoints.WritingPoints = double.Parse(WritingPointsOfLangExam);
+            do
+            {
+                System.Console.WriteLine("How many points did you get for reading?");
+                points = System.Console.ReadLine();
+            }
+            while (Double.TryParse(points, out parsedPoints) == false);
+            langPoints.ReadingPoints = parsedPoints;
 
-            System.Console.WriteLine("How many points did you get for reading?");
-            string ReadingPointsOfLangExam = System.Console.ReadLine();
-            langPoints.ReadingPoints = double.Parse(ReadingPointsOfLangExam);
-
-            System.Console.WriteLine("How many points did you get for listening?");
-            string ListeningPointsOfLangExam = System.Console.ReadLine();
-            langPoints.ListeningPoints = double.Parse(ListeningPointsOfLangExam);
+            do
+            {
+                System.Console.WriteLine("How many points did you get for listening?");
+                points = System.Console.ReadLine();
+            }
+            while (Double.TryParse(points, out parsedPoints) == false);
+            langPoints.ListeningPoints = parsedPoints;
 
             langPoints.CalculateCLBPoints();
-
         }
 
         static LanguagePoints.LanguageExamTypes GetLanguageExamType()
         {
-            System.Console.WriteLine("What type of exam of your second language did you pass? (enter the number from 1 to 3)");
-            System.Console.WriteLine("1.IELTS");
-            System.Console.WriteLine("2.CELPIP");
-            System.Console.WriteLine("3.TEF");
+            string langExamNumber;
+            do
+            {
+                System.Console.WriteLine("What type of exam of your second language did you pass? (enter the number from 1 to 3)");
+                System.Console.WriteLine("1.IELTS");
+                System.Console.WriteLine("2.CELPIP");
+                System.Console.WriteLine("3.TEF");
+                langExamNumber = System.Console.ReadLine();
+            }
+            while (langExamNumber != "1" && langExamNumber != "2" && langExamNumber != "3");
 
-            string langExamNumber = System.Console.ReadLine();
-            LanguagePoints.LanguageExamTypes langExamType = IdentifyingTheTypeOfExam(langExamNumber);
-
-            return langExamType;
+            return IdentifyingTheTypeOfExam(langExamNumber);
         }
         
         static LanguagePoints.LanguageExamTypes IdentifyingTheTypeOfExam(string Exam)
