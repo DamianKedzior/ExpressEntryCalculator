@@ -23,9 +23,7 @@ namespace _CRS__Criteria___Express_Entry
             {
                 if (!isFirstAttempt)
                 {
-                    System.Console.ForegroundColor = ConsoleColor.Red;
-                    System.Console.WriteLine("Wrong date format. Please try again.");
-                    System.Console.ResetColor();
+                    DisplayMessage("Wrong date format. Please try again");
                 }
                 System.Console.WriteLine("Date of birth (format: yyyy-mm-dd)");
                 DateOfBirth = System.Console.ReadLine();
@@ -124,10 +122,21 @@ namespace _CRS__Criteria___Express_Entry
                 System.Console.WriteLine("No points for the second language ");
             }
 
+            isFirstAttempt = true;
+            string ExperienceTime;
+            int ParsedExperienceTime;
+            do
+            {
+                if (!isFirstAttempt)
+                {
+                    DisplayMessage("Wrong value. Please try again.");
+                }
+                System.Console.WriteLine("How many years of work experience do you have in the Canadian labour market? (warning!: The year of experience is calculated after having completed the full year worked. If you have worked less than a year, enter 0. There is no rounding up)");
+                ExperienceTime = System.Console.ReadLine();
 
-            System.Console.WriteLine("How many years of work experience do you have in the Canadian labour market? (warning!: The year of experience is calculated after having completed the full year worked. If you have worked less than a year, enter 0. There is no rounding up)");
-            string ExperienceTime = System.Console.ReadLine();
-            int ParsedExperienceTime = Int32.Parse(ExperienceTime);
+                isFirstAttempt = false;
+            }
+            while (Int32.TryParse(ExperienceTime, out ParsedExperienceTime) == false);
 
             int PointsForExperience;
             if (NoSpouse == true)
@@ -180,12 +189,9 @@ namespace _CRS__Criteria___Express_Entry
                 int PointsForSpouseExperience;
                 do
                 {
-                    
                     if (!isFirstAttempt)
                     {
-                        System.Console.ForegroundColor = ConsoleColor.Red;
-                        System.Console.WriteLine("Wrong value. Please try again.");
-                        System.Console.ResetColor();
+                        DisplayMessage("Wrong value. Please try again.");
                     }
                     System.Console.WriteLine("How many years of work experience in the Canadian labour market has your spouse or common-law partner? (warning!: The year of experience is calculated after having completed the full year worked. If your spouse or common-law partner has worked less than a year, enter 0. There is no rounding up)");
                     string SpouseExperienceTime = System.Console.ReadLine();
@@ -202,9 +208,21 @@ namespace _CRS__Criteria___Express_Entry
                 System.Console.WriteLine("Points earned by spouse or common-law partner " + TotalPointsForSpouseOrCommonLawPartnerFactors.ToString());
             }
 
-            System.Console.WriteLine("How many years of foreign work experiencein (outside Canada) do you have? (warning!: The year of experience is calculated after having completed the full year worked. If your spouse or common-law partner has worked less than a year, enter 0. There is no rounding up) ");
-            string foreignExperienceTime = System.Console.ReadLine();
-            int ParsedForeignExperienceTime = Int32.Parse(foreignExperienceTime);
+            isFirstAttempt = true;
+            string foreignExperienceTime;
+            int ParsedForeignExperienceTime = 0;
+            do
+            {
+                if (!isFirstAttempt)
+                {
+                    DisplayMessage("Wrong value. Please try again.");
+                }
+                System.Console.WriteLine("How many years of foreign work experiencein (outside Canada) do you have? (warning!: The year of experience is calculated after having completed the full year worked. If your spouse or common-law partner has worked less than a year, enter 0. There is no rounding up) ");
+                foreignExperienceTime = System.Console.ReadLine();
+
+                isFirstAttempt = false;
+            }
+            while (Int32.TryParse(foreignExperienceTime, out ParsedExperienceTime) == false);
 
 
             int PointsForSkillTransferabilityFactors;
@@ -259,8 +277,13 @@ namespace _CRS__Criteria___Express_Entry
 
             Console.Read();
         }
-        
 
+        private static void DisplayMessage(string message)
+        {
+            System.Console.ForegroundColor = ConsoleColor.Red;
+            System.Console.WriteLine(message);
+            System.Console.ResetColor();
+        }
 
         static int GetEducationalLevel()
         {
@@ -270,9 +293,7 @@ namespace _CRS__Criteria___Express_Entry
             {
                 if (!isFirstAttempt)
                 {
-                    System.Console.ForegroundColor = ConsoleColor.Red;
-                    System.Console.WriteLine("Wrong date format. Please try again.");
-                    System.Console.ResetColor();
+                    DisplayMessage("Wrong value. Please try again.");
                 }
                 System.Console.WriteLine("1.Less than secondary school (high school)");
                 System.Console.WriteLine("2.Secondary diploma (high school graduation)");
@@ -301,12 +322,11 @@ namespace _CRS__Criteria___Express_Entry
             {
                 if (!isFirstAttempt)
                 {
-                    System.Console.ForegroundColor = ConsoleColor.Red;
-                    System.Console.WriteLine("Wrong date format. Please try again.");
-                    System.Console.ResetColor();
+                    DisplayMessage("Wrong value. Please try again.");
                 }
                 System.Console.WriteLine("How many points did you get for speaking?");
                 points = System.Console.ReadLine();
+                isFirstAttempt = false;
             }
             while (Double.TryParse(points, out parsedPoints) == false);
             langPoints.SpeakingPoints = parsedPoints;
@@ -316,28 +336,39 @@ namespace _CRS__Criteria___Express_Entry
             {
                 if (!isFirstAttempt)
                 {
-                    System.Console.ForegroundColor = ConsoleColor.Red;
-                    System.Console.WriteLine("Wrong date format. Please try again.");
-                    System.Console.ResetColor();
+                    DisplayMessage("Wrong value. Please try again.");
                 }
                 System.Console.WriteLine("How many points did you get for writing?");
                 points = System.Console.ReadLine();
+                isFirstAttempt = false;
             }
             while (Double.TryParse(points, out parsedPoints) == false);
             langPoints.WritingPoints = parsedPoints;
 
+            isFirstAttempt = true;
             do
             {
+                if (!isFirstAttempt)
+                {
+                    DisplayMessage("Wrong value. Please try again.");
+                }
                 System.Console.WriteLine("How many points did you get for reading?");
                 points = System.Console.ReadLine();
+                isFirstAttempt = false;
             }
             while (Double.TryParse(points, out parsedPoints) == false);
             langPoints.ReadingPoints = parsedPoints;
 
+            isFirstAttempt = true;
             do
             {
+                if (!isFirstAttempt)
+                {
+                    DisplayMessage("Wrong value. Please try again.");
+                }
                 System.Console.WriteLine("How many points did you get for listening?");
                 points = System.Console.ReadLine();
+                isFirstAttempt = false;
             }
             while (Double.TryParse(points, out parsedPoints) == false);
             langPoints.ListeningPoints = parsedPoints;
@@ -353,9 +384,7 @@ namespace _CRS__Criteria___Express_Entry
             {
                 if (!isFirstAttempt)
                 {
-                    System.Console.ForegroundColor = ConsoleColor.Red;
-                    System.Console.WriteLine("Wrong date format. Please try again.");
-                    System.Console.ResetColor();
+                    DisplayMessage("Wrong value. Please try again.");
                 }
                 System.Console.WriteLine("What type of exam of your second language did you pass? (enter the number from 1 to 3)");
                 System.Console.WriteLine("1.IELTS");
