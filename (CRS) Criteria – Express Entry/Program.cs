@@ -124,6 +124,7 @@ namespace _CRS__Criteria___Express_Entry
                 System.Console.WriteLine("No points for the second language ");
             }
 
+
             System.Console.WriteLine("How many years of work experience do you have in the Canadian labour market? (warning!: The year of experience is calculated after having completed the full year worked. If you have worked less than a year, enter 0. There is no rounding up)");
             string ExperienceTime = System.Console.ReadLine();
             int ParsedExperienceTime = Int32.Parse(ExperienceTime);
@@ -174,10 +175,25 @@ namespace _CRS__Criteria___Express_Entry
                 PointsForSpouseLanguage = PointsForSpouseSpeaking + PointsForSpouseWriting + PointsForSpouseReading + PointsForSpouseListening;
                 System.Console.WriteLine("Points for language of spouse or common-law partner " + PointsForSpouseLanguage.ToString());
 
-                System.Console.WriteLine("How many years of work experience in the Canadian labour market has your spouse or common-law partner? (warning!: The year of experience is calculated after having completed the full year worked. If your spouse or common-law partner has worked less than a year, enter 0. There is no rounding up)");
-                string SpouseExperienceTime = System.Console.ReadLine();
-                int ParsedSpouseExperienceTime = Int32.Parse(ExperienceTime);
+                isFirstAttempt = true;
+                int ParsedSpouseExperienceTime;
                 int PointsForSpouseExperience;
+                do
+                {
+                    
+                    if (!isFirstAttempt)
+                    {
+                        System.Console.ForegroundColor = ConsoleColor.Red;
+                        System.Console.WriteLine("Wrong value. Please try again.");
+                        System.Console.ResetColor();
+                    }
+                    System.Console.WriteLine("How many years of work experience in the Canadian labour market has your spouse or common-law partner? (warning!: The year of experience is calculated after having completed the full year worked. If your spouse or common-law partner has worked less than a year, enter 0. There is no rounding up)");
+                    string SpouseExperienceTime = System.Console.ReadLine();
+
+                    isFirstAttempt = false;
+                }
+                while (Int32.TryParse(ExperienceTime, out ParsedSpouseExperienceTime) == false);
+           
                 PointsForSpouseExperience = ExperiencePointsCalculator.CountPointsForSpouseExperience(ParsedSpouseExperienceTime);
 
                 System.Console.WriteLine("Points for spouse experience " + PointsForSpouseExperience.ToString());
@@ -243,12 +259,21 @@ namespace _CRS__Criteria___Express_Entry
 
             Console.Read();
         }
+        
+
 
         static int GetEducationalLevel()
         {
             string levelNumber;
+            bool isFirstAttempt = true;
             do
             {
+                if (!isFirstAttempt)
+                {
+                    System.Console.ForegroundColor = ConsoleColor.Red;
+                    System.Console.WriteLine("Wrong date format. Please try again.");
+                    System.Console.ResetColor();
+                }
                 System.Console.WriteLine("1.Less than secondary school (high school)");
                 System.Console.WriteLine("2.Secondary diploma (high school graduation)");
                 System.Console.WriteLine("3.One-year degree, diploma or certificate from  a university, college, trade or technical school, or other institute");
@@ -258,6 +283,8 @@ namespace _CRS__Criteria___Express_Entry
                 System.Console.WriteLine("7.Master's degree, OR professional degree needed to practice in a licensed profession (For “professional degree,” the degree program must have been in: medicine, veterinary medicine, dentistry, optometry, law, chiropractic medicine, or pharmacy.)");
                 System.Console.WriteLine("8.Doctoral level university degree (Ph.D.)");
                 levelNumber = System.Console.ReadLine();
+
+                isFirstAttempt = false;
             }
             while (levelNumber != "1" && levelNumber != "2" && levelNumber != "3" && levelNumber != "4" && levelNumber != "5" && levelNumber != "6" && levelNumber != "7" && levelNumber != "8");
             return Int32.Parse(levelNumber);
@@ -269,16 +296,30 @@ namespace _CRS__Criteria___Express_Entry
            
             string points;
             double parsedPoints;
+            bool isFirstAttempt = true;
             do
             {
+                if (!isFirstAttempt)
+                {
+                    System.Console.ForegroundColor = ConsoleColor.Red;
+                    System.Console.WriteLine("Wrong date format. Please try again.");
+                    System.Console.ResetColor();
+                }
                 System.Console.WriteLine("How many points did you get for speaking?");
                 points = System.Console.ReadLine();
             }
             while (Double.TryParse(points, out parsedPoints) == false);
             langPoints.SpeakingPoints = parsedPoints;
 
+            isFirstAttempt = true;
             do
             {
+                if (!isFirstAttempt)
+                {
+                    System.Console.ForegroundColor = ConsoleColor.Red;
+                    System.Console.WriteLine("Wrong date format. Please try again.");
+                    System.Console.ResetColor();
+                }
                 System.Console.WriteLine("How many points did you get for writing?");
                 points = System.Console.ReadLine();
             }
@@ -307,13 +348,22 @@ namespace _CRS__Criteria___Express_Entry
         static LanguagePoints.LanguageExamTypes GetLanguageExamType()
         {
             string langExamNumber;
+            bool isFirstAttempt = true;
             do
             {
+                if (!isFirstAttempt)
+                {
+                    System.Console.ForegroundColor = ConsoleColor.Red;
+                    System.Console.WriteLine("Wrong date format. Please try again.");
+                    System.Console.ResetColor();
+                }
                 System.Console.WriteLine("What type of exam of your second language did you pass? (enter the number from 1 to 3)");
                 System.Console.WriteLine("1.IELTS");
                 System.Console.WriteLine("2.CELPIP");
                 System.Console.WriteLine("3.TEF");
                 langExamNumber = System.Console.ReadLine();
+
+                isFirstAttempt = false;
             }
             while (langExamNumber != "1" && langExamNumber != "2" && langExamNumber != "3");
 
