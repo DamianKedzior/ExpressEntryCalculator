@@ -10,9 +10,9 @@ namespace _CRS__Criteria___Express_Entry
     {
         static void Main(string[] args)
         {
-            System.Console.WriteLine("Imię");
+            DisplayMessage("Please provide your first name", ConsoleColor.Yellow);
             string firstname = System.Console.ReadLine();
-            System.Console.WriteLine("Nazwisko");
+            DisplayMessage("Please provide your last name", ConsoleColor.Yellow);
             string lastname = System.Console.ReadLine();
 
             DateTime ParsedDateOfBirth;
@@ -278,9 +278,9 @@ namespace _CRS__Criteria___Express_Entry
             Console.Read();
         }
 
-        private static void DisplayMessage(string message)
+        private static void DisplayMessage(string message, ConsoleColor color = ConsoleColor.Red)
         {
-            System.Console.ForegroundColor = ConsoleColor.Red;
+            System.Console.ForegroundColor = color;
             System.Console.WriteLine(message);
             System.Console.ResetColor();
         }
