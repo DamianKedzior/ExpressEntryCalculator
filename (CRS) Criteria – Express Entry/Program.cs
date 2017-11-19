@@ -66,10 +66,7 @@ namespace _CRS__Criteria___Express_Entry
             }
             System.Console.WriteLine("Points for education " + PointForEducation.ToString());
 
-
-            LanguagePoints primaryAplicantFirstLangPoints = new LanguagePoints();
-
-            SetAndCalculateLanguagePoints(primaryAplicantFirstLangPoints);
+            LanguagePoints primaryAplicantFirstLangPoints = SetAndCalculateLanguagePoints();
 
             int PointsForSpeaking;
             int PointsForWriting;
@@ -101,8 +98,8 @@ namespace _CRS__Criteria___Express_Entry
 
             if (SecondLanguage.ToUpper() == "YES")
             {
-                primaryAplicantSecondLangPoints = new LanguagePoints();
-                SetAndCalculateLanguagePoints(primaryAplicantSecondLangPoints);
+                primaryAplicantSecondLangPoints = SetAndCalculateLanguagePoints();
+              
 
                 int PointsForSecondLangSpeaking;
                 int PointsForSecondLangWriting;
@@ -166,9 +163,7 @@ namespace _CRS__Criteria___Express_Entry
                 PointsForSpouseEducation = EducationPointsCalculator.CountPointsForSpouseEducation(SpouseEducationLevel);
                 System.Console.WriteLine("Points for education of spouse or common-law partner" + PointsForSpouseEducation.ToString());
 
-                LanguagePoints spouseFirstLangPoints = new LanguagePoints();
-
-                SetAndCalculateLanguagePoints(spouseFirstLangPoints);
+                LanguagePoints spouseFirstLangPoints = SetAndCalculateLanguagePoints();
 
                 int PointsForSpouseSpeaking;
                 int PointsForSpouseWriting;
@@ -311,12 +306,12 @@ namespace _CRS__Criteria___Express_Entry
             return Int32.Parse(levelNumber);
         }
 
-        static void SetAndCalculateLanguagePoints(LanguagePoints langPoints)
+        static LanguagePoints SetAndCalculateLanguagePoints()
         {
-            langPoints.LanguageExamType = GetLanguageExamType();
+            LanguagePoints.LanguageExamTypes languageExamType = GetLanguageExamType();
            
-            string points;
-            double parsedPoints;
+            string speaking;
+            double parsedSpeakingPoints;
             bool isFirstAttempt = true;
             do
             {
@@ -325,12 +320,14 @@ namespace _CRS__Criteria___Express_Entry
                     DisplayMessage("Wrong value. Please try again.");
                 }
                 System.Console.WriteLine("How many points did you get for speaking?");
-                points = System.Console.ReadLine();
+                speaking = System.Console.ReadLine();
                 isFirstAttempt = false;
             }
-            while (Double.TryParse(points, out parsedPoints) == false);
-            langPoints.SpeakingPoints = parsedPoints;
+            while (Double.TryParse(speaking, out parsedSpeakingPoints) == false);
 
+
+            string writing;
+            double parsedWritingPoints;
             isFirstAttempt = true;
             do
             {
@@ -339,12 +336,14 @@ namespace _CRS__Criteria___Express_Entry
                     DisplayMessage("Wrong value. Please try again.");
                 }
                 System.Console.WriteLine("How many points did you get for writing?");
-                points = System.Console.ReadLine();
+                writing = System.Console.ReadLine();
                 isFirstAttempt = false;
             }
-            while (Double.TryParse(points, out parsedPoints) == false);
-            langPoints.WritingPoints = parsedPoints;
+            while (Double.TryParse(writing, out parsedWritingPoints) == false);
 
+
+            string reading;
+            double parsedReadingPoints;
             isFirstAttempt = true;
             do
             {
@@ -353,12 +352,14 @@ namespace _CRS__Criteria___Express_Entry
                     DisplayMessage("Wrong value. Please try again.");
                 }
                 System.Console.WriteLine("How many points did you get for reading?");
-                points = System.Console.ReadLine();
+                reading = System.Console.ReadLine();
                 isFirstAttempt = false;
             }
-            while (Double.TryParse(points, out parsedPoints) == false);
-            langPoints.ReadingPoints = parsedPoints;
+            while (Double.TryParse(reading, out parsedReadingPoints) == false);
 
+
+            string listening;
+            double parsedListeningPoints;
             isFirstAttempt = true;
             do
             {
@@ -367,13 +368,12 @@ namespace _CRS__Criteria___Express_Entry
                     DisplayMessage("Wrong value. Please try again.");
                 }
                 System.Console.WriteLine("How many points did you get for listening?");
-                points = System.Console.ReadLine();
+                listening = System.Console.ReadLine();
                 isFirstAttempt = false;
             }
-            while (Double.TryParse(points, out parsedPoints) == false);
-            langPoints.ListeningPoints = parsedPoints;
+            while (Double.TryParse(listening, out parsedListeningPoints) == false);
 
-            langPoints.CalculateCLBPoints();
+            return new LanguagePoints(languageExamType, parsedSpeakingPoints, parsedWritingPoints, parsedReadingPoints, parsedListeningPoints);
         }
 
         static LanguagePoints.LanguageExamTypes GetLanguageExamType()

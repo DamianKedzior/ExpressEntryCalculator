@@ -2,6 +2,17 @@
 {
     class LanguagePoints
     {
+        public LanguagePoints(LanguageExamTypes examType, double speakingPoints, double writingPoints, double readingPoints, double listeningPoints)
+        {
+            this.languageExamType = examType;
+            this.speakingPoints = speakingPoints;
+            this.readingPoints = readingPoints;
+            this.writingPoints = writingPoints;
+            this.listeningPoints = listeningPoints;
+
+            CalculateCLBPoints();
+        }
+
         public enum LanguageExamTypes
         {
             IELTS = 1,
@@ -29,58 +40,6 @@
             set
             {
                 languageExamType = value;
-            }
-        }
-
-
-        public double SpeakingPoints
-        {
-            get
-            {
-                return speakingPoints;
-            }
-            set
-            {
-                speakingPoints = value;
-            }
-        }
-
-
-        public double WritingPoints
-        {
-            get
-            {
-                return writingPoints;
-            }
-            set
-            {
-                writingPoints = value;
-            }
-        }
-
-
-        public double ReadingPoints
-        {
-            get
-            {
-                return readingPoints;
-            }
-            set
-            {
-                readingPoints = value;
-            }
-        }
-
-
-        public double ListeningPoints
-        {
-            get
-            {
-                return listeningPoints;
-            }
-            set
-            {
-                listeningPoints = value;
             }
         }
 
@@ -117,7 +76,7 @@
             }
         }
          
-        public void CalculateCLBPoints()
+        private void CalculateCLBPoints()
         {
             
             switch (LanguageExamType)
@@ -174,34 +133,34 @@
 
         private void CalculateCLBPointsForIELTS()
         {
-            clbspeakingPoints = CalculateIELTStoCLB(SpeakingPoints);
-            clbwritingPoints = CalculateIELTStoCLB(WritingPoints);
+            clbspeakingPoints = CalculateIELTStoCLB(speakingPoints);
+            clbwritingPoints = CalculateIELTStoCLB(writingPoints);
        
-            if (ReadingPoints >= 8)
+            if (readingPoints >= 8)
             {
                 clbreadingPoints = 10;
             }
-            else if (ReadingPoints >= 7 && ReadingPoints < 8)
+            else if (readingPoints >= 7 && readingPoints < 8)
             {
                 clbreadingPoints = 9;
             }
-            else if (ReadingPoints == 6.5)
+            else if (readingPoints == 6.5)
             {
                 clbreadingPoints = 8;
             }
-            else if (ReadingPoints == 6)
+            else if (readingPoints == 6)
             {
                 clbreadingPoints = 7;
             }
-            else if (ReadingPoints >= 5 && ReadingPoints < 6)
+            else if (readingPoints >= 5 && readingPoints < 6)
             {
                 clbreadingPoints = 6;
             }
-            else if (ReadingPoints >= 4 && ReadingPoints < 5)
+            else if (readingPoints >= 4 && readingPoints < 5)
             {
                 clbreadingPoints = 5;
             }
-            else if (ReadingPoints == 3.5)
+            else if (readingPoints == 3.5)
             {
                 clbreadingPoints = 4;
             }
@@ -210,31 +169,31 @@
                 clbreadingPoints = 0;
             }
 
-            if (ListeningPoints >= 8.5)
+            if (listeningPoints >= 8.5)
             {
                 clblisteningPoints = 10;
             }
-            else if (ListeningPoints == 8)
+            else if (listeningPoints == 8)
             {
                 clblisteningPoints = 9;
             }
-            else if (ListeningPoints == 7.5)
+            else if (listeningPoints == 7.5)
             {
                 clblisteningPoints = 8;
             }
-            else if (ListeningPoints >= 6 && ListeningPoints < 7.5)
+            else if (listeningPoints >= 6 && listeningPoints < 7.5)
             {
                 clblisteningPoints = 7;
             }
-            else if (ListeningPoints == 5.5)
+            else if (listeningPoints == 5.5)
             {
                 clblisteningPoints = 6;
             }
-            else if (ListeningPoints == 5)
+            else if (listeningPoints == 5)
             {
                 clblisteningPoints = 5;
             }
-            else if (ListeningPoints == 4.5)
+            else if (listeningPoints == 4.5)
             {
                 clblisteningPoints = 4;
             }
@@ -282,10 +241,10 @@
 
         private void CalculateCLBPointsForCELPIP()
         {
-            clbspeakingPoints = CalculateCELPIPtoCLB(SpeakingPoints);
-            clbwritingPoints = CalculateCELPIPtoCLB(WritingPoints);
-            clbreadingPoints = CalculateCELPIPtoCLB(ReadingPoints);
-            clblisteningPoints = CalculateCELPIPtoCLB(ListeningPoints);
+            clbspeakingPoints = CalculateCELPIPtoCLB(speakingPoints);
+            clbwritingPoints = CalculateCELPIPtoCLB(writingPoints);
+            clbreadingPoints = CalculateCELPIPtoCLB(readingPoints);
+            clblisteningPoints = CalculateCELPIPtoCLB(listeningPoints);
         }
 
         private int CalculateTEFtoCLB(double pointsTEF)
@@ -326,35 +285,35 @@
 
         private void CalculateCLBPointsForTEF()
         {
-            clbspeakingPoints = CalculateTEFtoCLB(SpeakingPoints);
-            clbwritingPoints = CalculateTEFtoCLB(WritingPoints);
+            clbspeakingPoints = CalculateTEFtoCLB(speakingPoints);
+            clbwritingPoints = CalculateTEFtoCLB(writingPoints);
 
             // calculate reading points
-            if (ReadingPoints >= 263 && ReadingPoints <= 277)
+            if (readingPoints >= 263 && readingPoints <= 277)
             {
                 clbreadingPoints = 10;
             }
-            else if (ReadingPoints >= 248 && ReadingPoints <= 262)
+            else if (readingPoints >= 248 && readingPoints <= 262)
             {
                 clbreadingPoints = 9;
             }
-            else if (ReadingPoints >= 233 && ReadingPoints <= 247)
+            else if (readingPoints >= 233 && readingPoints <= 247)
             {
                 clbreadingPoints = 8;
             }
-            else if (ReadingPoints >= 207 && ReadingPoints <= 232)
+            else if (readingPoints >= 207 && readingPoints <= 232)
             {
                 clbreadingPoints = 7;
             }
-            else if (ReadingPoints >= 181 && ReadingPoints <= 206)
+            else if (readingPoints >= 181 && readingPoints <= 206)
             {
                 clbreadingPoints = 6;
             }
-            else if (ReadingPoints >= 151 && ReadingPoints <= 180)
+            else if (readingPoints >= 151 && readingPoints <= 180)
             {
                 clbreadingPoints = 5;
             }
-            else if (ReadingPoints >= 121 && ReadingPoints <= 150)
+            else if (readingPoints >= 121 && readingPoints <= 150)
             {
                 clbreadingPoints = 4;
             }
@@ -364,31 +323,31 @@
             }
 
             // calculate listening points
-            if (ListeningPoints >= 316 && ListeningPoints <= 333)
+            if (listeningPoints >= 316 && listeningPoints <= 333)
             {
                 clblisteningPoints = 10;
             }
-            else if (ListeningPoints >= 298 && ListeningPoints <= 315)
+            else if (listeningPoints >= 298 && listeningPoints <= 315)
             {
                 clblisteningPoints = 9;
             }
-            else if (ListeningPoints >= 280 && ListeningPoints <= 297)
+            else if (listeningPoints >= 280 && listeningPoints <= 297)
             {
                 clblisteningPoints = 8;
             }
-            else if (ListeningPoints >= 249 && ListeningPoints <= 279)
+            else if (listeningPoints >= 249 && listeningPoints <= 279)
             {
                 clblisteningPoints = 7;
             }
-            else if (ListeningPoints >= 217 && ListeningPoints <= 248)
+            else if (listeningPoints >= 217 && listeningPoints <= 248)
             {
                 clblisteningPoints = 6;
             }
-            else if (ListeningPoints >= 181 && ListeningPoints <= 216)
+            else if (listeningPoints >= 181 && listeningPoints <= 216)
             {
                 clblisteningPoints = 5;
             }
-            else if (ListeningPoints >= 145 && ListeningPoints <= 180)
+            else if (listeningPoints >= 145 && listeningPoints <= 180)
             {
                 clblisteningPoints = 4;
             }
