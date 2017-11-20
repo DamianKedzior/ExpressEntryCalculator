@@ -8,7 +8,7 @@ namespace _CRS__Criteria___Express_Entry
 {
     static class SkillTransferabilityFactorsCalculator
     {
-        public static int CalculateSkillTransferabilityFactorsPoints(LanguagePoints languagePoints, int educationLevel, int yearsOfExperience, int yearsOfForeignExperience)
+        public static int CalculateSkillTransferabilityFactorsPoints(LanguagePoints languagePoints, ushort educationLevel, int yearsOfExperience, int yearsOfForeignExperience)
         {
             int PointsForEduAndLang = EduAndLangPoints(languagePoints, educationLevel);
             int PointsForExpAndEd = ExpAndEduPoints(yearsOfExperience, educationLevel);
@@ -21,7 +21,7 @@ namespace _CRS__Criteria___Express_Entry
         }
 
 
-        private static int EduAndLangPoints(LanguagePoints languagePoints, int educationLevel)
+        private static int EduAndLangPoints(LanguagePoints languagePoints, ushort educationLevel)
         {
             if ((
                     languagePoints.CLBSpeakingPoints >= 7
@@ -77,7 +77,7 @@ namespace _CRS__Criteria___Express_Entry
 
 
 
-        private static int ExpAndEduPoints(int yearsOfExperience, int educationLevel)
+        private static int ExpAndEduPoints(int yearsOfExperience, ushort educationLevel)
         {
             if (yearsOfExperience == 1 && (educationLevel == 3 || educationLevel == 4 || educationLevel == 5))
             {

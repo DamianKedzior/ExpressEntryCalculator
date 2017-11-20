@@ -10,32 +10,32 @@ namespace _CRS__Criteria___Express_Entry
     {
         static void Main(string[] args)
         {
-            DisplayMessage("Please provide your first name", ConsoleColor.Yellow);
+            DisplayMessage("Please provide your first name.");
             string firstname = System.Console.ReadLine();
-            DisplayMessage("Please provide your last name", ConsoleColor.Yellow);
+            DisplayMessage("Please provide your last name.");
             string lastname = System.Console.ReadLine();
 
-            DateTime ParsedDateOfBirth;
-            string DateOfBirth;
+            DateTime parsedDateOfBirth;
+            string dateOfBirth;
 
             bool isFirstAttempt = true;
             do
             {
                 if (!isFirstAttempt)
                 {
-                    DisplayMessage("Wrong date format. Please try again");
+                    DisplayMessage("Wrong date format. Please try again.", ConsoleColor.Red);
                 }
-                System.Console.WriteLine("Date of birth (format: yyyy-mm-dd)");
-                DateOfBirth = System.Console.ReadLine();
+                DisplayMessage("Please provide your date of birth (required format: yyyy-mm-dd).");
+                dateOfBirth = System.Console.ReadLine();
 
                 isFirstAttempt = false;
             }
-            while (DateTime.TryParse(DateOfBirth, out ParsedDateOfBirth) == false);
+            while (DateTime.TryParse(dateOfBirth, out parsedDateOfBirth) == false);
 
-            int age = CountAge(ParsedDateOfBirth);
-            System.Console.WriteLine("Your age is " + age);
+            int age = CountAge(parsedDateOfBirth);
+            DisplayMessage("Your age: " + age, ConsoleColor.Green);
 
-            System.Console.WriteLine("FullName spouse or common - law partner if exist");
+            DisplayMessage("Please provide fullname your spouse or common - law partner if exist.");
             string spouseFullname = System.Console.ReadLine();
             bool NoSpouse = String.IsNullOrWhiteSpace(spouseFullname);
 
@@ -48,11 +48,11 @@ namespace _CRS__Criteria___Express_Entry
             {
                 PointForAge = AgePointsCalculator.CountPointsForAgeWithSpouse(age);
             }
-            System.Console.WriteLine("Points for age " + PointForAge.ToString());
+            DisplayMessage("Points for age: " + PointForAge.ToString(), ConsoleColor.Green);
 
-            System.Console.WriteLine("Select the level of education (enter the number from 1 to 8)");
+            DisplayMessage("Please select the level of your education (enter the number from 1 to 8).");
 
-            int EducationLevel = GetEducationalLevel();
+            ushort EducationLevel = GetEducationalLevel();
 
             int PointForEducation;
 
@@ -64,7 +64,7 @@ namespace _CRS__Criteria___Express_Entry
             {
                 PointForEducation = EducationPointsCalculator.CountPointsForEducationWithSpouse(EducationLevel);
             }
-            System.Console.WriteLine("Points for education " + PointForEducation.ToString());
+            DisplayMessage("Points for education: " + PointForEducation.ToString(), ConsoleColor.Green);
 
             LanguagePoints primaryAplicantFirstLangPoints = SetAndCalculateLanguagePoints();
 
@@ -88,10 +88,10 @@ namespace _CRS__Criteria___Express_Entry
                 PointsForListening = LanguagePointsCalculator.LanguagePointsCalculatorWithSpouse(primaryAplicantFirstLangPoints.CLBListeningPoints);
             }
             PointsForLanguage = PointsForSpeaking + PointsForWriting + PointsForReading + PointsForListening;
-            System.Console.WriteLine("Points for 1st language " + PointsForLanguage.ToString());
+            DisplayMessage("Points for 1st language: " + PointsForLanguage.ToString(), ConsoleColor.Green);
 
 
-            System.Console.WriteLine("Did you pass second language exam? (YES or NO)");
+            DisplayMessage("Did you pass second language exam? (YES or NO).");
             string SecondLanguage = System.Console.ReadLine();
             int PointsForSecondLanguage = 0;
             LanguagePoints primaryAplicantSecondLangPoints = null;
@@ -112,11 +112,11 @@ namespace _CRS__Criteria___Express_Entry
                 PointsForSecondLangListening = SecondLanguagePointsCalculator.SecondLangPointsCalculator(primaryAplicantSecondLangPoints.CLBListeningPoints);
 
                 PointsForSecondLanguage = PointsForSecondLangSpeaking + PointsForSecondLangWriting + PointsForSecondLangReading + PointsForSecondLangListening;
-                System.Console.WriteLine("Point for second language " + PointsForSecondLanguage.ToString());
+                DisplayMessage("Point for second language: " + PointsForSecondLanguage.ToString(), ConsoleColor.Green);
             }
             else
             {
-                System.Console.WriteLine("No points for the second language ");
+                DisplayMessage("No points for the second language.", ConsoleColor.Green);
             }
 
             isFirstAttempt = true;
@@ -126,9 +126,9 @@ namespace _CRS__Criteria___Express_Entry
             {
                 if (!isFirstAttempt)
                 {
-                    DisplayMessage("Wrong value. Please try again.");
+                    DisplayMessage("Wrong value. Please try again.", ConsoleColor.Red);
                 }
-                System.Console.WriteLine("How many years of work experience do you have in the Canadian labour market? (warning!: The year of experience is calculated after having completed the full year worked. If you have worked less than a year, enter 0. There is no rounding up)");
+                DisplayMessage("How many years of work experience do you have in the Canadian labour market? (warning!: The year of experience is calculated after having completed the full year worked. If you have worked less than a year, enter 0. There is no rounding up).");
                 ExperienceTime = System.Console.ReadLine();
 
                 isFirstAttempt = false;
@@ -144,24 +144,24 @@ namespace _CRS__Criteria___Express_Entry
             {
                 PointsForExperience = ExperiencePointsCalculator.CountPointsForExperienceWithSpouse(ParsedExperienceTime);
             }
-            System.Console.WriteLine("Points for experience " + PointsForExperience.ToString());
+            DisplayMessage("Points for experience: " + PointsForExperience.ToString(), ConsoleColor.Green);
 
             int TotalPointsForHumanCapitalFactors;
             TotalPointsForHumanCapitalFactors = PointForAge + PointForEducation + PointsForLanguage + PointsForSecondLanguage + PointsForExperience;
-            System.Console.WriteLine("Points earned by you " + TotalPointsForHumanCapitalFactors.ToString());
+            DisplayMessage("Points earned by you: " + TotalPointsForHumanCapitalFactors.ToString(), ConsoleColor.Cyan);
 
             int TotalPointsForSpouseOrCommonLawPartnerFactors = 0;
             if (NoSpouse == true)
             {
-                System.Console.WriteLine("No points earned by spouse or common-law partner");
+                DisplayMessage("No points earned by spouse or common-law partner.", ConsoleColor.Cyan);
             }
             else
             {
-                System.Console.WriteLine("Select the level of education of spouse or common-law partner (enter the number from 1 to 8)");
-                int SpouseEducationLevel = GetEducationalLevel();
+                DisplayMessage("Please select the level of education of spouse or common-law partner (enter the number from 1 to 8).");
+                ushort SpouseEducationLevel = GetEducationalLevel();
                 int PointsForSpouseEducation;
                 PointsForSpouseEducation = EducationPointsCalculator.CountPointsForSpouseEducation(SpouseEducationLevel);
-                System.Console.WriteLine("Points for education of spouse or common-law partner" + PointsForSpouseEducation.ToString());
+                DisplayMessage("Points for education of spouse or common-law partner: " + PointsForSpouseEducation.ToString(), ConsoleColor.Green);
 
                 LanguagePoints spouseFirstLangPoints = SetAndCalculateLanguagePoints();
 
@@ -177,7 +177,7 @@ namespace _CRS__Criteria___Express_Entry
                 PointsForSpouseListening = LanguagePointsCalculator.CalculatorOfSpouseLanguagePoints(spouseFirstLangPoints.CLBListeningPoints);
 
                 PointsForSpouseLanguage = PointsForSpouseSpeaking + PointsForSpouseWriting + PointsForSpouseReading + PointsForSpouseListening;
-                System.Console.WriteLine("Points for language of spouse or common-law partner " + PointsForSpouseLanguage.ToString());
+                DisplayMessage("Points for language of spouse or common-law partner: " + PointsForSpouseLanguage.ToString(), ConsoleColor.Green);
 
                 isFirstAttempt = true;
                 int ParsedSpouseExperienceTime;
@@ -186,9 +186,9 @@ namespace _CRS__Criteria___Express_Entry
                 {
                     if (!isFirstAttempt)
                     {
-                        DisplayMessage("Wrong value. Please try again.");
+                        DisplayMessage("Wrong value. Please try again.", ConsoleColor.Red);
                     }
-                    System.Console.WriteLine("How many years of work experience in the Canadian labour market has your spouse or common-law partner? (warning!: The year of experience is calculated after having completed the full year worked. If your spouse or common-law partner has worked less than a year, enter 0. There is no rounding up)");
+                    DisplayMessage("How many years of work experience in the Canadian labour market has your spouse or common-law partner? (warning!: The year of experience is calculated after having completed the full year worked. If your spouse or common-law partner has worked less than a year, enter 0. There is no rounding up).");
                     string SpouseExperienceTime = System.Console.ReadLine();
 
                     isFirstAttempt = false;
@@ -197,10 +197,10 @@ namespace _CRS__Criteria___Express_Entry
            
                 PointsForSpouseExperience = ExperiencePointsCalculator.CountPointsForSpouseExperience(ParsedSpouseExperienceTime);
 
-                System.Console.WriteLine("Points for spouse experience " + PointsForSpouseExperience.ToString());
+                DisplayMessage("Points for spouse experience: " + PointsForSpouseExperience.ToString(), ConsoleColor.Green);
 
                 TotalPointsForSpouseOrCommonLawPartnerFactors = PointsForSpouseEducation + PointsForSpouseLanguage + PointsForSpouseExperience;
-                System.Console.WriteLine("Points earned by spouse or common-law partner " + TotalPointsForSpouseOrCommonLawPartnerFactors.ToString());
+                DisplayMessage("Points earned by spouse or common-law partner: " + TotalPointsForSpouseOrCommonLawPartnerFactors.ToString(), ConsoleColor.Cyan);
             }
 
             isFirstAttempt = true;
@@ -210,9 +210,9 @@ namespace _CRS__Criteria___Express_Entry
             {
                 if (!isFirstAttempt)
                 {
-                    DisplayMessage("Wrong value. Please try again.");
+                    DisplayMessage("Wrong value. Please try again.", ConsoleColor.Red);
                 }
-                System.Console.WriteLine("How many years of foreign work experiencein (outside Canada) do you have? (warning!: The year of experience is calculated after having completed the full year worked. If your spouse or common-law partner has worked less than a year, enter 0. There is no rounding up) ");
+                DisplayMessage("How many years of foreign work experiencein (outside Canada) do you have? (warning!: The year of experience is calculated after having completed the full year worked. If your spouse or common-law partner has worked less than a year, enter 0. There is no rounding up).");
                 foreignExperienceTime = System.Console.ReadLine();
 
                 isFirstAttempt = false;
@@ -222,35 +222,35 @@ namespace _CRS__Criteria___Express_Entry
 
             int PointsForSkillTransferabilityFactors;
             PointsForSkillTransferabilityFactors = SkillTransferabilityFactorsCalculator.CalculateSkillTransferabilityFactorsPoints(primaryAplicantFirstLangPoints, EducationLevel, ParsedExperienceTime, ParsedForeignExperienceTime);
-            System.Console.WriteLine("Points for skill transferability factor " + PointsForSkillTransferabilityFactors.ToString());
+            DisplayMessage("Points for skill transferability factor: " + PointsForSkillTransferabilityFactors.ToString(), ConsoleColor.Cyan);
 
 
-            System.Console.WriteLine("Does your brother or sister who is a citizen or permanent resident of Canada live in Canada? (YES or NO)");
+            DisplayMessage("Does your brother or sister who is a citizen or permanent resident of Canada live in Canada? (YES or NO).");
             string CanadianFamilyMember = System.Console.ReadLine();
             int CanadianFamilyMemberPoints;
             CanadianFamilyMemberPoints = AdditionalPointsCalculator.GiveAdditionalPoints(CanadianFamilyMember);
 
-            System.Console.WriteLine("Have you graduated post-secondary education in Canada - credential of one or two years (YES or NO)");
+            DisplayMessage("Have you graduated post-secondary education in Canada - credential of one or two years (YES or NO).");
             string CanadianEducation = System.Console.ReadLine();
             int CanadianEducationPoints;
             CanadianEducationPoints = AdditionalPointsCalculator.GiveAdditionalPoints(CanadianEducation);
 
-            System.Console.WriteLine("Have you graduated post-secondary education in Canada - credential three years or longer (YES or NO)");
+            DisplayMessage("Have you graduated post-secondary education in Canada - credential three years or longer (YES or NO).");
             string CanadianLongerEducation = System.Console.ReadLine();
             int CanadianLongerEducationPoints;
             CanadianLongerEducationPoints = AdditionalPointsCalculator.GiveDoubleAdditionalPoints(CanadianLongerEducation);
 
-            System.Console.WriteLine("Arranged employment – any other NOC 0, A or B (YES or NO)");
+            DisplayMessage("Do you have arranged employment – any other NOC 0, A or B (YES or NO).");
             string CanadianArrangedEmployment = System.Console.ReadLine();
             int CanadianArrangedEmploymentPoints;
             CanadianArrangedEmploymentPoints = AdditionalPointsCalculator.GiveAdditionalPointsForArrangedEmployment(CanadianArrangedEmployment);
 
-            System.Console.WriteLine("Arranged employment – any other NOC 00 (YES or NO)");
+            DisplayMessage("Do you have arranged employment – any other NOC 00 (YES or NO).");
             string CanadianArrangedEmploymentPlus = System.Console.ReadLine();
             int CanadianArrangedEmploymentPlusPoints;
             CanadianArrangedEmploymentPlusPoints = AdditionalPointsCalculator.GiveMoreAdditionalPointsForArrangedEmployment(CanadianArrangedEmploymentPlus);
 
-            System.Console.WriteLine("Have you got provincial or territorial nomination? (YES or NO)");
+            DisplayMessage("Have you got provincial or territorial nomination? (YES or NO).");
             string CanadianProvincialOrTerritorialNomination = System.Console.ReadLine();
             int CanadianProvincialOrTerritorialNominationPoints;
             CanadianProvincialOrTerritorialNominationPoints = AdditionalPointsCalculator.GiveAdditionalPointsForProvincialOrTerritorialNomination(CanadianProvincialOrTerritorialNomination);
@@ -264,23 +264,23 @@ namespace _CRS__Criteria___Express_Entry
 
             int additionalPoints;
             additionalPoints = CanadianFamilyMemberPoints + CanadianEducationPoints + CanadianLongerEducationPoints + CanadianArrangedEmploymentPoints + CanadianArrangedEmploymentPlusPoints + CanadianProvincialOrTerritorialNominationPoints + AdditionalLanguagePoints;
-            System.Console.WriteLine("Additional points " + additionalPoints.ToString());
+            DisplayMessage("Additional points: " + additionalPoints.ToString(), ConsoleColor.Cyan);
 
             int totalPointsForExpressEntry;
             totalPointsForExpressEntry = TotalPointsForHumanCapitalFactors + TotalPointsForSpouseOrCommonLawPartnerFactors + PointsForSkillTransferabilityFactors + additionalPoints;
-            System.Console.WriteLine("Total points for Express Entry " + totalPointsForExpressEntry.ToString());
+            DisplayMessage("Total points for Express Entry: " + totalPointsForExpressEntry.ToString(), ConsoleColor.Blue);
 
             Console.Read();
         }
 
-        private static void DisplayMessage(string message, ConsoleColor color = ConsoleColor.Red)
+        private static void DisplayMessage(string message, ConsoleColor color = ConsoleColor.DarkYellow)
         {
             System.Console.ForegroundColor = color;
             System.Console.WriteLine(message);
             System.Console.ResetColor();
         }
 
-        static int GetEducationalLevel()
+        static ushort GetEducationalLevel()
         {
             string levelNumber;
             bool isFirstAttempt = true;
@@ -288,22 +288,22 @@ namespace _CRS__Criteria___Express_Entry
             {
                 if (!isFirstAttempt)
                 {
-                    DisplayMessage("Wrong value. Please try again.");
+                    DisplayMessage("Wrong value. Please try again.", ConsoleColor.Red);
                 }
-                System.Console.WriteLine("1.Less than secondary school (high school)");
-                System.Console.WriteLine("2.Secondary diploma (high school graduation)");
-                System.Console.WriteLine("3.One-year degree, diploma or certificate from  a university, college, trade or technical school, or other institute");
-                System.Console.WriteLine("4.Two-year program at a university, college, trade or technical school, or other institute");
-                System.Console.WriteLine("5.Bachelor's degree OR  a three or more year program at a university, college, trade or technical school, or other institute");
-                System.Console.WriteLine("6.Two or more certificates, diplomas, or degrees. One must be for a program of three or more years");
-                System.Console.WriteLine("7.Master's degree, OR professional degree needed to practice in a licensed profession (For “professional degree,” the degree program must have been in: medicine, veterinary medicine, dentistry, optometry, law, chiropractic medicine, or pharmacy.)");
-                System.Console.WriteLine("8.Doctoral level university degree (Ph.D.)");
+                DisplayMessage("1.Less than secondary school (high school).");
+                DisplayMessage("2.Secondary diploma (high school graduation).");
+                DisplayMessage("3.One-year degree, diploma or certificate from  a university, college, trade or technical school, or other institute.");
+                DisplayMessage("4.Two-year program at a university, college, trade or technical school, or other institute.");
+                DisplayMessage("5.Bachelor's degree OR  a three or more year program at a university, college, trade or technical school, or other institute.");
+                DisplayMessage("6.Two or more certificates, diplomas, or degrees. One must be for a program of three or more years.");
+                DisplayMessage("7.Master's degree, OR professional degree needed to practice in a licensed profession (For “professional degree,” the degree program must have been in: medicine, veterinary medicine, dentistry, optometry, law, chiropractic medicine, or pharmacy.).");
+                DisplayMessage("8.Doctoral level university degree (Ph.D.).");
                 levelNumber = System.Console.ReadLine();
 
                 isFirstAttempt = false;
             }
             while (levelNumber != "1" && levelNumber != "2" && levelNumber != "3" && levelNumber != "4" && levelNumber != "5" && levelNumber != "6" && levelNumber != "7" && levelNumber != "8");
-            return Int32.Parse(levelNumber);
+            return ushort.Parse(levelNumber);
         }
 
         static LanguagePoints SetAndCalculateLanguagePoints()
@@ -317,9 +317,9 @@ namespace _CRS__Criteria___Express_Entry
             {
                 if (!isFirstAttempt)
                 {
-                    DisplayMessage("Wrong value. Please try again.");
+                    DisplayMessage("Wrong value. Please try again.", ConsoleColor.Green);
                 }
-                System.Console.WriteLine("How many points did you get for speaking?");
+                DisplayMessage("How many points did you get for speaking?");
                 speaking = System.Console.ReadLine();
                 isFirstAttempt = false;
             }
@@ -333,9 +333,9 @@ namespace _CRS__Criteria___Express_Entry
             {
                 if (!isFirstAttempt)
                 {
-                    DisplayMessage("Wrong value. Please try again.");
+                    DisplayMessage("Wrong value. Please try again.", ConsoleColor.Red);
                 }
-                System.Console.WriteLine("How many points did you get for writing?");
+                DisplayMessage("How many points did you get for writing?");
                 writing = System.Console.ReadLine();
                 isFirstAttempt = false;
             }
@@ -349,9 +349,9 @@ namespace _CRS__Criteria___Express_Entry
             {
                 if (!isFirstAttempt)
                 {
-                    DisplayMessage("Wrong value. Please try again.");
+                    DisplayMessage("Wrong value. Please try again.", ConsoleColor.Red);
                 }
-                System.Console.WriteLine("How many points did you get for reading?");
+                DisplayMessage("How many points did you get for reading?");
                 reading = System.Console.ReadLine();
                 isFirstAttempt = false;
             }
@@ -365,9 +365,9 @@ namespace _CRS__Criteria___Express_Entry
             {
                 if (!isFirstAttempt)
                 {
-                    DisplayMessage("Wrong value. Please try again.");
+                    DisplayMessage("Wrong value. Please try again.", ConsoleColor.Red);
                 }
-                System.Console.WriteLine("How many points did you get for listening?");
+                DisplayMessage("How many points did you get for listening?");
                 listening = System.Console.ReadLine();
                 isFirstAttempt = false;
             }
@@ -384,12 +384,12 @@ namespace _CRS__Criteria___Express_Entry
             {
                 if (!isFirstAttempt)
                 {
-                    DisplayMessage("Wrong value. Please try again.");
+                    DisplayMessage("Wrong value. Please try again.", ConsoleColor.Red);
                 }
-                System.Console.WriteLine("What type of exam of your second language did you pass? (enter the number from 1 to 3)");
-                System.Console.WriteLine("1.IELTS");
-                System.Console.WriteLine("2.CELPIP");
-                System.Console.WriteLine("3.TEF");
+                DisplayMessage("What type of exam of your second language did you pass? (enter the number from 1 to 3).");
+                DisplayMessage("1.IELTS");
+                DisplayMessage("2.CELPIP");
+                DisplayMessage("3.TEF");
                 langExamNumber = System.Console.ReadLine();
 
                 isFirstAttempt = false;
