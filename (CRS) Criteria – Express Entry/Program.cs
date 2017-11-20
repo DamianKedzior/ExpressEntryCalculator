@@ -217,7 +217,7 @@ namespace _CRS__Criteria___Express_Entry
 
                 isFirstAttempt = false;
             }
-            while (Int32.TryParse(foreignExperienceTime, out parsedExperienceTime) == false);
+            while (Int32.TryParse(foreignExperienceTime, out parsedForeignExperienceTime) == false);
 
 
             int pointsForSkillTransferabilityFactors;
