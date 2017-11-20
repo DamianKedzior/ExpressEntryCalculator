@@ -8,25 +8,25 @@ namespace _CRS__Criteria___Express_Entry
 {
     static class ExperiencePointsCalculator
     {
-        public static int CountPointsForExperienceWithSpouse(int YearsOfExperience)
+        public static int CountPointsForExperienceWithSpouse(int yearsOfExperience)
         {
-            if (YearsOfExperience >= 5)
+            if (yearsOfExperience >= 5)
             {
                 return 70;
             }
-            else if (YearsOfExperience == 4)
+            else if (yearsOfExperience == 4)
             {
                 return 63;
             }
-            else if (YearsOfExperience == 3)
+            else if (yearsOfExperience == 3)
             {
                 return 56;
             }
-            else if (YearsOfExperience == 2)
+            else if (yearsOfExperience == 2)
             {
                 return 46;
             }
-            else if (YearsOfExperience == 1)
+            else if (yearsOfExperience == 1)
             {
                 return 35;
             }
@@ -36,25 +36,25 @@ namespace _CRS__Criteria___Express_Entry
             }
         }
 
-        public static int CountPointsForExperienceWithoutSpouse(int YearsOfExperience)
+        public static int CountPointsForExperienceWithoutSpouse(int yearsOfExperience)
         {
-            if (YearsOfExperience >= 5)
+            if (yearsOfExperience >= 5)
             {
                 return 80;
             }
-            else if (YearsOfExperience == 4)
+            else if (yearsOfExperience == 4)
             {
                 return 72;
             }
-            else if (YearsOfExperience == 3)
+            else if (yearsOfExperience == 3)
             {
                 return 64;
             }
-            else if (YearsOfExperience == 2)
+            else if (yearsOfExperience == 2)
             {
                 return 53;
             }
-            else if (YearsOfExperience == 1)
+            else if (yearsOfExperience == 1)
             {
                 return 40;
             }
@@ -65,25 +65,25 @@ namespace _CRS__Criteria___Express_Entry
         }
 
 
-        public static int CountPointsForSpouseExperience(int YearsOfSpouseExperience)
+        public static int CountPointsForSpouseExperience(int yearsOfSpouseExperience)
         {
-            if (YearsOfSpouseExperience >= 5)
+            if (yearsOfSpouseExperience >= 5)
             {
                 return 10;
             }
-            else if (YearsOfSpouseExperience == 4)
+            else if (yearsOfSpouseExperience == 4)
             {
                 return 9;
             }
-            else if (YearsOfSpouseExperience == 3)
+            else if (yearsOfSpouseExperience == 3)
             {
                 return 8;
             }
-            else if (YearsOfSpouseExperience == 2)
+            else if (yearsOfSpouseExperience == 2)
             {
                 return 7;
             }
-            else if (YearsOfSpouseExperience == 1)
+            else if (yearsOfSpouseExperience == 1)
             {
                 return 5;
             }

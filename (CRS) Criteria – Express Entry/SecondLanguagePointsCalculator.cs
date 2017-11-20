@@ -8,17 +8,17 @@ namespace _CRS__Criteria___Express_Entry
 {
     static class SecondLanguagePointsCalculator
     {
-        public static int SecondLangPointsCalculator(int CLBPoints)
+        public static int SecondLangPointsCalculator(int clbPoints)
         {
-            if (CLBPoints >= 9)
+            if (clbPoints >= 9)
             {
                 return 6;
             }
-            else if (CLBPoints == 8 || CLBPoints == 7)
+            else if (clbPoints == 8 || clbPoints == 7)
             {
                 return 3;
             }
-            else if (CLBPoints == 6 || CLBPoints == 5)
+            else if (clbPoints == 6 || clbPoints == 5)
             {
                 return 1;
             }

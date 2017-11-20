@@ -37,82 +37,82 @@ namespace _CRS__Criteria___Express_Entry
 
             DisplayMessage("Please provide fullname your spouse or common - law partner if exist.");
             string spouseFullname = System.Console.ReadLine();
-            bool NoSpouse = String.IsNullOrWhiteSpace(spouseFullname);
+            bool noSpouse = String.IsNullOrWhiteSpace(spouseFullname);
 
-            int PointForAge;
-            if (NoSpouse == true)
+            int pointForAge;
+            if (noSpouse == true)
             {
-                PointForAge = AgePointsCalculator.CountPointsForAge(age);
+                pointForAge = AgePointsCalculator.CountPointsForAge(age);
             }
             else
             {
-                PointForAge = AgePointsCalculator.CountPointsForAgeWithSpouse(age);
+                pointForAge = AgePointsCalculator.CountPointsForAgeWithSpouse(age);
             }
-            DisplayMessage("Points for age: " + PointForAge.ToString(), ConsoleColor.Green);
+            DisplayMessage("Points for age: " + pointForAge.ToString(), ConsoleColor.Green);
 
             DisplayMessage("Please select the level of your education (enter the number from 1 to 8).");
 
-            ushort EducationLevel = GetEducationalLevel();
+            ushort educationLevel = GetEducationalLevel();
 
-            int PointForEducation;
+            int pointForEducation;
 
-            if (NoSpouse == true)
+            if (noSpouse == true)
             {
-                PointForEducation = EducationPointsCalculator.CountPointsForEducation(EducationLevel);
+                pointForEducation = EducationPointsCalculator.CountPointsForEducation(educationLevel);
             }
             else
             {
-                PointForEducation = EducationPointsCalculator.CountPointsForEducationWithSpouse(EducationLevel);
+                pointForEducation = EducationPointsCalculator.CountPointsForEducationWithSpouse(educationLevel);
             }
-            DisplayMessage("Points for education: " + PointForEducation.ToString(), ConsoleColor.Green);
+            DisplayMessage("Points for education: " + pointForEducation.ToString(), ConsoleColor.Green);
 
             LanguagePoints primaryAplicantFirstLangPoints = SetAndCalculateLanguagePoints();
 
-            int PointsForSpeaking;
-            int PointsForWriting;
-            int PointsForReading;
-            int PointsForListening;
-            int PointsForLanguage;
-            if (NoSpouse == true)
+            int pointsForSpeaking;
+            int pointsForWriting;
+            int pointsForReading;
+            int pointsForListening;
+            int pointsForLanguage;
+            if (noSpouse == true)
             {
-                PointsForSpeaking = LanguagePointsCalculator.LanguagePointsCalculatorWithoutSpouse(primaryAplicantFirstLangPoints.CLBSpeakingPoints);
-                PointsForWriting = LanguagePointsCalculator.LanguagePointsCalculatorWithoutSpouse(primaryAplicantFirstLangPoints.CLBWritingPoints);
-                PointsForReading = LanguagePointsCalculator.LanguagePointsCalculatorWithoutSpouse(primaryAplicantFirstLangPoints.CLBReadingPoints);
-                PointsForListening = LanguagePointsCalculator.LanguagePointsCalculatorWithoutSpouse(primaryAplicantFirstLangPoints.CLBListeningPoints);
+                pointsForSpeaking = LanguagePointsCalculator.LanguagePointsCalculatorWithoutSpouse(primaryAplicantFirstLangPoints.CLBSpeakingPoints);
+                pointsForWriting = LanguagePointsCalculator.LanguagePointsCalculatorWithoutSpouse(primaryAplicantFirstLangPoints.CLBWritingPoints);
+                pointsForReading = LanguagePointsCalculator.LanguagePointsCalculatorWithoutSpouse(primaryAplicantFirstLangPoints.CLBReadingPoints);
+                pointsForListening = LanguagePointsCalculator.LanguagePointsCalculatorWithoutSpouse(primaryAplicantFirstLangPoints.CLBListeningPoints);
             }
             else
             {
-                PointsForSpeaking = LanguagePointsCalculator.LanguagePointsCalculatorWithSpouse(primaryAplicantFirstLangPoints.CLBSpeakingPoints);
-                PointsForWriting = LanguagePointsCalculator.LanguagePointsCalculatorWithSpouse(primaryAplicantFirstLangPoints.CLBWritingPoints);
-                PointsForReading = LanguagePointsCalculator.LanguagePointsCalculatorWithSpouse(primaryAplicantFirstLangPoints.CLBReadingPoints);
-                PointsForListening = LanguagePointsCalculator.LanguagePointsCalculatorWithSpouse(primaryAplicantFirstLangPoints.CLBListeningPoints);
+                pointsForSpeaking = LanguagePointsCalculator.LanguagePointsCalculatorWithSpouse(primaryAplicantFirstLangPoints.CLBSpeakingPoints);
+                pointsForWriting = LanguagePointsCalculator.LanguagePointsCalculatorWithSpouse(primaryAplicantFirstLangPoints.CLBWritingPoints);
+                pointsForReading = LanguagePointsCalculator.LanguagePointsCalculatorWithSpouse(primaryAplicantFirstLangPoints.CLBReadingPoints);
+                pointsForListening = LanguagePointsCalculator.LanguagePointsCalculatorWithSpouse(primaryAplicantFirstLangPoints.CLBListeningPoints);
             }
-            PointsForLanguage = PointsForSpeaking + PointsForWriting + PointsForReading + PointsForListening;
-            DisplayMessage("Points for 1st language: " + PointsForLanguage.ToString(), ConsoleColor.Green);
+            pointsForLanguage = pointsForSpeaking + pointsForWriting + pointsForReading + pointsForListening;
+            DisplayMessage("Points for 1st language: " + pointsForLanguage.ToString(), ConsoleColor.Green);
 
 
             DisplayMessage("Did you pass second language exam? (YES or NO).");
-            string SecondLanguage = System.Console.ReadLine();
-            int PointsForSecondLanguage = 0;
+            string secondLanguage = System.Console.ReadLine();
+            int pointsForSecondLanguage = 0;
             LanguagePoints primaryAplicantSecondLangPoints = null;
 
-            if (SecondLanguage.ToUpper() == "YES")
+            if (secondLanguage.ToUpper() == "YES")
             {
                 primaryAplicantSecondLangPoints = SetAndCalculateLanguagePoints();
               
 
-                int PointsForSecondLangSpeaking;
-                int PointsForSecondLangWriting;
-                int PointsForSecondLangReading;
-                int PointsForSecondLangListening;
+                int pointsForSecondLangSpeaking;
+                int pointsForSecondLangWriting;
+                int pointsForSecondLangReading;
+                int pointsForSecondLangListening;
 
-                PointsForSecondLangSpeaking = SecondLanguagePointsCalculator.SecondLangPointsCalculator(primaryAplicantSecondLangPoints.CLBSpeakingPoints);
-                PointsForSecondLangWriting = SecondLanguagePointsCalculator.SecondLangPointsCalculator(primaryAplicantSecondLangPoints.CLBWritingPoints);
-                PointsForSecondLangReading = SecondLanguagePointsCalculator.SecondLangPointsCalculator(primaryAplicantSecondLangPoints.CLBReadingPoints);
-                PointsForSecondLangListening = SecondLanguagePointsCalculator.SecondLangPointsCalculator(primaryAplicantSecondLangPoints.CLBListeningPoints);
+                pointsForSecondLangSpeaking = SecondLanguagePointsCalculator.SecondLangPointsCalculator(primaryAplicantSecondLangPoints.CLBSpeakingPoints);
+                pointsForSecondLangWriting = SecondLanguagePointsCalculator.SecondLangPointsCalculator(primaryAplicantSecondLangPoints.CLBWritingPoints);
+                pointsForSecondLangReading = SecondLanguagePointsCalculator.SecondLangPointsCalculator(primaryAplicantSecondLangPoints.CLBReadingPoints);
+                pointsForSecondLangListening = SecondLanguagePointsCalculator.SecondLangPointsCalculator(primaryAplicantSecondLangPoints.CLBListeningPoints);
 
-                PointsForSecondLanguage = PointsForSecondLangSpeaking + PointsForSecondLangWriting + PointsForSecondLangReading + PointsForSecondLangListening;
-                DisplayMessage("Point for second language: " + PointsForSecondLanguage.ToString(), ConsoleColor.Green);
+                pointsForSecondLanguage = pointsForSecondLangSpeaking + pointsForSecondLangWriting + pointsForSecondLangReading + pointsForSecondLangListening;
+                DisplayMessage("Point for second language: " + pointsForSecondLanguage.ToString(), ConsoleColor.Green);
             }
             else
             {
@@ -120,8 +120,8 @@ namespace _CRS__Criteria___Express_Entry
             }
 
             isFirstAttempt = true;
-            string ExperienceTime;
-            int ParsedExperienceTime;
+            string experienceTime;
+            int parsedExperienceTime;
             do
             {
                 if (!isFirstAttempt)
@@ -129,59 +129,59 @@ namespace _CRS__Criteria___Express_Entry
                     DisplayMessage("Wrong value. Please try again.", ConsoleColor.Red);
                 }
                 DisplayMessage("How many years of work experience do you have in the Canadian labour market? (warning!: The year of experience is calculated after having completed the full year worked. If you have worked less than a year, enter 0. There is no rounding up).");
-                ExperienceTime = System.Console.ReadLine();
+                experienceTime = System.Console.ReadLine();
 
                 isFirstAttempt = false;
             }
-            while (Int32.TryParse(ExperienceTime, out ParsedExperienceTime) == false);
+            while (Int32.TryParse(experienceTime, out parsedExperienceTime) == false);
 
-            int PointsForExperience;
-            if (NoSpouse == true)
+            int pointsForExperience;
+            if (noSpouse == true)
             {
-                PointsForExperience = ExperiencePointsCalculator.CountPointsForExperienceWithoutSpouse(ParsedExperienceTime);
+                pointsForExperience = ExperiencePointsCalculator.CountPointsForExperienceWithoutSpouse(parsedExperienceTime);
             }
             else
             {
-                PointsForExperience = ExperiencePointsCalculator.CountPointsForExperienceWithSpouse(ParsedExperienceTime);
+                pointsForExperience = ExperiencePointsCalculator.CountPointsForExperienceWithSpouse(parsedExperienceTime);
             }
-            DisplayMessage("Points for experience: " + PointsForExperience.ToString(), ConsoleColor.Green);
+            DisplayMessage("Points for experience: " + pointsForExperience.ToString(), ConsoleColor.Green);
 
-            int TotalPointsForHumanCapitalFactors;
-            TotalPointsForHumanCapitalFactors = PointForAge + PointForEducation + PointsForLanguage + PointsForSecondLanguage + PointsForExperience;
-            DisplayMessage("Points earned by you: " + TotalPointsForHumanCapitalFactors.ToString(), ConsoleColor.Cyan);
+            int totalPointsForHumanCapitalFactors;
+            totalPointsForHumanCapitalFactors = pointForAge + pointForEducation + pointsForLanguage + pointsForSecondLanguage + pointsForExperience;
+            DisplayMessage("Points earned by you: " + totalPointsForHumanCapitalFactors.ToString(), ConsoleColor.Cyan);
 
-            int TotalPointsForSpouseOrCommonLawPartnerFactors = 0;
-            if (NoSpouse == true)
+            int totalPointsForSpouseOrCommonLawPartnerFactors = 0;
+            if (noSpouse == true)
             {
                 DisplayMessage("No points earned by spouse or common-law partner.", ConsoleColor.Cyan);
             }
             else
             {
                 DisplayMessage("Please select the level of education of spouse or common-law partner (enter the number from 1 to 8).");
-                ushort SpouseEducationLevel = GetEducationalLevel();
-                int PointsForSpouseEducation;
-                PointsForSpouseEducation = EducationPointsCalculator.CountPointsForSpouseEducation(SpouseEducationLevel);
-                DisplayMessage("Points for education of spouse or common-law partner: " + PointsForSpouseEducation.ToString(), ConsoleColor.Green);
+                ushort spouseEducationLevel = GetEducationalLevel();
+                int pointsForSpouseEducation;
+                pointsForSpouseEducation = EducationPointsCalculator.CountPointsForSpouseEducation(spouseEducationLevel);
+                DisplayMessage("Points for education of spouse or common-law partner: " + pointsForSpouseEducation.ToString(), ConsoleColor.Green);
 
                 LanguagePoints spouseFirstLangPoints = SetAndCalculateLanguagePoints();
 
-                int PointsForSpouseSpeaking;
-                int PointsForSpouseWriting;
-                int PointsForSpouseReading;
-                int PointsForSpouseListening;
-                int PointsForSpouseLanguage;
+                int pointsForSpouseSpeaking;
+                int pointsForSpouseWriting;
+                int pointsForSpouseReading;
+                int pointsForSpouseListening;
+                int pointsForSpouseLanguage;
 
-                PointsForSpouseSpeaking = LanguagePointsCalculator.CalculatorOfSpouseLanguagePoints(spouseFirstLangPoints.CLBSpeakingPoints);
-                PointsForSpouseWriting = LanguagePointsCalculator.CalculatorOfSpouseLanguagePoints(spouseFirstLangPoints.CLBWritingPoints);
-                PointsForSpouseReading = LanguagePointsCalculator.CalculatorOfSpouseLanguagePoints(spouseFirstLangPoints.CLBReadingPoints);
-                PointsForSpouseListening = LanguagePointsCalculator.CalculatorOfSpouseLanguagePoints(spouseFirstLangPoints.CLBListeningPoints);
+                pointsForSpouseSpeaking = LanguagePointsCalculator.CalculatorOfSpouseLanguagePoints(spouseFirstLangPoints.CLBSpeakingPoints);
+                pointsForSpouseWriting = LanguagePointsCalculator.CalculatorOfSpouseLanguagePoints(spouseFirstLangPoints.CLBWritingPoints);
+                pointsForSpouseReading = LanguagePointsCalculator.CalculatorOfSpouseLanguagePoints(spouseFirstLangPoints.CLBReadingPoints);
+                pointsForSpouseListening = LanguagePointsCalculator.CalculatorOfSpouseLanguagePoints(spouseFirstLangPoints.CLBListeningPoints);
 
-                PointsForSpouseLanguage = PointsForSpouseSpeaking + PointsForSpouseWriting + PointsForSpouseReading + PointsForSpouseListening;
-                DisplayMessage("Points for language of spouse or common-law partner: " + PointsForSpouseLanguage.ToString(), ConsoleColor.Green);
+                pointsForSpouseLanguage = pointsForSpouseSpeaking + pointsForSpouseWriting + pointsForSpouseReading + pointsForSpouseListening;
+                DisplayMessage("Points for language of spouse or common-law partner: " + pointsForSpouseLanguage.ToString(), ConsoleColor.Green);
 
                 isFirstAttempt = true;
-                int ParsedSpouseExperienceTime;
-                int PointsForSpouseExperience;
+                int parsedSpouseExperienceTime;
+                int pointsForSpouseExperience;
                 do
                 {
                     if (!isFirstAttempt)
@@ -189,23 +189,23 @@ namespace _CRS__Criteria___Express_Entry
                         DisplayMessage("Wrong value. Please try again.", ConsoleColor.Red);
                     }
                     DisplayMessage("How many years of work experience in the Canadian labour market has your spouse or common-law partner? (warning!: The year of experience is calculated after having completed the full year worked. If your spouse or common-law partner has worked less than a year, enter 0. There is no rounding up).");
-                    string SpouseExperienceTime = System.Console.ReadLine();
+                    string spouseExperienceTime = System.Console.ReadLine();
 
                     isFirstAttempt = false;
                 }
-                while (Int32.TryParse(ExperienceTime, out ParsedSpouseExperienceTime) == false);
+                while (Int32.TryParse(experienceTime, out parsedSpouseExperienceTime) == false);
            
-                PointsForSpouseExperience = ExperiencePointsCalculator.CountPointsForSpouseExperience(ParsedSpouseExperienceTime);
+                pointsForSpouseExperience = ExperiencePointsCalculator.CountPointsForSpouseExperience(parsedSpouseExperienceTime);
 
-                DisplayMessage("Points for spouse experience: " + PointsForSpouseExperience.ToString(), ConsoleColor.Green);
+                DisplayMessage("Points for spouse experience: " + pointsForSpouseExperience.ToString(), ConsoleColor.Green);
 
-                TotalPointsForSpouseOrCommonLawPartnerFactors = PointsForSpouseEducation + PointsForSpouseLanguage + PointsForSpouseExperience;
-                DisplayMessage("Points earned by spouse or common-law partner: " + TotalPointsForSpouseOrCommonLawPartnerFactors.ToString(), ConsoleColor.Cyan);
+                totalPointsForSpouseOrCommonLawPartnerFactors = pointsForSpouseEducation + pointsForSpouseLanguage + pointsForSpouseExperience;
+                DisplayMessage("Points earned by spouse or common-law partner: " + totalPointsForSpouseOrCommonLawPartnerFactors.ToString(), ConsoleColor.Cyan);
             }
 
             isFirstAttempt = true;
             string foreignExperienceTime;
-            int ParsedForeignExperienceTime = 0;
+            int parsedForeignExperienceTime = 0;
             do
             {
                 if (!isFirstAttempt)
@@ -217,57 +217,51 @@ namespace _CRS__Criteria___Express_Entry
 
                 isFirstAttempt = false;
             }
-            while (Int32.TryParse(foreignExperienceTime, out ParsedExperienceTime) == false);
+            while (Int32.TryParse(foreignExperienceTime, out parsedExperienceTime) == false);
 
 
-            int PointsForSkillTransferabilityFactors;
-            PointsForSkillTransferabilityFactors = SkillTransferabilityFactorsCalculator.CalculateSkillTransferabilityFactorsPoints(primaryAplicantFirstLangPoints, EducationLevel, ParsedExperienceTime, ParsedForeignExperienceTime);
-            DisplayMessage("Points for skill transferability factor: " + PointsForSkillTransferabilityFactors.ToString(), ConsoleColor.Cyan);
+            int pointsForSkillTransferabilityFactors;
+            pointsForSkillTransferabilityFactors = SkillTransferabilityFactorsCalculator.CalculateSkillTransferabilityFactorsPoints(primaryAplicantFirstLangPoints, educationLevel, parsedExperienceTime, parsedForeignExperienceTime);
+            DisplayMessage("Points for skill transferability factor: " + pointsForSkillTransferabilityFactors.ToString(), ConsoleColor.Cyan);
 
 
             DisplayMessage("Does your brother or sister who is a citizen or permanent resident of Canada live in Canada? (YES or NO).");
-            string CanadianFamilyMember = System.Console.ReadLine();
-            int CanadianFamilyMemberPoints;
-            CanadianFamilyMemberPoints = AdditionalPointsCalculator.GiveAdditionalPoints(CanadianFamilyMember);
+            string canadianFamilyMember = System.Console.ReadLine();
+            int canadianFamilyMemberPoints = AdditionalPointsCalculator.GiveAdditionalPoints(canadianFamilyMember);
 
             DisplayMessage("Have you graduated post-secondary education in Canada - credential of one or two years (YES or NO).");
-            string CanadianEducation = System.Console.ReadLine();
-            int CanadianEducationPoints;
-            CanadianEducationPoints = AdditionalPointsCalculator.GiveAdditionalPoints(CanadianEducation);
+            string canadianEducation = System.Console.ReadLine();
+            int canadianEducationPoints = AdditionalPointsCalculator.GiveAdditionalPoints(canadianEducation);
 
             DisplayMessage("Have you graduated post-secondary education in Canada - credential three years or longer (YES or NO).");
-            string CanadianLongerEducation = System.Console.ReadLine();
-            int CanadianLongerEducationPoints;
-            CanadianLongerEducationPoints = AdditionalPointsCalculator.GiveDoubleAdditionalPoints(CanadianLongerEducation);
+            string canadianLongerEducation = System.Console.ReadLine();
+            int canadianLongerEducationPoints = AdditionalPointsCalculator.GiveDoubleAdditionalPoints(canadianLongerEducation);
 
             DisplayMessage("Do you have arranged employment – any other NOC 0, A or B (YES or NO).");
-            string CanadianArrangedEmployment = System.Console.ReadLine();
-            int CanadianArrangedEmploymentPoints;
-            CanadianArrangedEmploymentPoints = AdditionalPointsCalculator.GiveAdditionalPointsForArrangedEmployment(CanadianArrangedEmployment);
+            string canadianArrangedEmployment = System.Console.ReadLine();
+            int canadianArrangedEmploymentPoints = AdditionalPointsCalculator.GiveAdditionalPointsForArrangedEmployment(canadianArrangedEmployment);
 
             DisplayMessage("Do you have arranged employment – any other NOC 00 (YES or NO).");
-            string CanadianArrangedEmploymentPlus = System.Console.ReadLine();
-            int CanadianArrangedEmploymentPlusPoints;
-            CanadianArrangedEmploymentPlusPoints = AdditionalPointsCalculator.GiveMoreAdditionalPointsForArrangedEmployment(CanadianArrangedEmploymentPlus);
+            string canadianArrangedEmploymentPlus = System.Console.ReadLine();
+            int canadianArrangedEmploymentPlusPoints = AdditionalPointsCalculator.GiveMoreAdditionalPointsForArrangedEmployment(canadianArrangedEmploymentPlus);
 
             DisplayMessage("Have you got provincial or territorial nomination? (YES or NO).");
-            string CanadianProvincialOrTerritorialNomination = System.Console.ReadLine();
-            int CanadianProvincialOrTerritorialNominationPoints;
-            CanadianProvincialOrTerritorialNominationPoints = AdditionalPointsCalculator.GiveAdditionalPointsForProvincialOrTerritorialNomination(CanadianProvincialOrTerritorialNomination);
+            string canadianProvincialOrTerritorialNomination = System.Console.ReadLine();
+            int canadianProvincialOrTerritorialNominationPoints = AdditionalPointsCalculator.GiveAdditionalPointsForProvincialOrTerritorialNomination(canadianProvincialOrTerritorialNomination);
 
 
-            int AdditionalLanguagePoints = 0;
+            int additionalLanguagePoints = 0;
             if (primaryAplicantFirstLangPoints.LanguageExamType == LanguagePoints.LanguageExamTypes.TEF)
             {
-                AdditionalLanguagePoints = AdditionalPointsCalculator.GiveAdditionalPointsForLanguages(primaryAplicantFirstLangPoints, primaryAplicantSecondLangPoints);
+                additionalLanguagePoints = AdditionalPointsCalculator.GiveAdditionalPointsForLanguages(primaryAplicantFirstLangPoints, primaryAplicantSecondLangPoints);
             }
 
             int additionalPoints;
-            additionalPoints = CanadianFamilyMemberPoints + CanadianEducationPoints + CanadianLongerEducationPoints + CanadianArrangedEmploymentPoints + CanadianArrangedEmploymentPlusPoints + CanadianProvincialOrTerritorialNominationPoints + AdditionalLanguagePoints;
+            additionalPoints = canadianFamilyMemberPoints + canadianEducationPoints + canadianLongerEducationPoints + canadianArrangedEmploymentPoints + canadianArrangedEmploymentPlusPoints + canadianProvincialOrTerritorialNominationPoints + additionalLanguagePoints;
             DisplayMessage("Additional points: " + additionalPoints.ToString(), ConsoleColor.Cyan);
 
             int totalPointsForExpressEntry;
-            totalPointsForExpressEntry = TotalPointsForHumanCapitalFactors + TotalPointsForSpouseOrCommonLawPartnerFactors + PointsForSkillTransferabilityFactors + additionalPoints;
+            totalPointsForExpressEntry = totalPointsForHumanCapitalFactors + totalPointsForSpouseOrCommonLawPartnerFactors + pointsForSkillTransferabilityFactors + additionalPoints;
             DisplayMessage("Total points for Express Entry: " + totalPointsForExpressEntry.ToString(), ConsoleColor.Blue);
 
             Console.Read();
@@ -399,9 +393,9 @@ namespace _CRS__Criteria___Express_Entry
             return IdentifyingTheTypeOfExam(langExamNumber);
         }
         
-        static LanguagePoints.LanguageExamTypes IdentifyingTheTypeOfExam(string Exam)
+        static LanguagePoints.LanguageExamTypes IdentifyingTheTypeOfExam(string exam)
         {
-            switch (Exam)
+            switch (exam)
             {
                 case "1":
                     return LanguagePoints.LanguageExamTypes.IELTS;

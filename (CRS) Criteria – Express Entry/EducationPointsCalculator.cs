@@ -8,9 +8,9 @@ namespace _CRS__Criteria___Express_Entry
 {
     static class EducationPointsCalculator
     {
-        public static int CountPointsForEducationWithSpouse(ushort EduLevel)
+        public static int CountPointsForEducationWithSpouse(ushort eduLevel)
         {
-            switch (EduLevel)
+            switch (eduLevel)
             {
                 case 1:
                     return 0;
@@ -34,9 +34,9 @@ namespace _CRS__Criteria___Express_Entry
         }
 
 
-        public static int CountPointsForEducation(ushort EduLevel)
+        public static int CountPointsForEducation(ushort eduLevel)
         {
-            switch (EduLevel)
+            switch (eduLevel)
             {
                 case 1:
                     return 0;

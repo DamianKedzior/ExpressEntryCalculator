@@ -9,29 +9,29 @@ namespace _CRS__Criteria___Express_Entry
     static class LanguagePointsCalculator
     {
       
-        public static int LanguagePointsCalculatorWithSpouse(int CLBPoints)
+        public static int LanguagePointsCalculatorWithSpouse(int clbPoints)
         {
-            if (CLBPoints >= 10)
+            if (clbPoints >= 10)
             {
                 return 32;
             }
-            else if (CLBPoints == 9)
+            else if (clbPoints == 9)
             {
                 return 29;
             }
-            else if (CLBPoints == 8)
+            else if (clbPoints == 8)
             {
                 return 22;
             }
-            else if (CLBPoints == 7)
+            else if (clbPoints == 7)
             {
                 return 16;
             }
-            else if (CLBPoints == 6)
+            else if (clbPoints == 6)
             {
                 return 8;
             }
-            else if (CLBPoints == 5 || CLBPoints == 4)
+            else if (clbPoints == 5 || clbPoints == 4)
             {
                 return 6;
             }
@@ -42,29 +42,29 @@ namespace _CRS__Criteria___Express_Entry
         }
 
 
-        public static int LanguagePointsCalculatorWithoutSpouse(int CLBPoints)
+        public static int LanguagePointsCalculatorWithoutSpouse(int clbPoints)
         {
-            if (CLBPoints >= 10)
+            if (clbPoints >= 10)
             {
                 return 34;
             }
-            else if (CLBPoints == 9)
+            else if (clbPoints == 9)
             {
                 return 31;
             }
-            else if (CLBPoints == 8)
+            else if (clbPoints == 8)
             {
                 return 23;
             }
-            else if (CLBPoints == 7)
+            else if (clbPoints == 7)
             {
                 return 17;
             }
-            else if (CLBPoints == 6)
+            else if (clbPoints == 6)
             {
                 return 9;
             }
-            else if (CLBPoints == 5 || CLBPoints == 4)
+            else if (clbPoints == 5 || clbPoints == 4)
             {
                 return 6;
             }
@@ -75,21 +75,21 @@ namespace _CRS__Criteria___Express_Entry
         }
 
 
-        public static int CalculatorOfSpouseLanguagePoints(int CLBSpousePoints)
+        public static int CalculatorOfSpouseLanguagePoints(int clbSpousePoints)
         {
-            if (CLBSpousePoints >= 9)
+            if (clbSpousePoints >= 9)
             {
                 return 5;
             }
-            else if (CLBSpousePoints == 8 || CLBSpousePoints == 7)
+            else if (clbSpousePoints == 8 || clbSpousePoints == 7)
             {
                 return 3;
             }
-            else if (CLBSpousePoints == 6 || CLBSpousePoints == 5)
+            else if (clbSpousePoints == 6 || clbSpousePoints == 5)
             {
                 return 1;
             }
-            else if (CLBSpousePoints <= 4)
+            else if (clbSpousePoints <= 4)
             {
                 return 0;
             }
