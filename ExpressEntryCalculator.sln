@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.15
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "(CRS) Criteria – Express Entry", "(CRS) Criteria – Express Entry\(CRS) Criteria – Express Entry.csproj", "{6DE554FC-AB1E-438E-83B3-AC71A5D5FDF2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpressEntryCalculator", "(CRS) Criteria – Express Entry\ExpressEntryCalculator.csproj", "{6DE554FC-AB1E-438E-83B3-AC71A5D5FDF2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{58211751-E571-46F1-B6DF-F28B1AD1E004}"
 	ProjectSection(SolutionItems) = preProject
