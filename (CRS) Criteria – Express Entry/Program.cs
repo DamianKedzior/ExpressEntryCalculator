@@ -33,7 +33,6 @@ namespace _CRS__Criteria___Express_Entry
             while (DateTime.TryParse(dateOfBirth, out parsedDateOfBirth) == false);
 
             int age = CountAge(parsedDateOfBirth);
-            DisplayMessage("Your age: " + age, ConsoleColor.Green);
 
             DisplayMessage("Please provide fullname your spouse or common - law partner if exist.");
             string spouseFullname = System.Console.ReadLine();
