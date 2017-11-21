@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _CRS__Criteria___Express_Entry
+namespace ExpressEntryCalculator
 {
     static class LanguagePointsCalculator
     {

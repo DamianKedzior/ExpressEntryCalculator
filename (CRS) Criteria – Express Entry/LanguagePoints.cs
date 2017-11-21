@@ -1,4 +1,4 @@
-﻿namespace _CRS__Criteria___Express_Entry
+﻿namespace ExpressEntryCalculator
 {
     class LanguagePoints
     {

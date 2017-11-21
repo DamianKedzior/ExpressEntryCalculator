@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _CRS__Criteria___Express_Entry
+namespace ExpressEntryCalculator
 {
     class Program
     {
