@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ExpressEntryCalculator
+namespace ExpressEntryCalculator.Core
 {
-    static class EducationPointsCalculator
+    public static class EducationPointsCalculator
     {
         public static int CountPointsForEducationWithSpouse(ushort eduLevel)
         {

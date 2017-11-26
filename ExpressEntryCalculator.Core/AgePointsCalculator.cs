@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ExpressEntryCalculator
+namespace ExpressEntryCalculator.Core
 {
-    static class AgePointsCalculator
+    public static class AgePointsCalculator
     {
         public static int CountPointsForAgeWithSpouse(int age)
         {

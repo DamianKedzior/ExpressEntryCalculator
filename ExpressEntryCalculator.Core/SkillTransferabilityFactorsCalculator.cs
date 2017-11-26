@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ExpressEntryCalculator
+namespace ExpressEntryCalculator.Core
 {
-    static class SkillTransferabilityFactorsCalculator
+    public static class SkillTransferabilityFactorsCalculator
     {
         public static int CalculateSkillTransferabilityFactorsPoints(LanguagePoints languagePoints, ushort educationLevel, int yearsOfExperience, int yearsOfForeignExperience)
         {

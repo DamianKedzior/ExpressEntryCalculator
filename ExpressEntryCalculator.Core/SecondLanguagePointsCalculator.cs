@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ExpressEntryCalculator
+namespace ExpressEntryCalculator.Core
 {
-    static class SecondLanguagePointsCalculator
+    public static class SecondLanguagePointsCalculator
     {
         public static int SecondLangPointsCalculator(int clbPoints)
         {

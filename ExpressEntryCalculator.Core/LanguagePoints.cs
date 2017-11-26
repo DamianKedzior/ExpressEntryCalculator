@@ -1,6 +1,6 @@
-﻿namespace ExpressEntryCalculator
+﻿namespace ExpressEntryCalculator.Core
 {
-    class LanguagePoints
+    public class LanguagePoints
     {
         public LanguagePoints(LanguageExamTypes examType, double speakingPoints, double writingPoints, double readingPoints, double listeningPoints)
         {

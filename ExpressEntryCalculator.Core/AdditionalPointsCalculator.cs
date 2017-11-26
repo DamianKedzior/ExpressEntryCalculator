@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ExpressEntryCalculator
+namespace ExpressEntryCalculator.Core
 {
-    static class AdditionalPointsCalculator
+    public static class AdditionalPointsCalculator
     {
         public static int GiveAdditionalPoints(string answerToAddQuestion)
         {
