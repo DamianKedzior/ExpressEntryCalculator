@@ -29,7 +29,7 @@ namespace ExpressEntryCalculator
             }
             while (DateTime.TryParse(dateOfBirth, out parsedDateOfBirth) == false);
 
-            int age = CountAge(parsedDateOfBirth);
+            int age = AgeHelper.CountAge(parsedDateOfBirth);
 
             DisplayMessage("Please provide fullname your spouse or common - law partner if exist.");
             string spouseFullname = System.Console.ReadLine();
@@ -386,43 +386,9 @@ namespace ExpressEntryCalculator
             }
             while (langExamNumber != "1" && langExamNumber != "2" && langExamNumber != "3");
 
-            return IdentifyingTheTypeOfExam(langExamNumber);
+            return LanguagePoints.IdentifyingTheTypeOfExam(langExamNumber);
         }
         
-        static LanguagePoints.LanguageExamTypes IdentifyingTheTypeOfExam(string exam)
-        {
-            switch (exam)
-            {
-                case "1":
-                    return LanguagePoints.LanguageExamTypes.IELTS;
-                case "2":
-                    return LanguagePoints.LanguageExamTypes.CELPIP;
-                case "3":
-                    return LanguagePoints.LanguageExamTypes.TEF;
-                default:
-                    return LanguagePoints.LanguageExamTypes.IELTS;
-            }
-        }
-
-        static int CountAge(DateTime birthday)
-        {
-            DateTime now = DateTime.UtcNow;
-            int age = now.Year - birthday.Year;
-
-            if (now.Month < birthday.Month)
-            {
-                age = age - 1;
-                return age;
-            }
-            if (now.Month == birthday.Month && now.Day < birthday.Day)
-            {
-                age = age - 1;
-                return age;
-            }
-            else
-            {
-                return age;
-            }
-        }
+        
     }
 }

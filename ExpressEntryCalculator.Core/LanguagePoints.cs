@@ -20,6 +20,26 @@
             TEF
         }
 
+        public static LanguageExamTypes IdentifyingTheTypeOfExam(string exam)
+        {
+            switch (exam)
+            {
+                case "1":
+                    return LanguageExamTypes.IELTS;
+                case "2":
+                    return LanguageExamTypes.CELPIP;
+                case "3":
+                    return LanguageExamTypes.TEF;
+                default:
+                    return LanguageExamTypes.IELTS;
+            }
+        }
+
+        public static LanguagePoints.LanguageExamTypes IdentifyingTheTypeOfExam(int exam)
+        {
+            return IdentifyingTheTypeOfExam(exam.ToString());
+        }
+
         LanguageExamTypes languageExamType;
         double speakingPoints;
         double writingPoints;
