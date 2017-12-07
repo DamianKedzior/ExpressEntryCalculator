@@ -43,12 +43,32 @@ namespace ExpressEntryCalculator.Web.Models
         public double WritingPoints { get; set; }
         public double ReadingPoints { get; set; }
         public double ListeningPoints { get; set; }
-        public bool SecondLanguage { get; set; }
 
+        public bool SecondLanguage { get; set; }
         public int TypeOfSecondExam { get; set; }
+        public double SpeakingPointsSecondLanguage { get; set; }
+        public double WritingPointsSecondLanguage { get; set; }
+        public double ReadingPointsSecondLanguage { get; set; }
+        public double ListeningPointsSecondLanguage { get; set; }
 
         public int CanadianExperience { get; set; }
 
         public string SpouseFullname { get; set; }
+        public ushort SpouseEducationLevel { get; set; }
+        public int TypeOfSpouseExam { get; set; }
+        public double SpouseSpeakingPoints{ get; set; }
+        public double SpouseWritingPoints{ get; set; }
+        public double SpouseReadingPoints { get; set; }
+        public double SpouseListeningPoints { get; set; }
+        public int SpouseCanadianExperience { get; set; }
+
+        public int ExperienceOutsideCanada { get; set; }
+
+        public string CanadianFamilyMember { get; set; }
+        public string CanadianEducation { get; set; }
+        public string CanadianLongerEducation { get; set; }
+        public string CanadianArrangedEmployment { get; set; }
+        public string CanadianArrangedEmploymentPlus { get; set; }
+        public string CanadianProvincialOrTerritorialNomination { get; set; }
     }
 }

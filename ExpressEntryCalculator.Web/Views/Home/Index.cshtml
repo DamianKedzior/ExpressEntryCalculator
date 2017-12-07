@@ -21,7 +21,7 @@
     <select asp-for ="TypeOfFirstExam" asp-items="Model.ExamTypes"></select>
     <br /><br />
 
-    <lebel>How many points did you get for speaking?</lebel>
+    <label>How many points did you get for speaking?</label>
     <input asp-for="SpeakingPoints" min="0" />
     <br /><br />
     <label>How many points did you get for writing?</label> 
@@ -32,7 +32,7 @@
     <br /><br />
     <label>How many points did you get for listening?</label> 
     <input asp-for="ListeningPoints" min="0" />
-    <br />
+    <br /><br />
 
     <label>Did you pass second language exam? <input asp-for="SecondLanguage" /></label> 
     <br /><br />
@@ -41,97 +41,79 @@
     <select asp-for="TypeOfSecondExam" asp-items="Model.ExamTypes"></select>
     <br /><br />
 
-    <lebel>How many points did you get for speaking in second exam?</lebel>
-    <input asp-for="SpeakingPoints" min="0" />
+    <label>How many points did you get for speaking in second exam?</label>
+    <input asp-for="SpeakingPointsSecondLanguage" min="0" />
     <br /><br />
     <label>How many points did you get for writing in second exam?</label>
-    <input asp-for="WritingPoints" min="0" />
+    <input asp-for="WritingPointsSecondLanguage" min="0" />
     <br /><br />
     <label>How many points did you get for reading in second exam?</label>
-    <input asp-for="ReadingPoints" min="0" />
+    <input asp-for="ReadingPointsSecondLanguage" min="0" />
     <br /><br />
     <label>How many points did you get for listening in second exam?</label>
-    <input asp-for="ListeningPoints" min="0" />
-    <br />
+    <input asp-for="ListeningPointsSecondLanguage" min="0" />
+    <br /><br />
 
     <label> How many years of work experience do you have in the Canadian labour market? (warning!: The year of experience is calculated after having completed the full year worked. If you have worked less than a year, enter 0. There is no rounding up).</label>
     <input asp-for="CanadianExperience" min="0" />
     <br /><br />
 
-    <lebel>Do you have spouse or common - law partner? <input asp-for="SpouseExist"/></lebel>
+
+
+    <label>Do you have spouse or common - law partner? <input asp-for="SpouseExist"/></label>
     <br /><br />
     <label>Please provide fullname your spouse or common - law partner.<input asp-for="SpouseFullname" placeholder="Fullname" /></label> 
     <br /><br />
 
-    8.2 Please select the level of education of spouse or common-law partner.
-    <input list="levelOfSpouseEducation" placeholder="Choose one of eight options " />
-    <datalist id="levelOfSpouseEducation">
-        <option value="1.Less than secondary school."> 1.Less than secondary school (high school.</option>
-        <option value="2.Secondary diploma (high school graduation."> 2.Secondary diploma (high school graduation.</option>
-        <option value="3.One-year degree, diploma or certificate from  a university, college, trade or technical school, or other institute."> 3.One-year degree, diploma or certificate from  a university, college, trade or technical school, or other institute.</option>
-        <option value="4.Two-year program at a university, college, trade or technical school, or other institute."> 4.Two-year program at a university, college, trade or technical school, or other institute.</option>
-        <option value="5.Bachelor's degree OR  a three or more year program at a university, college, trade or technical school, or other institute."> 5.Bachelor's degree OR  a three or more year program at a university, college, trade or technical school, or other institute.</option>
-        <option value="6.Two or more certificates, diplomas, or degrees. One must be for a program of three or more years."> 6.Two or more certificates, diplomas, or degrees. One must be for a program of three or more years.</option>
-        <option value="7.Master's degree, OR professional degree needed to practice in a licensed profession (For “professional degree,” the degree program must have been in: medicine, veterinary medicine, dentistry, optometry, law, chiropractic medicine, or pharmacy.)."> 7.Master's degree, OR professional degree needed to practice in a licensed profession (For “professional degree,” the degree program must have been in: medicine, veterinary medicine, dentistry, optometry, law, chiropractic medicine, or pharmacy.).</option>
-        <option value="8.Doctoral level university degree (Ph.D.)."> 8.Doctoral level university degree (Ph.D.).</option>
-    </datalist>
+    <label>Please select the level of education of spouse or common-law partner.</label>
+    <select asp-for="SpouseEducationLevel" asp-items="Model.EducationLevels"> </select>
     <br /><br />
 
-    8.3 What type of exam did your spouse or common-law partner pass?
-    <select id="typeOfExam">
-        <option value="IELTS">IELTS</option>
-        <option value="CELPIP">CELPIP</option>
-        <option value="TEF">TEF</option>
-    </select>
+    <label>What type of exam did your spouse or common-law partner pass?</label>    
+    <select asp-for="TypeOfSpouseExam" asp-items="Model.ExamTypes"></select>
     <br /><br />
 
-    8.3.1 How many points did your spouse or common-law partner get for speaking?
-    <input type="number" min="0" />
+    <label> How many points did your spouse or common-law partner get for speaking?</label> 
+    <input asp-for="SpouseSpeakingPoints" min="0" />
     <br /><br />
-    8.3.2 How many points did your spouse or common-law partner get for writing?
-    <input type="number" min="0" />
+    <label>How many points did your spouse or common-law partner get for writing?</label> 
+    <input asp-for="SpouseWritingPoints" min="0" />
     <br /><br />
-    8.3.3 How many points did your spouse or common-law partner get for reading?
-    <input type="number" min="0" />
+    <label>How many points did your spouse or common-law partner get for reading?</label> 
+    <input asp-for="SpouseReadingPoints" min="0" />
     <br /><br />
-    8.3.4 How many points did your spouse or common-law partner get for listening??
-    <input type="number" min="0" />
+    <label>How many points did your spouse or common-law partner get for listening?</label> 
+    <input asp-for="SpouseListeningPoints" min="0" />
     <br /><br />
 
-    8.4 How many years of work experience in the Canadian labour market has your spouse or common-law partner? (warning!: The year of experience is calculated after having completed the full year worked. If your spouse or common-law partner has worked less than a year, enter 0. There is no rounding up).
-    <input type="number" min="0" />
+    <label>How many years of work experience in the Canadian labour market has your spouse or common-law partner? (warning!: The year of experience is calculated after having completed the full year worked. If your spouse or common-law partner has worked less than a year, enter 0. There is no rounding up).</label> 
+    <input asp-for="SpouseCanadianExperience" min="0" />
     <br /><br />
 
 
+    <label>How many years of foreign work experiencein (outside Canada) do you have? (warning!: The year of experience is calculated after having completed the full year worked. If your spouse or common-law partner has worked less than a year, enter 0. There is no rounding up).</label> 
+    <input asp-for="ExperienceOutsideCanada" min="0" />
+    <br /><br />
 
 
-
-    9. How many years of foreign work experiencein (outside Canada) do you have? (warning!: The year of experience is calculated after having completed the full year worked. If your spouse or common-law partner has worked less than a year, enter 0. There is no rounding up).
-    <input type="number" min="0" />
+    <label>Does your brother or sister who is a citizen or permanent resident of Canada live in Canada? (YES or NO)</label> 
+    <input asp-for="CanadianFamilyMember" />
     <br />
-    <p>10. Does your brother or sister who is a citizen or permanent resident of Canada live in Canada? (YES or NO).</p>
-    <label><input type="radio" name="wybor" value="YES" /> YES </label>
-    <label><input type="radio" name="wybor" value="NO" /> NO </label>
+    <label>Have you graduated post-secondary education in Canada - credential of one or two years (YES or NO)</label> 
+    <input asp-for="CanadianEducation" />
     <br />
-    <p>11. Have you graduated post-secondary education in Canada - credential of one or two years (YES or NO).</p>
-    <label><input type="radio" name="wybor" value="YES" /> YES </label>
-    <label><input type="radio" name="wybor" value="NO" /> NO </label>
+    <label>Have you graduated post-secondary education in Canada - credential three years or longer (YES or NO)</label> 
+    <input asp-for="CanadianLongerEducation" />
     <br />
-    <p>12. Have you graduated post-secondary education in Canada - credential three years or longer (YES or NO).</p>
-    <label><input type="radio" name="wybor" value="YES" /> YES </label>
-    <label><input type="radio" name="wybor" value="NO" /> NO </label>
+    <label>Do you have arranged employment – any other NOC 0, A or B (YES or NO)</label> 
+    <input asp-for="CanadianArrangedEmployment" />
     <br />
-    <p>13. Do you have arranged employment – any other NOC 0, A or B (YES or NO).</p>
-    <label><input type="radio" name="wybor" value="YES" /> YES </label>
-    <label><input type="radio" name="wybor" value="NO" /> NO </label>
+    <label>Do you have arranged employment – any other NOC 00 (YES or NO)</label> 
+    <input asp-for="CanadianArrangedEmploymentPlus" />
     <br />
-    <p>14. Do you have arranged employment – any other NOC 00 (YES or NO).</p>
-    <label><input type="radio" name="wybor" value="YES" /> YES </label>
-    <label><input type="radio" name="wybor" value="NO" /> NO </label>
+    <label>Have you got provincial or territorial nomination? (YES or NO)</label> 
+    <input asp-for="CanadianProvincialOrTerritorialNomination" />
     <br />
-    <p>15. Have you got provincial or territorial nomination? (YES or NO).</p>
-    <label><input type="radio" name="wybor" value="YES" /> YES </label>
-    <label><input type="radio" name="wybor" value="NO" /> NO </label>
-    <br /><br />
+  
     <button type="submit">Calculate</button>
 </form>

@@ -68,10 +68,105 @@ namespace ExpressEntryCalculator.Web.Controllers
             }
             pointsForLanguage = pointsForSpeaking + pointsForWriting + pointsForReading + pointsForListening;
 
+            var secondExamType = LanguagePoints.IdentifyingTheTypeOfExam(model.TypeOfSecondExam);
+            LanguagePoints primaryAplicantSecondLangPoints = new LanguagePoints(secondExamType, model.SpeakingPointsSecondLanguage, model.WritingPointsSecondLanguage, model.ReadingPointsSecondLanguage, model.ListeningPointsSecondLanguage);
+
+            int pointsForSecondLangSpeaking;
+            int pointsForSecondLangWriting;;
+            int pointsForSecondLangReading;
+            int pointsForSecondLangListening;
+            int pointsForSecondLanguage;
+
+            pointsForSecondLangSpeaking = SecondLanguagePointsCalculator.SecondLangPointsCalculator(primaryAplicantSecondLangPoints.CLBSpeakingPoints);
+            pointsForSecondLangWriting = SecondLanguagePointsCalculator.SecondLangPointsCalculator(primaryAplicantSecondLangPoints.CLBWritingPoints);
+            pointsForSecondLangReading = SecondLanguagePointsCalculator.SecondLangPointsCalculator(primaryAplicantSecondLangPoints.CLBReadingPoints);
+            pointsForSecondLangListening = SecondLanguagePointsCalculator.SecondLangPointsCalculator(primaryAplicantSecondLangPoints.CLBListeningPoints);
+
+            pointsForSecondLanguage = pointsForSecondLangSpeaking + pointsForSecondLangWriting + pointsForSecondLangReading + pointsForSecondLangListening;
+
+            int pointsForExperience;
+            if (model.SpouseExist == false)
+            {
+                pointsForExperience = ExperiencePointsCalculator.CountPointsForExperienceWithoutSpouse(model.CanadianExperience);
+            }
+            else
+            {
+                pointsForExperience = ExperiencePointsCalculator.CountPointsForExperienceWithSpouse(model.CanadianExperience);
+            }
+
+            int sectionA = pointForAge + pointForEducation + pointsForLanguage + pointsForSecondLanguage + pointsForExperience;
+
+
+
+
+
+            int pointsForSpouseEducation;
+
+            pointsForSpouseEducation = EducationPointsCalculator.CountPointsForSpouseEducation(model.SpouseEducationLevel);
+
+            var spouseExamType = LanguagePoints.IdentifyingTheTypeOfExam(model.TypeOfSpouseExam);
+            LanguagePoints spouseFirstLangPoints = new LanguagePoints(spouseExamType, model.SpouseSpeakingPoints, model.SpouseWritingPoints, model.SpouseReadingPoints, model.SpouseListeningPoints);
+
+            int pointsForSpouseSpeaking;
+            int pointsForSpouseWriting;
+            int pointsForSpouseReading;
+            int pointsForSpouseListening;
+            int pointsForSpouseLanguage;
+
+            pointsForSpouseSpeaking = LanguagePointsCalculator.CalculatorOfSpouseLanguagePoints(spouseFirstLangPoints.CLBSpeakingPoints);
+            pointsForSpouseWriting = LanguagePointsCalculator.CalculatorOfSpouseLanguagePoints(spouseFirstLangPoints.CLBWritingPoints);
+            pointsForSpouseReading = LanguagePointsCalculator.CalculatorOfSpouseLanguagePoints(spouseFirstLangPoints.CLBReadingPoints);
+            pointsForSpouseListening = LanguagePointsCalculator.CalculatorOfSpouseLanguagePoints(spouseFirstLangPoints.CLBListeningPoints);
+
+            pointsForSpouseLanguage = pointsForSpouseSpeaking + pointsForSpouseWriting + pointsForSpouseReading + pointsForSpouseListening;
+
+            int pointsForSpouseExperience;
+            pointsForSpouseExperience = ExperiencePointsCalculator.CountPointsForSpouseExperience(model.SpouseCanadianExperience);
+
+            int sectionB = pointsForSpouseEducation + pointsForSpouseLanguage + pointsForSpouseExperience;
+
+            int sectionC;
+            sectionC = SkillTransferabilityFactorsCalculator.CalculateSkillTransferabilityFactorsPoints(primaryAplicantFirstLangPoints, model.EducationLevel, model.CanadianExperience, model.ExperienceOutsideCanada);
+
+            int sectionD;
+            int canadianFamilyMemberPoints = AdditionalPointsCalculator.GiveAdditionalPoints(model.CanadianFamilyMember);
+            int canadianEducationPoints = AdditionalPointsCalculator.GiveAdditionalPoints(model.CanadianEducation);
+            int canadianLongerEducationPoints = AdditionalPointsCalculator.GiveDoubleAdditionalPoints(model.CanadianLongerEducation);
+            int canadianArrangedEmploymentPoints = AdditionalPointsCalculator.GiveAdditionalPointsForArrangedEmployment(model.CanadianArrangedEmployment);
+            int canadianArrangedEmploymentPlusPoints = AdditionalPointsCalculator.GiveMoreAdditionalPointsForArrangedEmployment(model.CanadianArrangedEmploymentPlus);
+            int canadianProvincialOrTerritorialNominationPoints = AdditionalPointsCalculator.GiveAdditionalPointsForProvincialOrTerritorialNomination(model.CanadianProvincialOrTerritorialNomination);
+            int additionalLanguagePoints=0;
+            if (primaryAplicantFirstLangPoints.LanguageExamType == LanguagePoints.LanguageExamTypes.TEF)
+            {
+                additionalLanguagePoints = AdditionalPointsCalculator.GiveAdditionalPointsForLanguages(primaryAplicantFirstLangPoints, primaryAplicantSecondLangPoints);
+            }
+            sectionD = canadianFamilyMemberPoints + canadianEducationPoints + canadianLongerEducationPoints + canadianArrangedEmploymentPoints + canadianArrangedEmploymentPlusPoints + canadianProvincialOrTerritorialNominationPoints + additionalLanguagePoints;
+
+
+            int totalPointsForExpressEntry;
+            totalPointsForExpressEntry = sectionA + sectionB + sectionC + sectionD;
+
+
             PointsSummaryViewModel points = new PointsSummaryViewModel();
             points.PointsForAge = pointForAge;
             points.PointsForEducation = pointForEducation;
             points.PointsForFirstLanguage = pointsForLanguage;
+            points.PointsForSecondLanguage = pointsForSecondLanguage;
+            points.PointsForCanadianExperience = pointsForExperience;
+            points.PointsInSectionA = sectionA;
+
+            points.PointsForSpouseEducation = pointsForSpouseEducation;
+            points.PointsForSpouseLanguageExam = pointsForSpouseLanguage;
+            points.PointsForSpouseCanadianExperience = pointsForSpouseExperience;
+            points.PointsInSectionB = sectionB;
+
+            points.PointsInSectionC = sectionC;
+            
+            points.PointsInSectionD = sectionD;
+
+            points.TotalPointsForExpressEntry = totalPointsForExpressEntry;
+
+
             return View(points);
         }
 

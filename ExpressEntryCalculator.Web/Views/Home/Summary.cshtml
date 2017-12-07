@@ -8,27 +8,29 @@
 <div id="spis">
     <ol>
         <li>
-            <h3>Points earned by you in section A. Core / human capital factors:</h3>
+            <h3>Points earned by you in section A. Core / human capital factors:@Model.PointsInSectionA</h3>
             <ul>
                 <li><h5>Points for age: @Model.PointsForAge</h5></li>
                 <li><h5>Points for education: @Model.PointsForEducation</h5></li>
                 <li><h5>Points for 1st language:@Model.PointsForFirstLanguage</h5></li>
-                <li><h5>Points for second language:</h5></li>
-                <li><h5>Points for experience in the Canadian labour market: </h5></li>
+                <li><h5>Points for second language:@Model.PointsForSecondLanguage</h5></li>
+                <li><h5>Points for experience in the Canadian labour market:@Model.PointsForCanadianExperience </h5></li>
             </ul>
         </li>
 
         <li>
-            <h3>Points earned by spouse or common-law partner in section B. Spouse or common-law partner factors:</h3>
+            <h3>Points earned by spouse or common-law partner in section B. Spouse or common-law partner factors:@Model.PointsInSectionB</h3>
             <ul>
-                <li><h5>Points for education of spouse or common-law partner:</h5></li>
-                <li><h5>Points for language of spouse or common-law partner:</h5></li>
-                <li><h5>Points for experience of spouse or common-law partner:</h5></li>
+                <li><h5>Points for education of spouse or common-law partner:@Model.PointsForSpouseEducation</h5></li>
+                <li><h5>Points for language of spouse or common-law partner:@Model.PointsForSpouseLanguageExam</h5></li>
+                <li><h5>Points for experience of spouse or common-law partner:@Model.PointsForSpouseCanadianExperience</h5></li>
             </ul>
         </li>
 
-        <li> <h3>Points earned by you in section C. Skill transferability factors:</h3></li>
+        <li> <h3>Points earned by you in section C. Skill transferability factors:@Model.PointsInSectionC</h3></li>
 
-        <li> <h3>Points earned by you in section D. Additional points:</h3> </li>
+        <li> <h3>Points earned by you in section D. Additional points:@Model.PointsInSectionD</h3> </li>
     </ol>
+    <br />
+    <h2>Total points for Express Entry:@Model.TotalPointsForExpressEntry</h2>
 </div>
