@@ -10,7 +10,7 @@ namespace ExpressEntryCalculator.Core
     {
         public static int GiveAdditionalPoints(string answerToAddQuestion)
         {
-            if (answerToAddQuestion.ToUpper() == "YES")
+            if (answerToAddQuestion == "YES")
             {
                 return 15;
             }
@@ -18,8 +18,13 @@ namespace ExpressEntryCalculator.Core
             {
                 return 0;
             }
-
         }
+
+        public static int GiveAdditionalPoints(bool answerToAddQuestion)
+        {
+            return GiveAdditionalPoints(MapBoolToStrig(answerToAddQuestion));
+        }
+        
 
         public static int GiveDoubleAdditionalPoints(string answerToAddQuestion)
         {
@@ -31,6 +36,11 @@ namespace ExpressEntryCalculator.Core
             {
                 return 0;
             }
+        }
+
+        public static int GiveDoubleAdditionalPoints(bool answerToAddQuestion)
+        {
+            return GiveDoubleAdditionalPoints(MapBoolToStrig(answerToAddQuestion));
         }
 
         public static int GiveAdditionalPointsForArrangedEmployment(string answerToAddQuestion)
@@ -45,6 +55,11 @@ namespace ExpressEntryCalculator.Core
             }
         }
 
+        public static int GiveAdditionalPointsForArrangedEmployment(bool answerToAddQuestion)
+        {
+            return GiveAdditionalPointsForArrangedEmployment(MapBoolToStrig(answerToAddQuestion));
+        }
+
         public static int GiveMoreAdditionalPointsForArrangedEmployment(string answerToAddQuestion)
         {
             if (answerToAddQuestion.ToUpper() == "YES")
@@ -57,6 +72,10 @@ namespace ExpressEntryCalculator.Core
             }
         }
 
+        public static int GiveMoreAdditionalPointsForArrangedEmployment(bool answerToAddQuestion)
+        {
+            return GiveMoreAdditionalPointsForArrangedEmployment(MapBoolToStrig(answerToAddQuestion));
+        }
         public static int GiveAdditionalPointsForProvincialOrTerritorialNomination(string answerToAddQuestion)
         {
             if (answerToAddQuestion.ToUpper() == "YES")
@@ -67,6 +86,11 @@ namespace ExpressEntryCalculator.Core
             {
                 return 0;
             }
+        }
+
+        public static int GiveAdditionalPointsForProvincialOrTerritorialNomination(bool answerToAddQuestion)
+        {
+            return GiveAdditionalPointsForProvincialOrTerritorialNomination(MapBoolToStrig(answerToAddQuestion));
         }
 
 
@@ -95,6 +119,11 @@ namespace ExpressEntryCalculator.Core
             {
                 return 0;
             }
+        }
+
+        static string MapBoolToStrig(bool condition)
+        {
+            return condition ? "YES" : "NO";
         }
     }
 }

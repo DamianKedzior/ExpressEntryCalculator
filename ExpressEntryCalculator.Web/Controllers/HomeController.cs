@@ -129,6 +129,7 @@ namespace ExpressEntryCalculator.Web.Controllers
             sectionC = SkillTransferabilityFactorsCalculator.CalculateSkillTransferabilityFactorsPoints(primaryAplicantFirstLangPoints, model.EducationLevel, model.CanadianExperience, model.ExperienceOutsideCanada);
 
             int sectionD;
+
             int canadianFamilyMemberPoints = AdditionalPointsCalculator.GiveAdditionalPoints(model.CanadianFamilyMember);
             int canadianEducationPoints = AdditionalPointsCalculator.GiveAdditionalPoints(model.CanadianEducation);
             int canadianLongerEducationPoints = AdditionalPointsCalculator.GiveDoubleAdditionalPoints(model.CanadianLongerEducation);

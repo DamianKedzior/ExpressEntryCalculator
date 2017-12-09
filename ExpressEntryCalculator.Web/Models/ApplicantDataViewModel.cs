@@ -64,11 +64,11 @@ namespace ExpressEntryCalculator.Web.Models
 
         public int ExperienceOutsideCanada { get; set; }
 
-        public string CanadianFamilyMember { get; set; }
-        public string CanadianEducation { get; set; }
-        public string CanadianLongerEducation { get; set; }
-        public string CanadianArrangedEmployment { get; set; }
-        public string CanadianArrangedEmploymentPlus { get; set; }
-        public string CanadianProvincialOrTerritorialNomination { get; set; }
+        public bool CanadianFamilyMember { get; set; }
+        public bool CanadianEducation { get; set; }
+        public bool CanadianLongerEducation { get; set; }
+        public bool CanadianArrangedEmployment { get; set; }
+        public bool CanadianArrangedEmploymentPlus { get; set; }
+        public bool CanadianProvincialOrTerritorialNomination { get; set; }
     }
 }
