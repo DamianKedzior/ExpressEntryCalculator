@@ -9,8 +9,6 @@ namespace ExpressEntryCalculator.Web.Models
 {
     public class ApplicantDataViewModel
     {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
         [DataType(DataType.Date)]
         public DateTime BirthDate { get; set; }
         public bool SpouseExist { get; set; }
@@ -32,6 +30,7 @@ namespace ExpressEntryCalculator.Web.Models
 
         public List<SelectListItem> ExamTypes { get; } = new List<SelectListItem>
         {
+            new SelectListItem { Value = "0", Text = "none" },
             new SelectListItem { Value = "1", Text = "IELTS"},
             new SelectListItem { Value = "2", Text = "CELPIP"},
             new SelectListItem { Value = "3", Text = "TEF"},
@@ -51,7 +50,6 @@ namespace ExpressEntryCalculator.Web.Models
 
         public int CanadianExperience { get; set; }
 
-        public string SpouseFullname { get; set; }
         public ushort SpouseEducationLevel { get; set; }
         public int TypeOfSpouseExam { get; set; }
         public double SpouseSpeakingPoints{ get; set; }
