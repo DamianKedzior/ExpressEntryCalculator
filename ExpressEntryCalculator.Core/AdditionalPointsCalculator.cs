@@ -43,6 +43,7 @@ namespace ExpressEntryCalculator.Core
             return GiveDoubleAdditionalPoints(MapBoolToStrig(answerToAddQuestion));
         }
 
+
         public static int GiveAdditionalPointsForArrangedEmployment(string answerToAddQuestion)
         {
             if (answerToAddQuestion.ToUpper() == "YES")
@@ -60,6 +61,7 @@ namespace ExpressEntryCalculator.Core
             return GiveAdditionalPointsForArrangedEmployment(MapBoolToStrig(answerToAddQuestion));
         }
 
+
         public static int GiveMoreAdditionalPointsForArrangedEmployment(string answerToAddQuestion)
         {
             if (answerToAddQuestion.ToUpper() == "YES")
@@ -76,6 +78,8 @@ namespace ExpressEntryCalculator.Core
         {
             return GiveMoreAdditionalPointsForArrangedEmployment(MapBoolToStrig(answerToAddQuestion));
         }
+
+
         public static int GiveAdditionalPointsForProvincialOrTerritorialNomination(string answerToAddQuestion)
         {
             if (answerToAddQuestion.ToUpper() == "YES")

@@ -18,9 +18,8 @@ namespace ExpressEntryCalculator.Web.Models
 
         public List<SelectListItem> EducationLevels { get; } = new List<SelectListItem>
         {
-            new SelectListItem { Value = "0", Text = "Choose one of the eight options" },
             new SelectListItem { Value = "1", Text = "Less than secondary school." },
-            new SelectListItem { Value = "2", Text = "Secondary diploma (high school graduation."  },
+            new SelectListItem { Value = "2", Text = "Secondary diploma (high school graduation)."  },
             new SelectListItem { Value = "3", Text = "One-year degree, diploma or certificate from  a university, college, trade or technical school, or other institute." },
             new SelectListItem { Value = "4", Text = "Two-year program at a university, college, trade or technical school, or other institute." },
             new SelectListItem { Value = "5", Text = "Bachelor's degree OR a three or more year program at a university, college, trade or technical school, or other institute."  },
@@ -28,12 +27,11 @@ namespace ExpressEntryCalculator.Web.Models
             new SelectListItem { Value = "7", Text = "Master's degree, OR professional degree needed to practice in a licensed profession (For “professional degree,” the degree program must have been in: medicine, veterinary medicine, dentistry, optometry, law, chiropractic medicine, or pharmacy.)." },
             new SelectListItem { Value = "8", Text = "Doctoral level university degree (Ph.D.)."  },
         };
-
+        
         public int TypeOfFirstExam { get; set; }
 
         public List<SelectListItem> ExamTypes { get; } = new List<SelectListItem>
         {
-            new SelectListItem { Value = "0", Text = "Choose one of the three options"},
             new SelectListItem { Value = "1", Text = "IELTS"},
             new SelectListItem { Value = "2", Text = "CELPIP"},
             new SelectListItem { Value = "3", Text = "TEF"},
