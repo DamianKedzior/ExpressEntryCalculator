@@ -1,8 +1,8 @@
 ﻿// Write your JavaScript code.
 
-function showHideSecondLanguage(elem)
+function showHideSecondLanguage(element)
 {
-    if (elem.checked === true)
+    if (element.checked === true)
     {
         document.getElementById("secondLanguageForm").style.display = "block";
     }
@@ -12,14 +12,39 @@ function showHideSecondLanguage(elem)
     }
 }
 
-function showHideSpouseExist(exist)
+function showHideSpouseExist(element)
 {
-    if (exist.checked === true)
+    //var element = document.getElementById('SpouseExist');
+    if (element.checked === true)
     {
         document.getElementById("spouseExistForm").style.display = "block";
     }
     else 
     {
         document.getElementById("spouseExistForm").style.display = "none";
+    }
+}
+
+function showhideTypeOfExam(element)
+{
+    var index = element.selectedIndex;
+    if (index > 0)
+    {
+        document.getElementById("examPointsForm").style.display = "block";
+    }
+    else
+    {
+        document.getElementById("examPointsForm").style.display = "none";
+    }
+}
+
+function showhideTypeOfSpouseExam(element)
+{
+    var index = element.selectedIndex;
+    if (index > 0) {
+        document.getElementById("spouseExamPointsForm").style.display = "block";
+    }
+    else {
+        document.getElementById("spouseExamPointsForm").style.display = "none";
     }
 }
