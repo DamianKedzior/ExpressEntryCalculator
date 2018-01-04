@@ -57,35 +57,35 @@ namespace ExpressEntryCalculator.Web.Models
 
         public bool SecondLanguage { get; set; }
         public int TypeOfSecondExam { get; set; }
-        [Display(Name = "second language - speaking points")]
+        [Display(Name = "speaking points")]
         public double SpeakingPointsSecondLanguage { get; set; }
-        [Display(Name = "second language - writing points")]
+        [Display(Name = "writing points")]
         public double WritingPointsSecondLanguage { get; set; }
-        [Display(Name = "second language - reading points")]
+        [Display(Name = "reading points")]
         public double ReadingPointsSecondLanguage { get; set; }
-        [Display(Name = "second language - listening points")]
+        [Display(Name = "listening points")]
         public double ListeningPointsSecondLanguage { get; set; }
 
-        [Display(Name = "canadian experience")]
+        [Display(Name = "Canadian experience")]
         public int CanadianExperience { get; set; }
 
-        [Display(Name = "spouse education level")]
+        [Display(Name = "education level")]
         [Required]
         public ushort SpouseEducationLevel { get; set; }
         public int? TypeOfSpouseExam { get; set; }
-        [Display(Name = "spouse speaking points")]
+        [Display(Name = "speaking points")]
         public double SpouseSpeakingPoints{ get; set; }
-        [Display(Name = "spouse writing points")]
+        [Display(Name = "writing points")]
         public double SpouseWritingPoints{ get; set; }
-        [Display(Name = "spouse reading points")]
+        [Display(Name = "reading points")]
         public double SpouseReadingPoints { get; set; }
-        [Display(Name = "spouse listening points")]
+        [Display(Name = "listening points")]
         public double SpouseListeningPoints { get; set; }
 
-        [Display(Name = "spouse canadian experience")]
+        [Display(Name = "Canadian experience")]
         public int SpouseCanadianExperience { get; set; }
 
-        [Display(Name = "experience outside canada")]
+        [Display(Name = "experience outside Canada")]
         public int ExperienceOutsideCanada { get; set; }
 
         public bool CanadianFamilyMember { get; set; }
