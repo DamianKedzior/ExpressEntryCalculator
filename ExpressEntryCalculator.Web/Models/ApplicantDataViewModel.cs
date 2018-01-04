@@ -9,9 +9,11 @@ namespace ExpressEntryCalculator.Web.Models
 {
     public class ApplicantDataViewModel
     {
+        [Required]
         [DataType(DataType.Date)]
-        public DateTime BirthDate { get; set; }
+        public DateTime BirthDate { get; set; } = DateTime.Now.AddYears(-20);
         public bool SpouseExist { get; set; }
+        [Required]
         public ushort EducationLevel { get; set; }
 
         public List<SelectListItem> EducationLevels { get; } = new List<SelectListItem>
@@ -26,11 +28,11 @@ namespace ExpressEntryCalculator.Web.Models
             new SelectListItem { Value = "8", Text = "Doctoral level university degree (Ph.D.)."  },
         };
         
-        public int TypeOfFirstExam { get; set; }
+        public int? TypeOfFirstExam { get; set; }
 
         public List<SelectListItem> ExamTypes { get; } = new List<SelectListItem>
         {
-            new SelectListItem { Value = "0", Text = "none" },
+            new SelectListItem { Value = "", Text = "none" },
             new SelectListItem { Value = "1", Text = "IELTS"},
             new SelectListItem { Value = "2", Text = "CELPIP"},
             new SelectListItem { Value = "3", Text = "TEF"},
@@ -56,12 +58,14 @@ namespace ExpressEntryCalculator.Web.Models
 
         public int CanadianExperience { get; set; }
 
+        [Required]
         public ushort SpouseEducationLevel { get; set; }
-        public int TypeOfSpouseExam { get; set; }
+        public int? TypeOfSpouseExam { get; set; }
         public double SpouseSpeakingPoints{ get; set; }
         public double SpouseWritingPoints{ get; set; }
         public double SpouseReadingPoints { get; set; }
         public double SpouseListeningPoints { get; set; }
+
         public int SpouseCanadianExperience { get; set; }
 
         public int ExperienceOutsideCanada { get; set; }

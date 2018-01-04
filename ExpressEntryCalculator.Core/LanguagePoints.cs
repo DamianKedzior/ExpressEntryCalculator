@@ -2,6 +2,11 @@
 {
     public class LanguagePoints
     {
+        public LanguagePoints()
+        {
+
+        }
+
         public LanguagePoints(LanguageExamTypes examType, double speakingPoints, double writingPoints, double readingPoints, double listeningPoints)
         {
             this.languageExamType = examType;

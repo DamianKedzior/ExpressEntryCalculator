@@ -44,8 +44,17 @@ namespace ExpressEntryCalculator.Web.Controllers
                 pointForEducation = EducationPointsCalculator.CountPointsForEducationWithSpouse(model.EducationLevel);
             }
 
-            var firstExamType = LanguagePoints.IdentifyingTheTypeOfExam(model.TypeOfFirstExam); 
-            LanguagePoints primaryAplicantFirstLangPoints = new LanguagePoints(firstExamType, model.SpeakingPoints, model.WritingPoints, model.ReadingPoints, model.ListeningPoints);
+            LanguagePoints primaryAplicantFirstLangPoints;
+
+            if (model.TypeOfFirstExam.HasValue)
+            {
+                var firstExamType = LanguagePoints.IdentifyingTheTypeOfExam(model.TypeOfFirstExam.Value);
+                primaryAplicantFirstLangPoints = new LanguagePoints(firstExamType, model.SpeakingPoints, model.WritingPoints, model.ReadingPoints, model.ListeningPoints);
+            }
+            else
+            {
+                primaryAplicantFirstLangPoints = new LanguagePoints();
+            }
 
             int pointsForSpeaking;
             int pointsForWriting;
@@ -96,17 +105,22 @@ namespace ExpressEntryCalculator.Web.Controllers
 
             int sectionA = pointForAge + pointForEducation + pointsForLanguage + pointsForSecondLanguage + pointsForExperience;
 
-
-
-
-
             int pointsForSpouseEducation;
 
             pointsForSpouseEducation = EducationPointsCalculator.CountPointsForSpouseEducation(model.SpouseEducationLevel);
 
-            var spouseExamType = LanguagePoints.IdentifyingTheTypeOfExam(model.TypeOfSpouseExam);
-            LanguagePoints spouseFirstLangPoints = new LanguagePoints(spouseExamType, model.SpouseSpeakingPoints, model.SpouseWritingPoints, model.SpouseReadingPoints, model.SpouseListeningPoints);
+            LanguagePoints spouseFirstLangPoints;
 
+            if (model.TypeOfSpouseExam.HasValue)
+            {
+                var spouseExamType = LanguagePoints.IdentifyingTheTypeOfExam(model.TypeOfSpouseExam.Value);
+                spouseFirstLangPoints = new LanguagePoints(spouseExamType, model.SpouseSpeakingPoints, model.SpouseWritingPoints, model.SpouseReadingPoints, model.SpouseListeningPoints);
+            }
+            else
+            {
+                spouseFirstLangPoints = new LanguagePoints();
+            }
+           
             int pointsForSpouseSpeaking;
             int pointsForSpouseWriting;
             int pointsForSpouseReading;
