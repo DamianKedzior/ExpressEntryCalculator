@@ -9,10 +9,13 @@ namespace ExpressEntryCalculator.Web.Models
 {
     public class ApplicantDataViewModel
     {
+        [Display(Name = "birth date")]
         [Required]
         [DataType(DataType.Date)]
         public DateTime BirthDate { get; set; } = DateTime.Now.AddYears(-20);
         public bool SpouseExist { get; set; }
+
+        [Display(Name = "education level")]
         [Required]
         public ushort EducationLevel { get; set; }
 
@@ -43,31 +46,46 @@ namespace ExpressEntryCalculator.Web.Models
             new SelectListItem { Value = "2", Text = "CELPIP"},
             new SelectListItem { Value = "3", Text = "TEF"},
         };
-
+        [Display(Name = "speaking points")]
         public double SpeakingPoints { get; set; }
+        [Display(Name = "writing points")]
         public double WritingPoints { get; set; }
+        [Display(Name = "reading points")]
         public double ReadingPoints { get; set; }
+        [Display(Name = "listening points")]
         public double ListeningPoints { get; set; }
 
         public bool SecondLanguage { get; set; }
         public int TypeOfSecondExam { get; set; }
+        [Display(Name = "second language - speaking points")]
         public double SpeakingPointsSecondLanguage { get; set; }
+        [Display(Name = "second language - writing points")]
         public double WritingPointsSecondLanguage { get; set; }
+        [Display(Name = "second language - reading points")]
         public double ReadingPointsSecondLanguage { get; set; }
+        [Display(Name = "second language - listening points")]
         public double ListeningPointsSecondLanguage { get; set; }
 
+        [Display(Name = "canadian experience")]
         public int CanadianExperience { get; set; }
 
+        [Display(Name = "spouse education level")]
         [Required]
         public ushort SpouseEducationLevel { get; set; }
         public int? TypeOfSpouseExam { get; set; }
+        [Display(Name = "spouse speaking points")]
         public double SpouseSpeakingPoints{ get; set; }
+        [Display(Name = "spouse writing points")]
         public double SpouseWritingPoints{ get; set; }
+        [Display(Name = "spouse reading points")]
         public double SpouseReadingPoints { get; set; }
+        [Display(Name = "spouse listening points")]
         public double SpouseListeningPoints { get; set; }
 
+        [Display(Name = "spouse canadian experience")]
         public int SpouseCanadianExperience { get; set; }
 
+        [Display(Name = "experience outside canada")]
         public int ExperienceOutsideCanada { get; set; }
 
         public bool CanadianFamilyMember { get; set; }
