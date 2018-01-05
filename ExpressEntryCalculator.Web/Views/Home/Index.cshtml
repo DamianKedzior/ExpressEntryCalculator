@@ -10,7 +10,7 @@
                 <label asp-for="BirthDate" class="col-xs-12 col-md-6">Please provide your date of birth.</label>
                 <div class="col-xs-12 col-md-4">
                     <input asp-for="BirthDate" placeholder="yyyy-mm-dd" class="form-control" />
-                    <span asp-validation-for="BirthDate" asp-validation class="text-danger"></span>
+                    <span asp-validation-for="BirthDate" class="text-danger"></span>
                 </div>
             </div>
 
@@ -80,7 +80,6 @@
                     </div>
                 </div>
 
-
                 <div class="form-group">
                     <label asp-for="SecondLanguage" class="col-xs-12 col-md-6">Did you pass second language exam? </label>
                     <div class="col-xs-12 col-md-2">
@@ -88,14 +87,13 @@
                     </div>
                 </div>
             </div>
-
                 
 
                 <div style="display:none" id="secondLanguageForm">
                     <div class="form-group">
                         <label asp-for="TypeOfSecondExam" class="col-xs-12 col-md-6">What type of second exam did you pass?</label>
                         <div class="col-xs-12 col-md-2">
-                            <select asp-for="TypeOfSecondExam" asp-items="Model.SecondExamTypes" class="form-control"></select>
+                            <select asp-for="TypeOfSecondExam" class="form-control"></select>
                         </div>
                     </div>
 

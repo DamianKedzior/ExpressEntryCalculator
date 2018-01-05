@@ -40,12 +40,7 @@ namespace ExpressEntryCalculator.Web.Models
             new SelectListItem { Value = "2", Text = "CELPIP"},
             new SelectListItem { Value = "3", Text = "TEF"},
         };
-        public List<SelectListItem> SecondExamTypes { get; } = new List<SelectListItem>
-        {
-            new SelectListItem { Value = "1", Text = "IELTS"},
-            new SelectListItem { Value = "2", Text = "CELPIP"},
-            new SelectListItem { Value = "3", Text = "TEF"},
-        };
+      
         [Display(Name = "speaking points")]
         public double SpeakingPoints { get; set; }
         [Display(Name = "writing points")]

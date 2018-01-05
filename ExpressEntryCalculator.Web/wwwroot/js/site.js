@@ -36,6 +36,37 @@ function showhideTypeOfExam(element)
     {
         document.getElementById("examPointsForm").style.display = "none";
     }
+
+    var sel = document.getElementById("TypeOfSecondExam");
+    sel.options.length = 0;
+    
+    if (index == 1) {
+        var opt = document.createElement("option");
+        opt.value = "3";
+        opt.text = "TEF";
+        sel.add(opt);
+    }
+    else if (index == 2) {
+        var opt = document.createElement("option");
+        opt.value = "3";
+        opt.text = "TEF";
+        sel.add(opt);
+    }
+    else if (index == 3) {
+        var opt1 = document.createElement("option");
+        var opt2 = document.createElement("option");
+        opt1.value = "1";
+        opt1.text = "IELTS";
+        opt2.value = "2";
+        opt2.text = "CELPIP";
+        sel.add(opt1);
+        sel.add(opt2);
+    }
+    else 
+    {
+        document.getElementById("SecondLanguage").checked = false;
+        document.getElementById("secondLanguageForm").style.display = "none";
+    }
 }
 
 function showhideTypeOfSpouseExam(element)
