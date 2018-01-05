@@ -61,8 +61,17 @@ namespace ExpressEntryCalculator.Web.Models
         [Display(Name = "listening points")]
         public double ListeningPointsSecondLanguage { get; set; }
 
-        [Display(Name = "Canadian experience")]
         public int CanadianExperience { get; set; }
+
+        public List<SelectListItem> YearsOfCanadianExperience { get; } = new List<SelectListItem>
+        {
+            new SelectListItem { Value = "0", Text = "none or less than a year" },
+            new SelectListItem { Value = "1", Text = "1 year"},
+            new SelectListItem { Value = "2", Text = "2 years"},
+            new SelectListItem { Value = "3", Text = "3 years"},
+            new SelectListItem { Value = "4", Text = "4 years"},
+            new SelectListItem { Value = "5", Text = "5 years or more"},
+        };
 
         [Display(Name = "education level")]
         [Required]
@@ -77,11 +86,16 @@ namespace ExpressEntryCalculator.Web.Models
         [Display(Name = "listening points")]
         public double SpouseListeningPoints { get; set; }
 
-        [Display(Name = "Canadian experience")]
         public int SpouseCanadianExperience { get; set; }
 
-        [Display(Name = "experience outside Canada")]
         public int ExperienceOutsideCanada { get; set; }
+        public List<SelectListItem> YearsOfExperienceOutsideCanada { get; } = new List<SelectListItem>
+        {
+            new SelectListItem { Value = "0", Text = "none or less than a year" },
+            new SelectListItem { Value = "1", Text = "1 year"},
+            new SelectListItem { Value = "2", Text = "2 years"},
+            new SelectListItem { Value = "3", Text = "3 years or more"},
+        };
 
         public bool CanadianFamilyMember { get; set; }
         public bool CanadianEducation { get; set; }
