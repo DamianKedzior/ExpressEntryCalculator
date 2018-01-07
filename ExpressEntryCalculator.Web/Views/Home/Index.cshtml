@@ -6,7 +6,7 @@
     <div class="col-md-10 col-xs-12">
         <form asp-controller="Home" asp-action="Summary" method="post" class="form-horizontal">
 
-             <div class="form-group">
+            <div class="form-group">
                 <label asp-for="BirthDate" class="col-xs-12 col-md-6">Please provide your date of birth.</label>
                 <div class="col-xs-12 col-md-4">
                     <input asp-for="BirthDate" placeholder="yyyy-mm-dd" class="form-control" />
@@ -15,10 +15,19 @@
             </div>
 
             <div class="form-group">
-                <label asp-for="EducationLevel" class="col-xs-12 col-md-6">
-                    Please select the level of your education.
-                    <span class="help-block" style="font-weight: normal">(Choose one of the eight options)</span>
-                </label>
+                <div class="col-xs-12 col-md-6">
+                    <label asp-for="EducationLevel">
+                        Please select the level of your education.
+                    </label>
+                    <span class="help-block">(Choose one of the eight options) </span>
+                    <span class="help-block">
+                        <strong>Warning:</strong>
+                        If you earned degree, diploma or certificate outside Canada, you will need to get an Educational Credential Assessments
+                        (ECA) for your degree, diploma or certificate from designated organizations (ECA report must not be more than five years old.).
+                        <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/become-candidate/eligibility/education-assessed.html" target="_blank">Read more</a>
+                    </span>
+                </div>
+
                 <div class="col-xs-12 col-md-6">
                     @foreach (var item in Model.EducationLevels)
                     {
@@ -31,11 +40,27 @@
             </div>
 
             <div class="form-group">
-                <label asp-for="TypeOfFirstExam" class="col-xs-12 col-md-6">
-                    What type of exam did you pass?
-                </label>
+                <div class="col-xs-12 col-md-6">
+                    <label asp-for="TypeOfFirstExam">
+                        What type of exam did you pass?
+                    </label>
+                    <span class="help-block">
+                        <strong>Warning:</strong>
+                        You must take an approved language test to be eligible for Express Entry!
+                    </span>
+                    <span class="help-block">
+                        Read more about approved language test:
+                        <a href="https://www.ielts.org/" target="_blank">IELTS</a>
+                        <a href="https://www.celpip.ca/" target="_blank">CELPIP</a>
+                        <a href="https://www.lefrancaisdesaffaires.fr/tests-diplomes/test-evaluation-francais-tef/tef-canada/" target="_blank">TEF</a>
+                    </span>
+                    <span class="help-block">
+                        Your test results must be less than two years old. <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/become-candidate/eligibility/language-requirements/language-testing.html" role="button" target="_blank">Read more</a>
+                    </span>
+
+                </div>
                 <div class="col-xs-12 col-md-2">
-                    <select asp-for="TypeOfFirstExam" asp-items="Model.ExamTypes" class="form-control" onchange="showhideTypeOfExam(this)" ></select> 
+                    <select asp-for="TypeOfFirstExam" asp-items="Model.ExamTypes" class="form-control" onchange="showhideTypeOfExam(this)"></select>
                 </div>
             </div>
 
@@ -43,7 +68,7 @@
                 <div class="form-group">
                     <label asp-for="SpeakingPoints" class="col-xs-12 col-md-6">How many points did you get for speaking?</label>
                     <div class="col-xs-12 col-md-2">
-                        <input asp-for="SpeakingPoints" min="0" class="form-control"  />
+                        <input asp-for="SpeakingPoints" min="0" class="form-control" />
                     </div>
                     <div class="col-xs-12 col-md-4">
                         <span asp-validation-for="SpeakingPoints" class="text-danger"></span>
@@ -87,215 +112,220 @@
                     </div>
                 </div>
             </div>
-                
 
-                <div style="display:none" id="secondLanguageForm">
-                    <div class="form-group">
-                        <label asp-for="TypeOfSecondExam" class="col-xs-12 col-md-6">What type of second exam did you pass?</label>
-                        <div class="col-xs-12 col-md-2">
-                            <select asp-for="TypeOfSecondExam" class="form-control"></select>
-                        </div>
-                    </div>
 
-                        <div class="form-group">
-                            <label asp-for="SpeakingPointsSecondLanguage" class="col-xs-12 col-md-6">How many points did you get for speaking in second exam?</label>
-                            <div class="col-xs-12 col-md-2">
-                                <input asp-for="SpeakingPointsSecondLanguage" min="0" class="form-control" />
-                            </div>
-                            <div class="col-xs-12 col-md-4">
-                                <span asp-validation-for="SpeakingPointsSecondLanguage" class="text-danger"></span>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label asp-for="WritingPointsSecondLanguage" class="col-xs-12 col-md-6">How many points did you get for writing in second exam?</label>
-                            <div class="col-xs-12 col-md-2">
-                                <input asp-for="WritingPointsSecondLanguage" min="0" class="form-control" />
-                            </div>
-                            <div class="col-xs-12 col-md-4">
-                                <span asp-validation-for="WritingPointsSecondLanguage" class="text-danger"></span>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label asp-for="ReadingPointsSecondLanguage" class="col-xs-12 col-md-6">How many points did you get for reading in second exam?</label>
-                            <div class="col-xs-12 col-md-2">
-                                <input asp-for="ReadingPointsSecondLanguage" min="0" class="form-control" />
-                            </div>
-                            <div class="col-xs-12 col-md-4">
-                                <span asp-validation-for="ReadingPointsSecondLanguage" class="text-danger"></span>
-                            </div>
-
-                        </div>
-
-                        <div class="form-group">
-                            <label asp-for="ListeningPointsSecondLanguage" class="col-xs-12 col-md-6">How many points did you get for listening in second exam?</label>
-                            <div class="col-xs-12 col-md-2">
-                                <input asp-for="ListeningPointsSecondLanguage" min="0" class="form-control" />
-                            </div>
-                            <div class="col-xs-12 col-md-4">
-                                <span asp-validation-for="ListeningPointsSecondLanguage" class="text-danger"></span>
-                            </div>
-                        </div>
-                    </div>
-
-            
-            <div class="form-group">
-                    <label asp-for="CanadianExperience" class="col-xs-12 col-md-6">How many years of work experience do you have in the Canadian labour market?</label>
-                    <div class="col-xs-12 col-md-3">
-                        <select asp-for="CanadianExperience" asp-items="Model.YearsOfCanadianExperience" class="form-control"></select>
-                    </div>
-                    <div class="col-xs-12 col-md-12">
-                        <span class="help-block">(The year of experience is calculated after having completed the full year worked. If you have worked less than a year, enter 0. There is no rounding up).</span>
+            <div style="display:none" id="secondLanguageForm">
+                <div class="form-group">
+                    <label asp-for="TypeOfSecondExam" class="col-xs-12 col-md-6">What type of second exam did you pass?</label>
+                    <div class="col-xs-12 col-md-2">
+                        <select asp-for="TypeOfSecondExam" class="form-control"></select>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="ExperienceOutsideCanada" class="col-xs-12 col-md-6">How many years of foreign work experiencein (outside Canada) do you have?</label>
+                    <label asp-for="SpeakingPointsSecondLanguage" class="col-xs-12 col-md-6">How many points did you get for speaking in second exam?</label>
+                    <div class="col-xs-12 col-md-2">
+                        <input asp-for="SpeakingPointsSecondLanguage" min="0" class="form-control" />
+                    </div>
+                    <div class="col-xs-12 col-md-4">
+                        <span asp-validation-for="SpeakingPointsSecondLanguage" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="WritingPointsSecondLanguage" class="col-xs-12 col-md-6">How many points did you get for writing in second exam?</label>
+                    <div class="col-xs-12 col-md-2">
+                        <input asp-for="WritingPointsSecondLanguage" min="0" class="form-control" />
+                    </div>
+                    <div class="col-xs-12 col-md-4">
+                        <span asp-validation-for="WritingPointsSecondLanguage" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="ReadingPointsSecondLanguage" class="col-xs-12 col-md-6">How many points did you get for reading in second exam?</label>
+                    <div class="col-xs-12 col-md-2">
+                        <input asp-for="ReadingPointsSecondLanguage" min="0" class="form-control" />
+                    </div>
+                    <div class="col-xs-12 col-md-4">
+                        <span asp-validation-for="ReadingPointsSecondLanguage" class="text-danger"></span>
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="ListeningPointsSecondLanguage" class="col-xs-12 col-md-6">How many points did you get for listening in second exam?</label>
+                    <div class="col-xs-12 col-md-2">
+                        <input asp-for="ListeningPointsSecondLanguage" min="0" class="form-control" />
+                    </div>
+                    <div class="col-xs-12 col-md-4">
+                        <span asp-validation-for="ListeningPointsSecondLanguage" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="CanadianExperience" class="col-xs-12 col-md-6">How many years of work experience do you have in the Canadian labour market?</label>
+                <div class="col-xs-12 col-md-3">
+                    <select asp-for="CanadianExperience" asp-items="Model.YearsOfCanadianExperience" class="form-control"></select>
+                </div>
+                <div class="col-xs-12 col-md-12">
+                    <span class="help-block">(The year of experience is calculated after having completed the full year worked. If you have worked less than a year, enter 0. There is no rounding up).</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ExperienceOutsideCanada" class="col-xs-12 col-md-6">How many years of foreign work experiencein (outside Canada) do you have?</label>
+                <div class="col-xs-12 col-md-3">
+                    <select select asp-for="ExperienceOutsideCanada" asp-items="Model.YearsOfExperienceOutsideCanada" class="form-control"> </select>
+                </div>
+                <div class="col-xs-12 col-md-12">
+                    <span class="help-block">(The year of experience is calculated after having completed the full year worked. If your spouse or common-law partner has worked less than a year, enter 0. There is no rounding up).</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CanadianFamilyMember" class="col-xs-12 col-md-6">Does your brother or sister who is a citizen or permanent resident of Canada live in Canada? </label>
+                <div class="col-xs-12 col-md-2">
+                    <input asp-for="CanadianFamilyMember" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CanadianEducation" class="col-xs-12 col-md-6">Have you graduated post-secondary education in Canada - credential of one or two years </label>
+                <div class="col-xs-12 col-md-2">
+                    <input asp-for="CanadianEducation" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CanadianLongerEducation" class="col-xs-12 col-md-6">Have you graduated post-secondary education in Canada - credential three years or longer </label>
+                <div class="col-xs-12 col-md-2">
+                    <input asp-for="CanadianLongerEducation" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CanadianArrangedEmployment" class="col-xs-12 col-md-6">Do you have arranged employment – any other NOC 0, A or B </label>
+                <div class="col-xs-12 col-md-2">
+                    <input asp-for="CanadianArrangedEmployment" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CanadianArrangedEmploymentPlus" class="col-xs-12 col-md-6">Do you have arranged employment – any other NOC 00 </label>
+                <div class="col-xs-12 col-md-2">
+                    <input asp-for="CanadianArrangedEmploymentPlus" />
+                </div>
+            </div>
+
+            <div class=" form-group">
+                <label asp-for="CanadianProvincialOrTerritorialNomination" class="col-xs-12 col-md-6">Have you got provincial or territorial nomination? </label>
+                <div class="col-xs-12 col-md-2">
+                    <input asp-for="CanadianProvincialOrTerritorialNomination" />
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-xs-12 col-md-6">
+                    <label asp-for="SpouseExist">
+                        Do you have spouse or common - law partner who will be included in your application under Express Entry?
+                    </label>
+                    <span class="help-block"> <strong>Warning:</strong> If your spouse or common - law partner is citizen or permanent resident of Canada can not be included in your application under Express Entry.</span>
+                </div>
+                <div class="col-xs-12 col-md-2">
+                    <input asp-for="SpouseExist" onclick="showHideSpouseExist(this)" />
+                </div>
+            </div>
+
+            <div style="display:none" id="spouseExistForm">
+
+                <div class="form-group">
+                    <label asp-for="SpouseEducationLevel" class="col-xs-12 col-md-6">
+                        Please select the level of education of spouse or common-law partner.
+                        <span class="help-block" style="font-weight: normal">(Choose one of the eight options)</span>
+                    </label>
+                    <div class="col-xs-12 col-md-6">
+                        @foreach (var item in Model.EducationLevels)
+                        {
+                            <div class="radio">
+                                <label><input asp-for="SpouseEducationLevel" type="radio" value="@item.Value" /> @item.Text</label>
+                            </div>
+                        }
+                        <span asp-validation-for="SpouseEducationLevel" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="TypeOfSpouseExam" class="col-xs-12 col-md-6">
+                        What type of exam did your spouse or common-law partner pass?
+                    </label>
+                    <div class="col-xs-12 col-md-2">
+                        <select asp-for="TypeOfSpouseExam" asp-items="Model.ExamTypes" class="form-control" onchange="showhideTypeOfSpouseExam(this)"></select>
+                    </div>
+                </div>
+
+
+                <div style="display:none" id="spouseExamPointsForm">
+                    <div class="form-group">
+                        <label asp-for="SpouseSpeakingPoints" class="col-xs-12 col-md-6"> How many points did your spouse or common-law partner get for speaking?</label>
+                        <div class="col-xs-12 col-md-2">
+                            <input asp-for="SpouseSpeakingPoints" min="0" class="form-control" />
+                        </div>
+                        <div class="col-xs-12 col-md-4">
+                            <span asp-validation-for="SpouseSpeakingPoints" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="SpouseWritingPoints" class="col-xs-12 col-md-6">How many points did your spouse or common-law partner get for writing?</label>
+                        <div class="col-xs-12 col-md-2">
+                            <input asp-for="SpouseWritingPoints" min="0" class="form-control" />
+                        </div>
+                        <div class="col-xs-12 col-md-4">
+                            <span asp-validation-for="SpouseWritingPoints" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="SpouseReadingPoints" class="col-xs-12 col-md-6">How many points did your spouse or common-law partner get for reading?</label>
+                        <div class="col-xs-12 col-md-2">
+                            <input asp-for="SpouseReadingPoints" min="0" class="form-control" />
+                        </div>
+                        <div class="col-xs-12 col-md-4">
+                            <span asp-validation-for="SpouseReadingPoints" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="SpouseListeningPoints" class="col-xs-12 col-md-6">How many points did your spouse or common-law partner get for listening?</label>
+                        <div class="col-xs-12 col-md-2">
+                            <input asp-for="SpouseListeningPoints" min="0" class="form-control" />
+                        </div>
+                        <div class="col-xs-12 col-md-4">
+                            <span asp-validation-for="SpouseListeningPoints" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label asp-for="SpouseCanadianExperience" class="col-xs-12 col-md-6">How many years of work experience in the Canadian labour market has your spouse or common-law partner?</label>
                     <div class="col-xs-12 col-md-3">
-                        <select select asp-for="ExperienceOutsideCanada" asp-items="Model.YearsOfExperienceOutsideCanada" class="form-control"> </select>
+                        <select asp-for="SpouseCanadianExperience" asp-items="Model.YearsOfCanadianExperience" class="form-control"></select>
                     </div>
                     <div class="col-xs-12 col-md-12">
                         <span class="help-block">(The year of experience is calculated after having completed the full year worked. If your spouse or common-law partner has worked less than a year, enter 0. There is no rounding up).</span>
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label asp-for="CanadianFamilyMember" class="col-xs-12 col-md-6">Does your brother or sister who is a citizen or permanent resident of Canada live in Canada? </label>
-                    <div class="col-xs-12 col-md-2">
-                        <input asp-for="CanadianFamilyMember" />
-                    </div>
-                </div>
+            </div>
 
-                <div class="form-group">
-                    <label asp-for="CanadianEducation" class="col-xs-12 col-md-6">Have you graduated post-secondary education in Canada - credential of one or two years </label>
-                    <div class="col-xs-12 col-md-2">
-                        <input asp-for="CanadianEducation" />
-                    </div>
-                </div>
+            <button type="submit" class="btn btn-lg btn-primary">Calculate</button>
 
-                <div class="form-group">
-                    <label asp-for="CanadianLongerEducation" class="col-xs-12 col-md-6">Have you graduated post-secondary education in Canada - credential three years or longer </label>
-                    <div class="col-xs-12 col-md-2">
-                        <input asp-for="CanadianLongerEducation" />
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label asp-for="CanadianArrangedEmployment" class="col-xs-12 col-md-6">Do you have arranged employment – any other NOC 0, A or B </label>
-                    <div class="col-xs-12 col-md-2">
-                        <input asp-for="CanadianArrangedEmployment" />
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label asp-for="CanadianArrangedEmploymentPlus" class="col-xs-12 col-md-6">Do you have arranged employment – any other NOC 00 </label>
-                    <div class="col-xs-12 col-md-2">
-                        <input asp-for="CanadianArrangedEmploymentPlus" />
-                    </div>
-                </div>
-
-                <div class=" form-group">
-                    <label asp-for="CanadianProvincialOrTerritorialNomination" class="col-xs-12 col-md-6">Have you got provincial or territorial nomination? </label>
-                    <div class="col-xs-12 col-md-2">
-                        <input asp-for="CanadianProvincialOrTerritorialNomination" />
-                    </div>
-                </div>
-
-
-                <div class="form-group">
-                    <label asp-for="SpouseExist" class="col-xs-12 col-md-6">Do you have spouse or common - law partner?</label>
-                    <div class="col-xs-12 col-md-2">
-                        <input asp-for="SpouseExist" onclick="showHideSpouseExist(this)" />
-                    </div>
-                </div>
-
-                <div style="display:none" id="spouseExistForm">
-
-                    <div class="form-group">
-                        <label asp-for="SpouseEducationLevel" class="col-xs-12 col-md-6">
-                            Please select the level of education of spouse or common-law partner.
-                            <span class="help-block" style="font-weight: normal">(Choose one of the eight options)</span>
-                        </label>
-                        <div class="col-xs-12 col-md-6">
-                            @foreach (var item in Model.EducationLevels)
-                            {
-                                <div class="radio">
-                                    <label><input asp-for="SpouseEducationLevel" type="radio" value="@item.Value" /> @item.Text</label>
-                                </div>
-                            }
-                            <span asp-validation-for="SpouseEducationLevel" class="text-danger"></span>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label asp-for="TypeOfSpouseExam" class="col-xs-12 col-md-6">
-                            What type of exam did your spouse or common-law partner pass?
-                        </label>
-                        <div class="col-xs-12 col-md-2">
-                            <select asp-for="TypeOfSpouseExam" asp-items="Model.ExamTypes" class="form-control" onchange="showhideTypeOfSpouseExam(this)"></select>
-                        </div>
-                    </div>
-
-
-                    <div style="display:none" id="spouseExamPointsForm">
-                        <div class="form-group">
-                            <label asp-for="SpouseSpeakingPoints" class="col-xs-12 col-md-6"> How many points did your spouse or common-law partner get for speaking?</label>
-                            <div class="col-xs-12 col-md-2">
-                                <input asp-for="SpouseSpeakingPoints" min="0" class="form-control" />
-                            </div>
-                            <div class="col-xs-12 col-md-4">
-                                <span asp-validation-for="SpouseSpeakingPoints" class="text-danger"></span>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label asp-for="SpouseWritingPoints" class="col-xs-12 col-md-6">How many points did your spouse or common-law partner get for writing?</label>
-                            <div class="col-xs-12 col-md-2">
-                                <input asp-for="SpouseWritingPoints" min="0" class="form-control" />
-                            </div>
-                            <div class="col-xs-12 col-md-4">
-                                <span asp-validation-for="SpouseWritingPoints" class="text-danger"></span>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label asp-for="SpouseReadingPoints" class="col-xs-12 col-md-6">How many points did your spouse or common-law partner get for reading?</label>
-                            <div class="col-xs-12 col-md-2">
-                                <input asp-for="SpouseReadingPoints" min="0" class="form-control" />
-                            </div>
-                            <div class="col-xs-12 col-md-4">
-                                <span asp-validation-for="SpouseReadingPoints" class="text-danger"></span>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label asp-for="SpouseListeningPoints" class="col-xs-12 col-md-6">How many points did your spouse or common-law partner get for listening?</label>
-                            <div class="col-xs-12 col-md-2">
-                                <input asp-for="SpouseListeningPoints" min="0" class="form-control" />
-                            </div>
-                            <div class="col-xs-12 col-md-4">
-                                <span asp-validation-for="SpouseListeningPoints" class="text-danger"></span>
-                            </div>
-                        </div>
-                    </div>
-
-                       
-                        <div class="form-group">
-                            <label asp-for="SpouseCanadianExperience" class="col-xs-12 col-md-6">How many years of work experience in the Canadian labour market has your spouse or common-law partner?</label>
-                            <div class="col-xs-12 col-md-3">
-                                <select asp-for="SpouseCanadianExperience" asp-items="Model.YearsOfCanadianExperience" class="form-control"></select>
-                            </div>
-                            <div class="col-xs-12 col-md-12">
-                                <span class="help-block">(The year of experience is calculated after having completed the full year worked. If your spouse or common-law partner has worked less than a year, enter 0. There is no rounding up).</span>
-                            </div>
-                        </div>
-
-                    </div>
-
-                <button type="submit" class="btn btn-lg btn-primary">Calculate</button>
-
-</form>
+        </form>
     </div>
 </div>
 

@@ -34,3 +34,40 @@
         display: none;
     }
 }
+
+.bs-callout {
+    padding: 20px;
+    margin: 20px 0;
+    border: 1px solid #eee;
+    border-left-width: 5px;
+    border-radius: 3px;
+    background-color: #f5f5f5;
+}
+
+    .bs-callout p:last-child {
+        margin-bottom: 0;
+    }
+
+    .bs-callout code {
+        border-radius: 3px;
+    }
+
+    .bs-callout + .bs-callout {
+        margin-top: -5px;
+    }
+
+.bs-callout-default {
+    border-left-color: #777;
+}
+
+div[class~=bs-callout] ul > li  {
+    padding: 5px;
+}
+
+    div[class~=bs-callout] ul > li > strong {
+        font-size: 15pt;
+    }
+
+span[class=help-block] strong {
+    font-size:15px;
+}

@@ -1,36 +1,47 @@
 ﻿@model PointsSummaryViewModel
-@{
-    ViewData["Title"] = "Summary";
-}
-<h2>@ViewData["Title"]</h2>
-<h3>@ViewData["Message"]</h3>
 
-<div id="spis">
-    <ol>
-        <li>
-            <h3>Points earned by you in section A. Core / human capital factors:@Model.PointsInSectionA</h3>
-            <ul>
-                <li><h5>Points for age: @Model.PointsForAge</h5></li>
-                <li><h5>Points for education: @Model.PointsForEducation</h5></li>
-                <li><h5>Points for 1st language:@Model.PointsForFirstLanguage</h5></li>
-                <li><h5>Points for second language:@Model.PointsForSecondLanguage</h5></li>
-                <li><h5>Points for experience in the Canadian labour market:@Model.PointsForCanadianExperience </h5></li>
-            </ul>
-        </li>
+<div class="row">
+    <div class="col-md-10 col-xs-12">
 
-        <li>
-            <h3>Points earned by spouse or common-law partner in section B. Spouse or common-law partner factors:@Model.PointsInSectionB</h3>
-            <ul>
-                <li><h5>Points for education of spouse or common-law partner:@Model.PointsForSpouseEducation</h5></li>
-                <li><h5>Points for language of spouse or common-law partner:@Model.PointsForSpouseLanguageExam</h5></li>
-                <li><h5>Points for experience of spouse or common-law partner:@Model.PointsForSpouseCanadianExperience</h5></li>
-            </ul>
-        </li>
+        <div class="panel panel-default">
+            <div class="panel-heading"><strong>Summary</strong></div>
+            <div class="panel-body">
+                <ol>
+                    <li>
+                        <strong>Points earned by you in section A. Core / human capital factors: @Model.PointsInSectionA</strong>
+                        <div class="bs-callout bs-callout-default">
+                            <ul>
+                                <li>Points for age: <strong>@Model.PointsForAge</strong></li>
+                                <li>Points for education: <strong>@Model.PointsForEducation</strong></li>
+                                <li>Points for 1st language: <strong>@Model.PointsForFirstLanguage</strong></li>
+                                <li>Points for second language: <strong>@Model.PointsForSecondLanguage</strong></li>
+                                <li>Points for experience in the Canadian labour market: <strong>@Model.PointsForCanadianExperience</strong> </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <strong>Points earned by spouse or common-law partner in section B. Spouse or common-law partner factors: @Model.PointsInSectionB</strong>
+                        <div class="bs-callout bs-callout-default">
+                            <ul>
+                                <li>Points for education of spouse or common-law partner: <strong>@Model.PointsForSpouseEducation</strong></li>
+                                <li>Points for language of spouse or common-law partner: <strong>@Model.PointsForSpouseLanguageExam</strong></li>
+                                <li>Points for experience of spouse or common-law partner: <strong>@Model.PointsForSpouseCanadianExperience</strong></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li> <label style="margin-top:5px">Points earned by you in section C. Skill transferability factors: @Model.PointsInSectionC</label></li>
+                    <li> <label>Points earned by you in section D. Additional points: @Model.PointsInSectionD</label></li>
+                </ol>
+            </div>
+            <div class="panel-footer text-center">
+                <span style="text-transform:uppercase">Points earned for Express Entry:</span> <strong style="font-size:24pt">@Model.TotalPointsForExpressEntry</strong>
+            </div>
+        </div>
 
-        <li> <h3>Points earned by you in section C. Skill transferability factors:@Model.PointsInSectionC</h3></li>
+    </div>
 
-        <li> <h3>Points earned by you in section D. Additional points:@Model.PointsInSectionD</h3> </li>
-    </ol>
-    <br />
-    <h2>Total points for Express Entry:@Model.TotalPointsForExpressEntry</h2>
 </div>
+
+
+
+

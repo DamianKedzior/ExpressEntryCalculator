@@ -12,7 +12,7 @@ namespace ExpressEntryCalculator.Web.Models
         [Display(Name = "birth date")]
         [Required]
         [DataType(DataType.Date)]
-        public DateTime BirthDate { get; set; } = DateTime.Now.AddYears(-20);
+        public DateTime? BirthDate { get; set; } = DateTime.Now.AddYears(-20);
         public bool SpouseExist { get; set; }
 
         [Display(Name = "education level")]
