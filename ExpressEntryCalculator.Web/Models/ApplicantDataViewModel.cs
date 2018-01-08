@@ -98,10 +98,18 @@ namespace ExpressEntryCalculator.Web.Models
         };
 
         public bool CanadianFamilyMember { get; set; }
-        public bool CanadianEducation { get; set; }
-        public bool CanadianLongerEducation { get; set; }
+        public int CanadianEducation { get; set; }
         public bool CanadianArrangedEmployment { get; set; }
         public bool CanadianArrangedEmploymentPlus { get; set; }
         public bool CanadianProvincialOrTerritorialNomination { get; set; }
+
+
+        public List<SelectListItem> EducationsInCanada { get; } = new List<SelectListItem>
+        {
+            new SelectListItem { Value = "-1", Text = "No" },
+            new SelectListItem { Value = "0", Text = "Secondary (high school) or less" },
+            new SelectListItem { Value = "1", Text = "1- or 2- years diploma or certificate" },
+            new SelectListItem { Value = "3", Text = "3- years or longer degree, diploma or certificate"  },
+        };
     }
 }

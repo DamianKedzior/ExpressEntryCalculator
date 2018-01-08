@@ -25,6 +25,21 @@ namespace ExpressEntryCalculator.Core
             return GiveAdditionalPoints(MapBoolToStrig(answerToAddQuestion));
         }
         
+        public static int CanadianEducationPoints(int years)
+        {
+            if (years == 1 || years == 2)
+            {
+                return 15;
+            }
+            else if (years >= 3)
+            {
+                return 30;
+            }
+            else
+            {
+                return 0;
+            }
+        }
 
         public static int GiveDoubleAdditionalPoints(string answerToAddQuestion)
         {

@@ -144,8 +144,7 @@ namespace ExpressEntryCalculator.Web.Controllers
             int sectionD;
 
             int canadianFamilyMemberPoints = AdditionalPointsCalculator.GiveAdditionalPoints(model.CanadianFamilyMember);
-            int canadianEducationPoints = AdditionalPointsCalculator.GiveAdditionalPoints(model.CanadianEducation);
-            int canadianLongerEducationPoints = AdditionalPointsCalculator.GiveDoubleAdditionalPoints(model.CanadianLongerEducation);
+            int canadianEducationPoints = AdditionalPointsCalculator.CanadianEducationPoints(model.CanadianEducation);
             int canadianArrangedEmploymentPoints = AdditionalPointsCalculator.GiveAdditionalPointsForArrangedEmployment(model.CanadianArrangedEmployment);
             int canadianArrangedEmploymentPlusPoints = AdditionalPointsCalculator.GiveMoreAdditionalPointsForArrangedEmployment(model.CanadianArrangedEmploymentPlus);
             int canadianProvincialOrTerritorialNominationPoints = AdditionalPointsCalculator.GiveAdditionalPointsForProvincialOrTerritorialNomination(model.CanadianProvincialOrTerritorialNomination);
@@ -154,7 +153,7 @@ namespace ExpressEntryCalculator.Web.Controllers
             {
                 additionalLanguagePoints = AdditionalPointsCalculator.GiveAdditionalPointsForLanguages(primaryAplicantFirstLangPoints, primaryAplicantSecondLangPoints);
             }
-            sectionD = canadianFamilyMemberPoints + canadianEducationPoints + canadianLongerEducationPoints + canadianArrangedEmploymentPoints + canadianArrangedEmploymentPlusPoints + canadianProvincialOrTerritorialNominationPoints + additionalLanguagePoints;
+            sectionD = canadianFamilyMemberPoints + canadianEducationPoints + canadianArrangedEmploymentPoints + canadianArrangedEmploymentPlusPoints + canadianProvincialOrTerritorialNominationPoints + additionalLanguagePoints;
 
 
             int totalPointsForExpressEntry;
