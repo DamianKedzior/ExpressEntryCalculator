@@ -25,6 +25,7 @@ namespace ExpressEntryCalculator.Core
             return GiveAdditionalPoints(MapBoolToStrig(answerToAddQuestion));
         }
         
+
         public static int CanadianEducationPoints(int years)
         {
             if (years == 1 || years == 2)
@@ -76,6 +77,22 @@ namespace ExpressEntryCalculator.Core
             return GiveAdditionalPointsForArrangedEmployment(MapBoolToStrig(answerToAddQuestion));
         }
 
+
+        public static int CalculatePointsForArrangementEmployment(int employmentType)
+        {
+            if (employmentType == 1)
+            {
+                return 200;
+            }
+            else if (employmentType == 2)
+            {
+                return 50;
+            }
+            else
+            {
+                return 0;
+            }
+        }
 
         public static int GiveMoreAdditionalPointsForArrangedEmployment(string answerToAddQuestion)
         {

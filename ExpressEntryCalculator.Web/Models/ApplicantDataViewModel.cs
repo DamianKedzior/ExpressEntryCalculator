@@ -99,8 +99,7 @@ namespace ExpressEntryCalculator.Web.Models
 
         public bool CanadianFamilyMember { get; set; }
         public int CanadianEducation { get; set; }
-        public bool CanadianArrangedEmployment { get; set; }
-        public bool CanadianArrangedEmploymentPlus { get; set; }
+        public int CanadianArrangedEmployment { get; set; }
         public bool CanadianProvincialOrTerritorialNomination { get; set; }
 
 
@@ -110,6 +109,13 @@ namespace ExpressEntryCalculator.Web.Models
             new SelectListItem { Value = "0", Text = "Secondary (high school) or less" },
             new SelectListItem { Value = "1", Text = "1- or 2- years diploma or certificate" },
             new SelectListItem { Value = "3", Text = "3- years or longer degree, diploma or certificate"  },
+        };
+
+        public List<SelectListItem> EmploymentInCanada { get; } = new List<SelectListItem>
+        {
+            new SelectListItem { Value = "0", Text = "No" },
+            new SelectListItem { Value = "1", Text = "NOC 00" },
+            new SelectListItem { Value = "2", Text = "any other NOC 0, A or B"  },
         };
     }
 }

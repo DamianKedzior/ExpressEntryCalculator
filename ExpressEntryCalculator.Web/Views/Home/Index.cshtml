@@ -193,7 +193,7 @@
                         <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/become-candidate/eligibility/find-national-occupation-code.html" target=" _blank">(NOC)</a>.
                     </span>
                     <span class="help-block">
-                        Your work experience must also be paid work and classified as skill type 0, or skill levels A or B.
+                        Your work experience must also be paid work and classified as Skill Type 0, or Skill Levels A or B.
                         <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/become-candidate/eligibility/federal-skilled-workers.html" target="_blank ">Read more</a>
                     </span>
                     <span class="help-block">
@@ -218,7 +218,7 @@
                         <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/become-candidate/eligibility/find-national-occupation-code.html" target=" _blank">(NOC)</a>.
                     </span>
                     <span class="help-block">
-                        Your work experience must also be paid work and classified as skill type 0, or skill levels A or B.
+                        Your work experience must also be paid work and classified as Skill Type 0, or Skill Levels A or B.
                         <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/become-candidate/eligibility/federal-skilled-workers.html" target="_blank ">Read more</a>
                     </span>
                     <span class="help-block">
@@ -245,19 +245,27 @@
                 </div>
             </div>
 
+
             <div class="form-group">
-                <label asp-for="CanadianArrangedEmployment" class="col-xs-12 col-md-6">Do you have arranged employment – any other NOC 0, A or B </label>
-                <div class="col-xs-12 col-md-2">
-                    <input asp-for="CanadianArrangedEmployment" />
+                <label asp-for="CanadianArrangedEmployment" class="col-xs-12 col-md-6">Do you have arranged employment in Canada (valid job offer)?</label>
+                <div class="col-xs-12 col-md-3">
+                    <select asp-for="CanadianArrangedEmployment" asp-items="Model.EmploymentInCanada" class="form-control"></select>
+                </div>
+                <div class="col-xs-12 col-md-12">
+                    <span class="help-block">
+                        Your valid job offer must be classified in the National Occupational Classification (NOC) as Skill Type 0, or Skill Level A or B
+                        and not be from an embassy, high commission or consulate in Canada. It must be also full-time, paid work.
+                        <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/become-candidate/eligibility/offer-employment.html" target="_blank ">Check</a>
+                        other requirements that the job offer must meet to be valid.
+                    </span>
+                    <span class="help-block">
+                        Your valid job offer must be supported by a Labour Market Impact Assessment (LMIA).
+                        <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/become-candidate/eligibility/offer-employment/lmia-exempt.html" target="_blank ">Check</a>
+                        the exclusions for this requirement.
+                    </span>
                 </div>
             </div>
 
-            <div class="form-group">
-                <label asp-for="CanadianArrangedEmploymentPlus" class="col-xs-12 col-md-6">Do you have arranged employment – any other NOC 00 </label>
-                <div class="col-xs-12 col-md-2">
-                    <input asp-for="CanadianArrangedEmploymentPlus" />
-                </div>
-            </div>
 
             <div class=" form-group">
                 <label asp-for="CanadianProvincialOrTerritorialNomination" class="col-xs-12 col-md-6">Have you got provincial or territorial nomination? </label>
@@ -379,7 +387,7 @@
                             <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/become-candidate/eligibility/find-national-occupation-code.html" target=" _blank">(NOC)</a>.
                         </span>
                         <span class="help-block">
-                            Your spouse's or common-law partner's work experience must also be paid work and classified as skill type 0, or skill levels A or B.
+                            Your spouse's or common-law partner's work experience must also be paid work and classified as Skill Type 0, or Skill Levels A or B.
                             <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/become-candidate/eligibility/federal-skilled-workers.html" target="_blank ">Read more</a>
                         </span>
                         <span class="help-block">
@@ -393,9 +401,9 @@
                 </div>
 
             </div>
-
-            <button type="submit" class="btn btn-lg btn-primary">Calculate</button>
-
+            <div class="col-xs-12 col-md-12">
+                <button type="submit" class="btn btn-lg btn-primary center-block">Calculate</button>
+            </div>
         </form>
     </div>
 </div>
