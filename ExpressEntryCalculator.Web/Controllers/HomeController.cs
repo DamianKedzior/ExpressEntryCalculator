@@ -19,6 +19,11 @@ namespace ExpressEntryCalculator.Web.Controllers
 
         public IActionResult Summary(ApplicantDataViewModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                return View("Index", model);
+            }
+
             // obliczenie punktow
             int age = AgeHelper.CountAge(model.BirthDate.Value);
             int pointForAge;
