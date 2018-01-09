@@ -8,6 +8,7 @@
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="~/lib/fontello/css/github.css" type="text/css" />
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -15,18 +16,29 @@
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
+   
 </head>
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <span>Express Entry Calculator</span>
+            
         </div>
     </nav>
     <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Express Entry Calculator</p>
+            <div class="col-xs-12 col-md-10">
+                <div class="pull-left">
+                    <p>&copy; @DateTime.Now.Year - Express Entry Calculator</p>
+                </div>
+                <div class=" pull-right">
+                    <a href="https://github.com/annaked/ExpressEntryCalculator" target="_blank" title="Check the Express Entry calculator code">
+                        <i class="icon icon-github-circled"></i>
+                    </a>
+                </div>
+            </div>
         </footer>
     </div>
 
