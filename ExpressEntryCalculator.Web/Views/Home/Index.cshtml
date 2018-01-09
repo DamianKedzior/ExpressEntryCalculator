@@ -182,36 +182,34 @@
 
 
             <div class="form-group">
-                <label asp-for="CanadianExperience" class="col-xs-12 col-md-6">How many years of skilled work experience do you have in the Canadian labour market in the last ten years?</label>
+                <div class="col-xs-12 col-md-6">
+                        <label asp-for="CanadianExperience">How many years of skilled work experience do you have in the Canadian labour market in the last ten years?</label>
+                    <span class="help-block">
+                        <strong>Warning:</strong>
+                        To be eligible for Express Entry, your work experience (your occupation) must be classified in the National Occupational Classification
+                        <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/become-candidate/eligibility/find-national-occupation-code.html" target=" _blank">(NOC)</a>.
+                    </span>
+                    <span class="help-block">
+                        Your work experience must also be paid work and classified as Skill Type 0, or Skill Levels A or B.
+                        <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/become-candidate/eligibility/federal-skilled-workers.html" target="_blank ">Read more</a>
+                    </span>
+                    <span class="help-block">
+                        Your work experience is calculated after having completed the full year worked. If you have worked less than a year, choose "none or less than a year". There is no rounding up.
+                        1 year full time (1,560 hours total) means
+                        30 hours/week for 12 months (full-time work which could be performed for more then one employer) or
+                        15 hours/week for 24 months (part-time work)
+                        <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/become-candidate/eligibility/federal-skilled-workers.html" target="_blank ">Read more</a>
+                    </span>
+                </div>
                 <div class="col-xs-12 col-md-3">
                     <select asp-for="CanadianExperience" asp-items="Model.YearsOfCanadianExperience" class="form-control"></select>
                 </div>
-                <div class="col-xs-12 col-md-12">
-                    <span class="help-block">
-                        <strong>Warning:</strong>
-                        To be eligible for Express Entry, your work experience (your occupation) must be classified in the National Occupational Classification
-                        <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/become-candidate/eligibility/find-national-occupation-code.html" target=" _blank">(NOC)</a>.
-                    </span>
-                    <span class="help-block">
-                        Your work experience must also be paid work and classified as Skill Type 0, or Skill Levels A or B.
-                        <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/become-candidate/eligibility/federal-skilled-workers.html" target="_blank ">Read more</a>
-                    </span>
-                    <span class="help-block">
-                        Your work experience is calculated after having completed the full year worked. If you have worked less than a year, choose "none or less than a year". There is no rounding up.
-                        1 year full time (1,560 hours total) means
-                        30 hours/week for 12 months (full-time work which could be performed for more then one employer) or
-                        15 hours/week for 24 months (part-time work)
-                        <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/become-candidate/eligibility/federal-skilled-workers.html" target="_blank ">Read more</a>
-                    </span>
-                </div>
             </div>
 
+
             <div class="form-group">
-                <label asp-for="ExperienceOutsideCanada" class="col-xs-12 col-md-6">How many years of foreign skilled work experiencein (outside Canada) do you have in the last ten years?</label>
-                <div class="col-xs-12 col-md-3">
-                    <select select asp-for="ExperienceOutsideCanada" asp-items="Model.YearsOfExperienceOutsideCanada" class="form-control"> </select>
-                </div>
-                <div class="col-xs-12 col-md-12">
+                <div class="col-xs-12 col-md-6">
+                    <label asp-for="ExperienceOutsideCanada">How many years of foreign skilled work experiencein (outside Canada) do you have in the last ten years?</label>
                     <span class="help-block">
                         <strong>Warning:</strong>
                         To be eligible for Express Entry, your work experience (your occupation) must be classified in the National Occupational Classification
@@ -228,6 +226,9 @@
                         15 hours/week for 24 months (part-time work)
                         <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/become-candidate/eligibility/federal-skilled-workers.html" target="_blank ">Read more</a>
                     </span>
+                </div>
+                <div class="col-xs-12 col-md-3">
+                    <select select asp-for="ExperienceOutsideCanada" asp-items="Model.YearsOfExperienceOutsideCanada" class="form-control"> </select>
                 </div>
             </div>
 
@@ -247,11 +248,8 @@
 
 
             <div class="form-group">
-                <label asp-for="CanadianArrangedEmployment" class="col-xs-12 col-md-6">Do you have arranged employment in Canada (valid job offer)?</label>
-                <div class="col-xs-12 col-md-3">
-                    <select asp-for="CanadianArrangedEmployment" asp-items="Model.EmploymentInCanada" class="form-control"></select>
-                </div>
-                <div class="col-xs-12 col-md-12">
+                  <div class="col-xs-12 col-md-6">
+                      <label asp-for="CanadianArrangedEmployment">Do you have arranged employment in Canada (valid job offer)?</label>
                     <span class="help-block">
                         Your valid job offer must be classified in the National Occupational Classification (NOC) as Skill Type 0, or Skill Level A or B
                         and not be from an embassy, high commission or consulate in Canada. It must be also full-time, paid work.
@@ -263,6 +261,9 @@
                         <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/become-candidate/eligibility/offer-employment/lmia-exempt.html" target="_blank ">Check</a>
                         the exclusions for this requirement.
                     </span>
+                </div>
+                <div class="col-xs-12 col-md-3">
+                    <select asp-for="CanadianArrangedEmployment" asp-items="Model.EmploymentInCanada" class="form-control"></select>
                 </div>
             </div>
 
@@ -376,11 +377,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="SpouseCanadianExperience" class="col-xs-12 col-md-6">How many years of skilled work experience in the Canadian labour market has your spouse or common-law partner in the last ten years?</label>
-                    <div class="col-xs-12 col-md-3">
-                        <select asp-for="SpouseCanadianExperience" asp-items="Model.YearsOfCanadianExperience" class="form-control"></select>
-                    </div>
-                    <div class="col-xs-12 col-md-12">
+                    <div class="col-xs-12 col-md-6">
+                        <label asp-for="SpouseCanadianExperience">How many years of skilled work experience in the Canadian labour market has your spouse or common-law partner in the last ten years?</label>
                         <span class="help-block">
                             <strong>Warning:</strong>
                             To be eligible for Express Entry, your spouse's or common-law partner's work experience (occupation) must be classified in the National Occupational Classification
@@ -397,6 +395,9 @@
                             15 hours/week for 24 months (part-time work)
                             <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/become-candidate/eligibility/federal-skilled-workers.html" target="_blank ">Read more</a>
                         </span>
+                    </div>
+                    <div class="col-xs-12 col-md-3">
+                        <select asp-for="SpouseCanadianExperience" asp-items="Model.YearsOfCanadianExperience" class="form-control"></select>
                     </div>
                 </div>
 
