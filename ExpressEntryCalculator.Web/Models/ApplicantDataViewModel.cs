@@ -12,7 +12,7 @@ namespace ExpressEntryCalculator.Web.Models
         [Display(Name = "birth date")]
         [Required]
         [DataType(DataType.Date)]
-        public DateTime? BirthDate { get; set; } = DateTime.Now.AddYears(-20);
+        public DateTime? BirthDate { get; set; }
         public bool SpouseExist { get; set; }
 
         [Display(Name = "education level")]
@@ -117,5 +117,11 @@ namespace ExpressEntryCalculator.Web.Models
             new SelectListItem { Value = "1", Text = "NOC 00" },
             new SelectListItem { Value = "2", Text = "any other NOC 0, A or B"  },
         };
+
+        public ApplicantDataViewModel()
+        {
+            BirthDate = DateTime.Now.AddYears(-25);
+            CanadianEducation = -1;
+        }
     }
 }
