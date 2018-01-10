@@ -3,12 +3,12 @@
     ViewData["Title"] = "Calculator";
 }
 <div class="row">
-    <div class="col-md-10 col-xs-12">
+    <div class="col-md-12 col-xs-12">
         <form asp-controller="Home" asp-action="Summary" method="post" class="form-horizontal">
 
             <div class="form-group">
                 <label asp-for="BirthDate" class="col-xs-12 col-md-6">Please provide your date of birth.</label>
-                <div class="col-xs-12 col-md-4">
+                <div class="col-xs-12 col-md-3">
                     <input asp-for="BirthDate" placeholder="yyyy-mm-dd" class="form-control" />
                     <span asp-validation-for="BirthDate" class="text-danger"></span>
                 </div>
@@ -59,7 +59,7 @@
                     </span>
 
                 </div>
-                <div class="col-xs-12 col-md-2">
+                <div class="col-xs-12 col-md-3">
                     <select asp-for="TypeOfFirstExam" asp-items="Model.ExamTypes" class="form-control" onchange="showhideTypeOfExam(this)"></select>
                 </div>
             </div>
@@ -133,7 +133,7 @@
                             Your test results must be less than two years old. <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/become-candidate/eligibility/language-requirements/language-testing.html" role="button" target="_blank">Read more</a>
                         </span>
                     </div>
-                    <div class="col-xs-12 col-md-2">
+                    <div class="col-xs-12 col-md-3">
                         <select asp-for="TypeOfSecondExam" class="form-control"></select>
                     </div>
                 </div>
@@ -328,7 +328,7 @@
                             Your spouse's or common-law partner's test results must be less than two years old. <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/become-candidate/eligibility/language-requirements/language-testing.html" role="button" target="_blank">Read more</a>
                         </span>
                     </div>
-                    <div class="col-xs-12 col-md-2">
+                    <div class="col-xs-12 col-md-3">
                         <select asp-for="TypeOfSpouseExam" asp-items="Model.ExamTypes" class="form-control" onchange="showhideTypeOfSpouseExam(this)"></select>
                     </div>
                 </div>
@@ -400,12 +400,23 @@
                         <select asp-for="SpouseCanadianExperience" asp-items="Model.YearsOfCanadianExperience" class="form-control"></select>
                     </div>
                 </div>
-
             </div>
-            <div class="col-xs-12 col-md-12">
+            <div class="col-xs-12">
                 <button type="submit" class="btn btn-lg btn-primary center-block">Calculate</button>
             </div>
         </form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="alert alert-warning" style="margin-top:25px">
+            <strong>Disclaimer!</strong> The information contained within the Express Entry Calculator is provided for information purposes only.
+            Nothing contained in the Express Entry Calculator is to be used as professional advice and the Express Entry Calculator is not a substitute
+            for the advice of a qualified Canadian immigration lawyer. The creator of the Express Entry Calculator does not accept any liability
+            for any loss or damage incurred by use of or reliance on the Express Entry Calculator or the information contained therein and cannot
+            guarantee and assumes no legal liability or responsibility for the accuracy or completeness of the information.
+        </div>
     </div>
 </div>
 
