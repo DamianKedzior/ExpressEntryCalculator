@@ -16,25 +16,32 @@
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
-   
+
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <span>Express Entry Calculator</span>
-            
+
+    <div class="container">
+        <div class="jumbotron hidden-xs">
+            <h1>Express Entry Calculator</h1>
+            <p>
+                This program calculates points for Canadian immigration system called Express Entry based on criteria.
+            </p>
         </div>
-    </nav>
+        <div class="col-xs-12 hidden-sm hidden-md hidden-lg heading">
+            <h1>Express Entry Calculator</h1>
+        </div>
+    </div>
+
     <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
-            <div class="col-xs-12 col-md-10">
+            <div class="col-xs-12">
                 <div class="pull-left">
                     <p>&copy; @DateTime.Now.Year - Express Entry Calculator</p>
                 </div>
                 <div class=" pull-right">
-                    <a href="https://github.com/annaked/ExpressEntryCalculator" target="_blank" title="Check the Express Entry calculator code">
+                    <a href="https://github.com/annaked/ExpressEntryCalculator" target="_blank" title="Express Entry Calculator GitHub repo">
                         <i class="icon icon-github-circled"></i>
                     </a>
                 </div>
@@ -68,4 +75,5 @@
 
     @RenderSection("Scripts", required: false)
 </body>
+
 </html>
