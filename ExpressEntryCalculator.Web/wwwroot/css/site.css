@@ -1,7 +1,8 @@
 ﻿body {
-    padding-top: 50px;
+    padding-top: 20px;
     padding-bottom: 20px;
 }
+
 
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
@@ -41,12 +42,19 @@ div[class~=bs-callout] ul > li  {
 }
 
     div[class~=bs-callout] ul > li > strong {
-        font-size: 12pt;
+        font-size: 14px;
     }
 
 span[class=help-block] strong {
     font-size:15px;
 }
+
+div[class=panel-body] ol > li> strong{
+    font-size:17px;
+    padding:15px;
+}
+
+
 
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
@@ -58,5 +66,8 @@ span[class=help-block] strong {
         padding-left: 15px;
     }
 
-
+    .heading {
+        background-color: #eee;
+        border-radius: 6px;
+    }
 }

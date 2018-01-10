@@ -1,10 +1,10 @@
 ﻿@model PointsSummaryViewModel
 
 <div class="row">
-    <div class="col-md-10 col-xs-12">
+    <div class="col-xs-12">
 
         <div class="panel panel-default">
-            <div class="panel-heading text-center"><strong style="text-transform:uppercase">Summary points for Express Entry</strong></div>
+            <div class="panel-heading text-center"><strong style="text-transform:uppercase; font-size:18px;">Summary points for Express Entry</strong></div>
             <div class="panel-body">
                 <ol id="summary">
                     <li>
@@ -29,8 +29,8 @@
                             </ul>
                         </div>
                     </li>
-                    <li> <label style="margin-top:5px">Points earned by you in section C. Skill transferability factors: @Model.PointsInSectionC</label></li>
-                    <li> <label>Points earned by you in section D. Additional points: @Model.PointsInSectionD</label></li>
+                    <li> <strong>Points earned by you in section C. Skill transferability factors: @Model.PointsInSectionC</strong></li>
+                    <li> <strong>Points earned by you in section D. Additional points: @Model.PointsInSectionD</strong></li>
                 </ol>
             </div>
             <div class="panel-footer text-center">
