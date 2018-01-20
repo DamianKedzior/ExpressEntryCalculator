@@ -14,7 +14,6 @@ function showHideSecondLanguage(element)
 
 function showHideSpouseExist(element)
 {
-    //var element = document.getElementById('SpouseExist');
     if (element.checked === true)
     {
         document.getElementById("spouseExistForm").style.display = "block";
