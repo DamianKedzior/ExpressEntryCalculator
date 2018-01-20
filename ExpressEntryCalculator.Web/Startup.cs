@@ -43,7 +43,8 @@ namespace ExpressEntryCalculator.Web
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{action}",
+                    defaults: new { controller = "Home", action = "Index" });
             });
         }
     }
