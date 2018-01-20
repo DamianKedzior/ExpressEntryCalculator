@@ -6,4 +6,4 @@ This program calculates points for Canadian immigration system called Express En
 
 To calculate points use one of the two applications:
 * [**http://expressentrycalculator.com**](http://expressentrycalculator.com)
-* [**console application**](https://github.com/annaked/ExpressEntryCalculator/releases/download/v1.0.2/ExpressEntryCalculator.zip)
+* [**console application**](https://github.com/annaked/ExpressEntryCalculator/releases/download/v2.0.0/ExpressEntryCalculator.zip)
