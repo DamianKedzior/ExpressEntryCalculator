@@ -71,3 +71,11 @@ div[class=panel-body] ol > li> strong{
         border-radius: 6px;
     }
 }
+
+.input-validation-error, .input-validation-error:focus {
+    border: 1px solid red;
+}
+
+.field-validation-error {
+    font-weight: 600;
+}
