@@ -54,10 +54,8 @@ div[class=panel-body] ol > li> strong{
     padding:15px;
 }
 
-
-
 /* Hide/rearrange for smaller screens */
-@media screen and (max-width: 767px) {
+@media (max-width: 767px) {
     .bs-callout {
         padding-left: 0px;
     }
