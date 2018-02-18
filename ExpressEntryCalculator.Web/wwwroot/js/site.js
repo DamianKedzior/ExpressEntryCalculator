@@ -1,5 +1,11 @@
 ﻿// Write your JavaScript code.
 
+$(function () {
+    if (Modernizr.inputtypes.date === false) {
+        $('#BirthDate').datetimepicker();
+    }
+});
+
 function showHideSecondLanguage(element)
 {
     if (element.checked === true)
