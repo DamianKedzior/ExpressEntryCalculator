@@ -2,7 +2,9 @@
 
 $(function () {
     if (Modernizr.inputtypes.date === false) {
-        $('#BirthDate').datetimepicker();
+        $('#BirthDate').datetimepicker({
+            format: 'YYYY-MM-DD'
+        });
     }
 });
 
