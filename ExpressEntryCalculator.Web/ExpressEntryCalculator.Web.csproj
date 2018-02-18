@@ -13,6 +13,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\sitemap.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ExpressEntryCalculator.Core\ExpressEntryCalculator.Core.csproj" />
   </ItemGroup>
 
