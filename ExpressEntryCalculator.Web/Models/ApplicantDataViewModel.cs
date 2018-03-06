@@ -120,7 +120,6 @@ namespace ExpressEntryCalculator.Web.Models
 
         public ApplicantDataViewModel()
         {
-            BirthDate = DateTime.Now.AddYears(-25);
             CanadianEducation = -1;
         }
     }
