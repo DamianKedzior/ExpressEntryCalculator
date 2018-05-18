@@ -6,11 +6,19 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ExpressEntryCalculator.Web.Models;
 using ExpressEntryCalculator.Core;
+using Microsoft.Extensions.Options;
 
 namespace ExpressEntryCalculator.Web.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly ExpressEntryStats _expressEntryStats;
+
+        public HomeController(IOptions<ExpressEntryStats> expressEntryStats)
+        {
+            _expressEntryStats = expressEntryStats.Value;
+        }
+
         public IActionResult Index()
         {
             ApplicantDataViewModel model = new ApplicantDataViewModel();
@@ -182,7 +190,7 @@ namespace ExpressEntryCalculator.Web.Controllers
             points.PointsInSectionD = sectionD;
 
             points.TotalPointsForExpressEntry = totalPointsForExpressEntry;
-
+            points.LastExpressEntryStats = _expressEntryStats;
 
             return View(points);
         }

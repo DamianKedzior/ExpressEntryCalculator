@@ -45,6 +45,22 @@
 
 </div>
 
+@if (Model.TotalPointsForExpressEntry < Model.LastExpressEntryStats.LowestScore)
+{
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="alert alert-warning" role="alert">
+                Your overall score (@Model.TotalPointsForExpressEntry) is lower than the lowest score (@Model.LastExpressEntryStats.LowestScore) from last round of invitations.
+            </div>
+        </div>
+    </div>
+}
+<div class="row">
+    <div class="col-xs-12">
+        @await Html.PartialAsync("ExpressEntryStats")
+    </div>
+</div>
+
 
 
 

@@ -24,5 +24,6 @@ namespace ExpressEntryCalculator.Web.Models
         public int PointsInSectionD { get; set; }
 
         public int TotalPointsForExpressEntry { get; set; }
+        public ExpressEntryStats LastExpressEntryStats { get; set; }
     }
 }

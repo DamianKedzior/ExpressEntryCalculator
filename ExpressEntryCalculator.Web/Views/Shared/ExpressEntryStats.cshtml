@@ -1,0 +1,10 @@
+﻿@using Microsoft.Extensions.Options
+@inject IOptions<ExpressEntryStats> expressEntryStatsAccessor
+@{ 
+    var expressEntryStats = expressEntryStatsAccessor.Value;
+}
+
+<div class="alert alert-info" role="alert">
+    Last round of invitations to apply for permanent residence under the Express Entry was on <strong>@expressEntryStats.RoundDate.ToShortDateString()</strong>.
+    The lowest score to be invited was <strong>@expressEntryStats.LowestScore</strong>.
+</div>
