@@ -14,9 +14,9 @@ namespace ExpressEntryCalculator.Web.Controllers
     {
         private readonly ExpressEntryStats _expressEntryStats;
 
-        public HomeController(IOptions<ExpressEntryStats> expressEntryStats)
+        public HomeController(IOptions<ExpressEntryStats> expressEntryStatsAccessor)
         {
-            _expressEntryStats = expressEntryStats.Value;
+            _expressEntryStats = expressEntryStatsAccessor.Value;
         }
 
         public IActionResult Index()
