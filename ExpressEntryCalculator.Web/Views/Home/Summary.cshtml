@@ -45,6 +45,33 @@
 
 </div>
 
+@if (Model.TotalPointsForExpressEntry < Model.LastExpressEntryStats.LowestScore)
+{
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="alert alert-warning" role="alert">
+                Your overall score (@Model.TotalPointsForExpressEntry) is lower than the lowest score (@Model.LastExpressEntryStats.LowestScore) from last round of invitations.
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="alert alert-success" role="alert">
+                <strong>Congratulations!</strong> Your overall score (@Model.TotalPointsForExpressEntry) is higher or equal to the lowest score (@Model.LastExpressEntryStats.LowestScore) from last round of invitations. 
+                You have big chances to be invited to apply for permanent residence in Canada in the next round of invitations. Create your <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/application/account.html" target="_blank">Express Entry profile</a> right away. 
+            </div>
+        </div>
+    </div>
+}
+<div class="row">
+    <div class="col-xs-12">
+        @await Html.PartialAsync("ExpressEntryStats")
+    </div>
+</div>
+
 
 
 
