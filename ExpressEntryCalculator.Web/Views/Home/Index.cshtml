@@ -113,7 +113,7 @@
                 <div class="form-group">
                     <label asp-for="SecondLanguage" class="col-xs-12 col-md-6">Did you pass second language exam? </label>
                     <div class="col-xs-12 col-md-2">
-                        <input asp-for="SecondLanguage" onclick="showHideSecondLanguage(this)" />
+                        <input asp-for="SecondLanguage" onchange="showHideSecondLanguage(this)" data-toggle="toggle" data-on="Yes" data-off="No" />
                     </div>
                 </div>
             </div>
@@ -240,7 +240,7 @@
             <div class="form-group">
                 <label asp-for="CanadianFamilyMember" class="col-xs-12 col-md-6">Do you or your spouse or common law partner (who will be included in your application under Express Entry) have brother or sister living in Canada who is a citizen or permanent resident of Canada? </label>
                 <div class="col-xs-12 col-md-2">
-                    <input asp-for="CanadianFamilyMember" />
+                    <input asp-for="CanadianFamilyMember" data-toggle="toggle" data-on="Yes" data-off="No" />
                 </div>
             </div>
 
@@ -276,7 +276,7 @@
             <div class=" form-group">
                 <label asp-for="CanadianProvincialOrTerritorialNomination" class="col-xs-12 col-md-6">Have you got provincial or territorial nomination? </label>
                 <div class="col-xs-12 col-md-2">
-                    <input asp-for="CanadianProvincialOrTerritorialNomination" />
+                    <input asp-for="CanadianProvincialOrTerritorialNomination" data-toggle="toggle" data-on="Yes" data-off="No" />
                 </div>
             </div>
 
@@ -289,7 +289,7 @@
                     <span class="help-block"> <strong>Warning:</strong> If your spouse or common - law partner is citizen or permanent resident of Canada can not be included in your application under Express Entry.</span>
                 </div>
                 <div class="col-xs-12 col-md-2">
-                    <input asp-for="SpouseExist" onclick="showHideSpouseExist(this)" />
+                    <input asp-for="SpouseExist" onchange="showHideSpouseExist(this)" data-toggle="toggle" data-on="Yes" data-off="No" />
                 </div>
             </div>
 
