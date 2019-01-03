@@ -7,56 +7,51 @@ namespace ExpressEntryCalculator.AcceptanceTests
 {
     public class AgePointsCalculatorTests
     {
-        private const string GivenMyAgeIsTemplate = "Given my age is {0}";
-        private const string ThenPointsShouldBeEqualToTemplate = "Then points should be equal to {0}";
-
         public int Age { get; set; }
         public int Points { get; set; }
+        public int ExpectedPoints { get; set; }
 
-        [Theory]
-        [InlineData(17, 0)]
-        [InlineData(18, 99)]
-        [InlineData(19, 105)]
-        [InlineData(20, 110)]
-        [InlineData(29, 110)]
-        [InlineData(30, 105)]
-        [InlineData(31, 99)]
-        [InlineData(32, 94)]
-        [InlineData(33, 88)]
-        [InlineData(34, 83)]
-        [InlineData(35, 77)]
-        [InlineData(36, 72)]
-        [InlineData(37, 66)]
-        [InlineData(38, 61)]
-        [InlineData(39, 55)]
-        [InlineData(40, 50)]
-        [InlineData(41, 39)]
-        [InlineData(42, 28)]
-        [InlineData(43, 17)]
-        [InlineData(44, 6)]
-        [InlineData(45, 0)]
-        public void HaveCorrectPointsForMyAge(int age, int expectedPoints)
+        [Fact]
+        public void HaveCorrectPointsForMyAge()
         {
-            this.Given(_ => _.GivenMyAgeIs(age), GivenMyAgeIsTemplate)
+            this.Given("Given my age is <Age>")
                 .When(_ => _.WhenICalculateMyPointsForAge())
-                .Then(_ => _.ThenPointsShouldBeEqualTo(expectedPoints), ThenPointsShouldBeEqualToTemplate)
+                .Then(_ => _.ThenPointsShouldBeEqualTo(), "Then points should be equal to <ExpectedPoints>")
+                .WithExamples(new ExampleTable("Age", "ExpectedPoints")
+                {
+                    { 17, 0 },
+                    { 18, 99 },
+                    { 19, 105 },
+                    { 20, 110 },
+                    { 29, 110 },
+                    { 30, 105 },
+                    { 31, 99 },
+                    { 32, 94 },
+                    { 33, 88 },
+                    { 34, 83 },
+                    { 35, 77 },
+                    { 36, 72 },
+                    { 37, 66 },
+                    { 38, 61 },
+                    { 39, 55 },
+                    { 40, 50 },
+                    { 41, 39 },
+                    { 42, 28 },
+                    { 43, 17 },
+                    { 44, 6 },
+                    { 45, 0 }
+                })
                 .BDDfy();
         }
 
-        public void GivenMyAgeIs(int age)
-        {
-            Age = age;
-        }
-
-        public void WhenICalculateMyPointsForAge()
+        private void WhenICalculateMyPointsForAge()
         {
             Points = AgePointsCalculator.CountPointsForAge(Age);
         }
 
-        public void ThenPointsShouldBeEqualTo(int expectedPoints)
+        private void ThenPointsShouldBeEqualTo()
         {
-            Points.ShouldBe(expectedPoints);
+            Points.ShouldBe(ExpectedPoints);
         }
-
     }
 }

@@ -16,7 +16,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpressEntryCalculator.Web"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{0FE855C4-07E2-406E-9538-00F1BFE678D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpressEntryCalculator.AcceptanceTests", "ExpressEntryCalculator.AcceptanceTests\ExpressEntryCalculator.AcceptanceTests.csproj", "{28AC818A-3379-4DDD-84BC-A01E8952CCDA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpressEntryCalculator.AcceptanceTests", "ExpressEntryCalculator.AcceptanceTests\ExpressEntryCalculator.AcceptanceTests.csproj", "{28AC818A-3379-4DDD-84BC-A01E8952CCDA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
