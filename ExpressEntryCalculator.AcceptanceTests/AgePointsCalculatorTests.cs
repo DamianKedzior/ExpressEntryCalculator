@@ -5,12 +5,8 @@ using Xunit;
 
 namespace ExpressEntryCalculator.AcceptanceTests
 {
-    public class AgePointsCalculatorTests
+    public class AgePointsCalculatorTestsWithoutSpouse : AgePointsCalculatorTests
     {
-        public int Age { get; set; }
-        public int Points { get; set; }
-        public int ExpectedPoints { get; set; }
-
         [Fact]
         public void HaveCorrectPointsForMyAge()
         {
@@ -48,8 +44,57 @@ namespace ExpressEntryCalculator.AcceptanceTests
         {
             Points = AgePointsCalculator.CountPointsForAge(Age);
         }
+    }
 
-        private void ThenPointsShouldBeEqualTo()
+    public class AgePointsCalculatorTestsWithSpouse : AgePointsCalculatorTests
+    {
+        [Fact]
+        public void HaveCorrectPointsForMyAge()
+        {
+            this.Given("Given my age is <Age>")
+                    .And("and I apply with my spouse")
+                .When(_ => _.WhenICalculateMyPointsForAge())
+                .Then(_ => _.ThenPointsShouldBeEqualTo(), "Then points should be equal to <ExpectedPoints>")
+                .WithExamples(new ExampleTable("Age", "ExpectedPoints")
+                {
+                        { 17, 0 },
+                        { 18, 90 },
+                        { 19, 95 },
+                        { 20, 100 },
+                        { 29, 100 },
+                        { 30, 95 },
+                        { 31, 90 },
+                        { 32, 85 },
+                        { 33, 80 },
+                        { 34, 75 },
+                        { 35, 70 },
+                        { 36, 65 },
+                        { 37, 60 },
+                        { 38, 55 },
+                        { 39, 50 },
+                        { 40, 45 },
+                        { 41, 35 },
+                        { 42, 25 },
+                        { 43, 15 },
+                        { 44, 5 },
+                        { 45, 0 }
+                })
+                .BDDfy();
+        }
+
+        private void WhenICalculateMyPointsForAge()
+        {
+            Points = AgePointsCalculator.CountPointsForAgeWithSpouse(Age);
+        }
+    }
+
+    public class AgePointsCalculatorTests
+    {
+        public int Age { get; set; }
+        public int Points { get; set; }
+        public int ExpectedPoints { get; set; }
+
+        protected void ThenPointsShouldBeEqualTo()
         {
             Points.ShouldBe(ExpectedPoints);
         }
