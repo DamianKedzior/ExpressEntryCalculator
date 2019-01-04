@@ -23,7 +23,7 @@ namespace ExpressEntryCalculator.Web.Models
         {
             new SelectListItem { Value = "1", Text = "Less than secondary school." },
             new SelectListItem { Value = "2", Text = "Secondary diploma (high school graduation)."  },
-            new SelectListItem { Value = "3", Text = "One-year degree, diploma or certificate from  a university, college, trade or technical school, or other institute." },
+            new SelectListItem { Value = "3", Text = "One-year degree, diploma or certificate from a university, college, trade or technical school, or other institute." },
             new SelectListItem { Value = "4", Text = "Two-year program at a university, college, trade or technical school, or other institute." },
             new SelectListItem { Value = "5", Text = "Bachelor's degree OR a three or more year program at a university, college, trade or technical school, or other institute."  },
             new SelectListItem { Value = "6", Text = "Two or more certificates, diplomas, or degrees. One must be for a program of three or more years." },
