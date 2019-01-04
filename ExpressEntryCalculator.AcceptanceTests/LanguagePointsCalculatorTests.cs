@@ -44,6 +44,19 @@ namespace ExpressEntryCalculator.AcceptanceTests
                     { LanguagePoints.LanguageExamTypes.IELTS, 7.5, 7.5, 8, 8.5, 34, 34, 34, 34 },
                     { LanguagePoints.LanguageExamTypes.IELTS, 9, 9, 9, 9, 34, 34, 34, 34 },
 
+                    { LanguagePoints.LanguageExamTypes.TCF, 3, 3, 341, 330, 0, 0, 0, 0 },
+                    { LanguagePoints.LanguageExamTypes.TCF, 4, 4, 342, 331, 6, 6, 6, 6 },
+                    { LanguagePoints.LanguageExamTypes.TCF, 6, 6, 405, 397, 6, 6, 6, 6 },
+                    { LanguagePoints.LanguageExamTypes.TCF, 7, 7, 406, 398, 9, 9, 9, 9 },
+                    { LanguagePoints.LanguageExamTypes.TCF, 9, 9, 452, 457, 9, 9, 9, 9 },
+                    { LanguagePoints.LanguageExamTypes.TCF, 10, 10, 453, 458, 17, 17, 17, 17 },
+                    { LanguagePoints.LanguageExamTypes.TCF, 11, 11, 498, 502, 17, 17, 17, 17 },
+                    { LanguagePoints.LanguageExamTypes.TCF, 12, 12, 499, 503, 23, 23, 23, 23 },
+                    { LanguagePoints.LanguageExamTypes.TCF, 13, 13, 523, 522, 23, 23, 23, 23 },
+                    { LanguagePoints.LanguageExamTypes.TCF, 14, 14, 524, 523, 31, 31, 31, 31 },
+                    { LanguagePoints.LanguageExamTypes.TCF, 15, 15, 548, 548, 31, 31, 31, 31 },
+                    { LanguagePoints.LanguageExamTypes.TCF, 16, 16, 549, 549, 34, 34, 34, 34 },
+                    { LanguagePoints.LanguageExamTypes.TCF, 20, 20, 699, 699, 34, 34, 34, 34 },
                 })
                 .BDDfy();
         }
@@ -98,6 +111,20 @@ namespace ExpressEntryCalculator.AcceptanceTests
                     { LanguagePoints.LanguageExamTypes.IELTS, 7, 7, 7.5, 8, 29, 29, 29, 29 },
                     { LanguagePoints.LanguageExamTypes.IELTS, 7.5, 7.5, 8, 8.5, 32, 32, 32, 32 },
                     { LanguagePoints.LanguageExamTypes.IELTS, 9, 9, 9, 9, 32, 32, 32, 32 },
+
+                    { LanguagePoints.LanguageExamTypes.TCF, 3, 3, 341, 330, 0, 0, 0, 0 },
+                    { LanguagePoints.LanguageExamTypes.TCF, 4, 4, 342, 331, 6, 6, 6, 6 },
+                    { LanguagePoints.LanguageExamTypes.TCF, 6, 6, 405, 397, 6, 6, 6, 6 },
+                    { LanguagePoints.LanguageExamTypes.TCF, 7, 7, 406, 398, 8, 8, 8, 8 },
+                    { LanguagePoints.LanguageExamTypes.TCF, 9, 9, 452, 457, 8, 8, 8, 8 },
+                    { LanguagePoints.LanguageExamTypes.TCF, 10, 10, 453, 458, 16, 16, 16, 16 },
+                    { LanguagePoints.LanguageExamTypes.TCF, 11, 11, 498, 502, 16, 16, 16, 16 },
+                    { LanguagePoints.LanguageExamTypes.TCF, 12, 12, 499, 503, 22, 22, 22, 22 },
+                    { LanguagePoints.LanguageExamTypes.TCF, 13, 13, 523, 522, 22, 22, 22, 22 },
+                    { LanguagePoints.LanguageExamTypes.TCF, 14, 14, 524, 523, 29, 29, 29, 29 },
+                    { LanguagePoints.LanguageExamTypes.TCF, 15, 15, 548, 548, 29, 29, 29, 29 },
+                    { LanguagePoints.LanguageExamTypes.TCF, 16, 16, 549, 549, 32, 32, 32, 32 },
+                    { LanguagePoints.LanguageExamTypes.TCF, 20, 20, 699, 699, 32, 32, 32, 32 },
 
                 })
                 .BDDfy();

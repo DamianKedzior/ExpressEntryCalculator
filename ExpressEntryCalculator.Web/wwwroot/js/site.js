@@ -47,25 +47,23 @@ function showhideTypeOfExam(element)
     var sel = document.getElementById("TypeOfSecondExam");
     sel.options.length = 0;
     
-    if (index == 1) {
-        var opt = document.createElement("option");
-        opt.value = "3";
-        opt.text = "TEF";
-        sel.add(opt);
+    if (index === 1 || index === 2) {
+        var opt1 = document.createElement("option");
+        var opt2 = document.createElement("option");
+        opt1.value = "3";
+        opt1.text = "TEF Canada";
+        opt2.value = "4";
+        opt2.text = "TCF Canada";
+        sel.add(opt1);
+        sel.add(opt2);
     }
-    else if (index == 2) {
-        var opt = document.createElement("option");
-        opt.value = "3";
-        opt.text = "TEF";
-        sel.add(opt);
-    }
-    else if (index == 3) {
+    else if (index === 3 || index === 4) {
         var opt1 = document.createElement("option");
         var opt2 = document.createElement("option");
         opt1.value = "1";
-        opt1.text = "IELTS";
+        opt1.text = "IELTS - General Training";
         opt2.value = "2";
-        opt2.text = "CELPIP";
+        opt2.text = "CELPIP - General test";
         sel.add(opt1);
         sel.add(opt2);
     }
