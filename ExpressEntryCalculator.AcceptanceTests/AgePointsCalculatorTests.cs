@@ -88,7 +88,7 @@ namespace ExpressEntryCalculator.AcceptanceTests
         }
     }
 
-    public class AgePointsCalculatorTests
+    public abstract class AgePointsCalculatorTests
     {
         public int Age { get; set; }
         public int Points { get; set; }
