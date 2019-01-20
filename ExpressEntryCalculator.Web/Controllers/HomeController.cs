@@ -161,7 +161,8 @@ namespace ExpressEntryCalculator.Web.Controllers
             int canadianArrangedEmploymentPoints = AdditionalPointsCalculator.CalculatePointsForArrangementEmployment(model.CanadianArrangedEmployment);
             int canadianProvincialOrTerritorialNominationPoints = AdditionalPointsCalculator.GiveAdditionalPointsForProvincialOrTerritorialNomination(model.CanadianProvincialOrTerritorialNomination);
             int additionalLanguagePoints=0;
-            if (primaryAplicantFirstLangPoints.LanguageExamType == LanguagePoints.LanguageExamTypes.TEF)
+            if (primaryAplicantFirstLangPoints.LanguageExamType == LanguagePoints.LanguageExamTypes.TEF
+                || primaryAplicantFirstLangPoints.LanguageExamType == LanguagePoints.LanguageExamTypes.TCF)
             {
                 additionalLanguagePoints = AdditionalPointsCalculator.GiveAdditionalPointsForLanguages(primaryAplicantFirstLangPoints, primaryAplicantSecondLangPoints);
             }

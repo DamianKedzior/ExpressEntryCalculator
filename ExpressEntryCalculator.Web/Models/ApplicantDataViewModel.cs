@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ExpressEntryCalculator.Web.Models
 {
@@ -23,7 +21,7 @@ namespace ExpressEntryCalculator.Web.Models
         {
             new SelectListItem { Value = "1", Text = "Less than secondary school." },
             new SelectListItem { Value = "2", Text = "Secondary diploma (high school graduation)."  },
-            new SelectListItem { Value = "3", Text = "One-year degree, diploma or certificate from  a university, college, trade or technical school, or other institute." },
+            new SelectListItem { Value = "3", Text = "One-year degree, diploma or certificate from a university, college, trade or technical school, or other institute." },
             new SelectListItem { Value = "4", Text = "Two-year program at a university, college, trade or technical school, or other institute." },
             new SelectListItem { Value = "5", Text = "Bachelor's degree OR a three or more year program at a university, college, trade or technical school, or other institute."  },
             new SelectListItem { Value = "6", Text = "Two or more certificates, diplomas, or degrees. One must be for a program of three or more years." },
@@ -36,9 +34,10 @@ namespace ExpressEntryCalculator.Web.Models
         public List<SelectListItem> ExamTypes { get; } = new List<SelectListItem>
         {
             new SelectListItem { Value = "", Text = "none" },
-            new SelectListItem { Value = "1", Text = "IELTS"},
-            new SelectListItem { Value = "2", Text = "CELPIP"},
-            new SelectListItem { Value = "3", Text = "TEF"},
+            new SelectListItem { Value = "1", Text = "IELTS - General Training"},
+            new SelectListItem { Value = "2", Text = "CELPIP - General test"},
+            new SelectListItem { Value = "3", Text = "TEF Canada"},
+            new SelectListItem { Value = "4", Text = "TCF Canada"},
         };
       
         [Display(Name = "speaking points")]
@@ -114,8 +113,8 @@ namespace ExpressEntryCalculator.Web.Models
         public List<SelectListItem> EmploymentInCanada { get; } = new List<SelectListItem>
         {
             new SelectListItem { Value = "0", Text = "No" },
-            new SelectListItem { Value = "1", Text = "NOC 00" },
-            new SelectListItem { Value = "2", Text = "any other NOC 0, A or B"  },
+            new SelectListItem { Value = "1", Text = "Yes, NOC 00" },
+            new SelectListItem { Value = "2", Text = "Yes, any other NOC 0, A or B"  },
         };
 
         public ApplicantDataViewModel()

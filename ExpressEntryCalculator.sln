@@ -3,16 +3,20 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2010
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpressEntryCalculator", "(CRS) Criteria – Express Entry\ExpressEntryCalculator.csproj", "{6DE554FC-AB1E-438E-83B3-AC71A5D5FDF2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpressEntryCalculator", "(CRS) Criteria – Express Entry\ExpressEntryCalculator.csproj", "{6DE554FC-AB1E-438E-83B3-AC71A5D5FDF2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{58211751-E571-46F1-B6DF-F28B1AD1E004}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpressEntryCalculator.Core", "ExpressEntryCalculator.Core\ExpressEntryCalculator.Core.csproj", "{C0199BDA-1F29-482C-8C47-E236A43855EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpressEntryCalculator.Core", "ExpressEntryCalculator.Core\ExpressEntryCalculator.Core.csproj", "{C0199BDA-1F29-482C-8C47-E236A43855EB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpressEntryCalculator.Web", "ExpressEntryCalculator.Web\ExpressEntryCalculator.Web.csproj", "{5C9F9ABA-9FA5-428B-8E14-DFDA7E3F4DA5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{0FE855C4-07E2-406E-9538-00F1BFE678D8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpressEntryCalculator.AcceptanceTests", "ExpressEntryCalculator.AcceptanceTests\ExpressEntryCalculator.AcceptanceTests.csproj", "{28AC818A-3379-4DDD-84BC-A01E8952CCDA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,9 +36,16 @@ Global
 		{5C9F9ABA-9FA5-428B-8E14-DFDA7E3F4DA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5C9F9ABA-9FA5-428B-8E14-DFDA7E3F4DA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5C9F9ABA-9FA5-428B-8E14-DFDA7E3F4DA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28AC818A-3379-4DDD-84BC-A01E8952CCDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28AC818A-3379-4DDD-84BC-A01E8952CCDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28AC818A-3379-4DDD-84BC-A01E8952CCDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28AC818A-3379-4DDD-84BC-A01E8952CCDA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{28AC818A-3379-4DDD-84BC-A01E8952CCDA} = {0FE855C4-07E2-406E-9538-00F1BFE678D8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {886DF0A1-E3F1-4C62-8659-E596018B64CB}

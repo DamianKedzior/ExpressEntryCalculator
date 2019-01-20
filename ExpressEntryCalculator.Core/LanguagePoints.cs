@@ -1,4 +1,6 @@
-﻿namespace ExpressEntryCalculator.Core
+﻿using System;
+
+namespace ExpressEntryCalculator.Core
 {
     public class LanguagePoints
     {
@@ -22,7 +24,8 @@
         {
             IELTS = 1,
             CELPIP,
-            TEF
+            TEF,
+            TCF
         }
 
         public static LanguageExamTypes IdentifyingTheTypeOfExam(string exam)
@@ -35,6 +38,8 @@
                     return LanguageExamTypes.CELPIP;
                 case "3":
                     return LanguageExamTypes.TEF;
+                case "4":
+                    return LanguageExamTypes.TCF;
                 default:
                     return LanguageExamTypes.IELTS;
             }
@@ -114,6 +119,9 @@
                     break;
                 case LanguageExamTypes.TEF:
                     CalculateCLBPointsForTEF();
+                    break;
+                case LanguageExamTypes.TCF:
+                    CalculateCLBPointsForTCF();
                     break;
                 default:
                     break;
@@ -382,5 +390,117 @@
             }
         }
 
+        private void CalculateCLBPointsForTCF()
+        {
+            // calculate reading 
+            if (readingPoints < 342)
+            {
+                clbreadingPoints = 0;
+            }
+            else if (readingPoints >= 342 && readingPoints <= 374)
+            {
+                clbreadingPoints = 4;
+            }
+            else if (readingPoints >= 375 && readingPoints <= 405)
+            {
+                clbreadingPoints = 5;
+            }
+            else if (readingPoints >= 406 && readingPoints <= 452)
+            {
+                clbreadingPoints = 6;
+            }
+            else if (readingPoints >= 453 && readingPoints <= 498)
+            {
+                clbreadingPoints = 7;
+            }
+            else if (readingPoints >= 499 && readingPoints <= 523)
+            {
+                clbreadingPoints = 8;
+            }
+            else if (readingPoints >= 524 && readingPoints <= 548)
+            {
+                clbreadingPoints = 9;
+            }
+            else
+            {
+                clbreadingPoints = 10;
+            }
+
+            // calculate writing
+            clbwritingPoints = CalculateCLBPointsForTCF(writingPoints);
+
+            //calculate listening
+            if (listeningPoints < 331)
+            {
+                clblisteningPoints = 0;
+            }
+            else if (listeningPoints >= 331 && listeningPoints <= 368)
+            {
+                clblisteningPoints = 4;
+            }
+            else if (listeningPoints >= 369 && listeningPoints <= 397)
+            {
+                clblisteningPoints = 5;
+            }
+            else if (listeningPoints >= 398 && listeningPoints <= 457)
+            {
+                clblisteningPoints = 6;
+            }
+            else if (listeningPoints >= 458 && listeningPoints <= 502)
+            {
+                clblisteningPoints = 7;
+            }
+            else if (listeningPoints >= 503 && listeningPoints <= 522)
+            {
+                clblisteningPoints = 8;
+            }
+            else if (listeningPoints >= 523 && listeningPoints <= 548)
+            {
+                clblisteningPoints = 9;
+            }
+            else
+            {
+                clblisteningPoints = 10;
+            }
+
+            //calculate speaking
+            clbspeakingPoints = CalculateCLBPointsForTCF(speakingPoints);
+        }
+
+        private int CalculateCLBPointsForTCF(double points)
+        {
+            if (points < 4)
+            {
+                return 0;
+            }
+            else if (points >= 4 && points <= 5)
+            {
+                return 4;
+            }
+            else if (points == 6)
+            {
+                return 5;
+            }
+            else if (points >= 7 && points <= 9)
+            {
+                return 6;
+            }
+            else if (points >= 10 && points <= 11)
+            {
+                return 7;
+            }
+            else if (points >= 12 && points <= 13)
+            {
+                return 8;
+            }
+            else if (points >= 14 && points <= 15)
+            {
+                return 9;
+            }
+            else
+            {
+                return 10;
+            }
+        }
     }
 }
