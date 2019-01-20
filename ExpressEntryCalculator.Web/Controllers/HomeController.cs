@@ -1,17 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using ExpressEntryCalculator.Web.Models;
 using ExpressEntryCalculator.Core;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 
 namespace ExpressEntryCalculator.Web.Controllers
 {
     public class HomeController : Controller
     {
+        private const string APPLICANT_DATA_MODEL_KEY = "applicantDataViewModel";
+
         private readonly ExpressEntryStats _expressEntryStats;
 
         public HomeController(IOptions<ExpressEntryStats> expressEntryStatsAccessor)
@@ -21,8 +20,16 @@ namespace ExpressEntryCalculator.Web.Controllers
 
         public IActionResult Index()
         {
-            ApplicantDataViewModel model = new ApplicantDataViewModel();
-            return View(model);
+            // load serialized applicant data from TempData object
+            // TempData is null for new requests but it exists when user uses browser's back button
+            // so we can load form with applicant data
+            string applicantDataString = TempData[APPLICANT_DATA_MODEL_KEY] as string;
+            // deserialize applicant data to ApplicantDataViewModel object
+            var applicantData = applicantDataString != null 
+                ? JsonConvert.DeserializeObject<ApplicantDataViewModel>(applicantDataString) 
+                : new ApplicantDataViewModel();
+
+            return View(applicantData);
         }
 
         public IActionResult Summary(ApplicantDataViewModel model)
@@ -31,6 +38,12 @@ namespace ExpressEntryCalculator.Web.Controllers
             {
                 return View("Index", model);
             }
+
+            // save model to temp data
+            // by clicking browser's back button user expects to see form populated with data
+            // so user can quickly change one/more form params and calculate again
+            // need to serialize model because TempData can't serialize complex objects
+            TempData[APPLICANT_DATA_MODEL_KEY] = JsonConvert.SerializeObject(model);
 
             // obliczenie punktow
             int age = AgeHelper.CountAge(model.BirthDate.Value);
