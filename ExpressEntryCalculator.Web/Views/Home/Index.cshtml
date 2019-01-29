@@ -37,7 +37,7 @@
                     @foreach (var item in Model.EducationLevels)
                     {
                         <div class="radio">
-                            <label><input name="EducationLevel" type="radio" value="@item.Value" />@item.Text</label>
+                            <label><input name="EducationLevel" type="radio" value="@item.Value" @(item.Selected ? "checked" : "") />@item.Text</label>
                         </div>
                     }
                     <span asp-validation-for="EducationLevel" class="text-danger"></span>
@@ -70,7 +70,7 @@
                 </div>
             </div>
 
-            <div style="display:none" id="examPointsForm">
+            <div style="@(Model.TypeOfFirstExam.HasValue ? "" : "display:none")" id="examPointsForm">
                 <div class="form-group">
                     <label asp-for="SpeakingPoints" class="col-xs-12 col-md-6">How many points did you get for speaking?</label>
                     <div class="col-xs-12 col-md-2">
@@ -120,7 +120,7 @@
             </div>
 
 
-            <div style="display:none" id="secondLanguageForm">
+            <div style="@(Model.SecondLanguage ? "" : "display:none")" id="secondLanguageForm">
 
                 <div class="form-group">
                     <div class="col-xs-12 col-md-6">
@@ -141,7 +141,7 @@
                         </span>
                     </div>
                     <div class="col-xs-12 col-md-3">
-                        <select asp-for="TypeOfSecondExam" class="form-control"></select>
+                        <select asp-for="TypeOfSecondExam" asp-items="Model.SecondExamTypes" class="form-control"></select>
                     </div>
                 </div>
 
@@ -295,7 +295,7 @@
                 </div>
             </div>
 
-            <div style="display:none" id="spouseExistForm">
+            <div style="@(Model.SpouseExist ? "" : "display:none")" id="spouseExistForm">
                 <div class="form-group">
                     <div class="col-xs-12 col-md-6">
                         <label>Please select the level of education of spouse or common-law partner. </label>
@@ -308,10 +308,10 @@
                         </span>
                     </div>
                     <div class="col-xs-12 col-md-6">
-                        @foreach (var item in Model.EducationLevels)
+                        @foreach (var item in Model.SpouseEducationLevels)
                         {
                             <div class="radio">
-                                <label><input name="SpouseEducationLevel" type="radio" value="@item.Value" /> @item.Text</label>
+                                <label><input name="SpouseEducationLevel" type="radio" value="@item.Value" @(item.Selected ? "checked" : "") /> @item.Text</label>
                             </div>
                         }
                         <span asp-validation-for="SpouseEducationLevel" class="text-danger"></span>
@@ -342,7 +342,7 @@
                 </div>
 
 
-                <div style="display:none" id="spouseExamPointsForm">
+                <div style="@(Model.TypeOfSpouseExam.HasValue ? "" : "display:none")" id="spouseExamPointsForm">
                     <div class="form-group">
                         <label asp-for="SpouseSpeakingPoints" class="col-xs-12 col-md-6"> How many points did your spouse or common-law partner get for speaking?</label>
                         <div class="col-xs-12 col-md-2">

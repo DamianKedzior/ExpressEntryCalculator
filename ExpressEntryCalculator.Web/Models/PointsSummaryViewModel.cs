@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace ExpressEntryCalculator.Web.Models
+﻿namespace ExpressEntryCalculator.Web.Models
 {
     public class PointsSummaryViewModel
     {
