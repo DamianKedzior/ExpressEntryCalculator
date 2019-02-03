@@ -31,7 +31,7 @@ namespace ExpressEntryCalculator.Web
             services.Configure<ExpressEntryStats>(Configuration.GetSection("ExpressEntryStats"));
 
             services.AddMvc()
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                 .AddSessionStateTempDataProvider();
 
             services.AddSession();
