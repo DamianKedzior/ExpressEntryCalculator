@@ -4,7 +4,7 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <ApplicationInsightsResourceId>/subscriptions/284b5922-58fd-4a4c-ab88-cfbc677e6e7b/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/ExpressEntryCalculator.Web</ApplicationInsightsResourceId>
     <ApplicationInsightsAnnotationResourceId>/subscriptions/284b5922-58fd-4a4c-ab88-cfbc677e6e7b/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/ExpressEntryCalculator.Web</ApplicationInsightsAnnotationResourceId>
-    <Version>2.3.2</Version>
+    <Version>2.3.3</Version>
   </PropertyGroup>
 
   <ItemGroup>
