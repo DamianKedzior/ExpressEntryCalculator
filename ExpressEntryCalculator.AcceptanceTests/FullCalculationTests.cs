@@ -123,6 +123,93 @@ namespace ExpressEntryCalculator.AcceptanceTests
                             TotalPointsForExpressEntry = 400,
                         }
                     },
+                    {
+                        ApplicantData = new ApplicantDataViewModel
+                        {
+                            BirthDate = new DateTime(1987, 8, 1),
+                            SpouseExist = false,
+                            EducationLevel = 7, // Master's
+                            TypeOfFirstExam = 1, // IELTS
+                            SpeakingPoints = 7.0,
+                            ListeningPoints = 8.0,
+                            ReadingPoints = 7.5,
+                            WritingPoints = 6.5,
+                            CanadianExperience = 0,
+                            ExperienceOutsideCanada = 3,
+                            CanadianProvincialOrTerritorialNomination = true,
+                            CanadianFamilyMember = true
+                        },
+                        ExpectedPointsSummary = new PointsSummaryViewModel
+                        {
+                            PointsForAge = 99,
+                            PointsForEducation = 135,
+                            PointsForFirstLanguage = 116,
+                            PointsInSectionA = 350,
+                            PointsInSectionB = 0,
+                            PointsInSectionC = 50,
+                            PointsInSectionD = 615,
+                            TotalPointsForExpressEntry = 1015,
+                        }
+                    },
+                    {
+                        ApplicantData = new ApplicantDataViewModel
+                        {
+                            BirthDate = new DateTime(1987, 8, 1),
+                            SpouseExist = false,
+                            EducationLevel = 7, // Master's
+                            TypeOfFirstExam = 1, // IELTS
+                            SpeakingPoints = 7.0,
+                            ListeningPoints = 8.0,
+                            ReadingPoints = 7.5,
+                            WritingPoints = 6.5,
+                            CanadianExperience = 0,
+                            ExperienceOutsideCanada = 3,
+                            CanadianProvincialOrTerritorialNomination = true,
+                            CanadianFamilyMember = true,
+                            CanadianArrangedEmployment = 1
+                        },
+                        ExpectedPointsSummary = new PointsSummaryViewModel
+                        {
+                            PointsForAge = 99,
+                            PointsForEducation = 135,
+                            PointsForFirstLanguage = 116,
+                            PointsInSectionA = 350,
+                            PointsInSectionB = 0,
+                            PointsInSectionC = 50,
+                            PointsInSectionD = 815,
+                            TotalPointsForExpressEntry = 1215,
+                        }
+                    },
+                    {
+                        ApplicantData = new ApplicantDataViewModel
+                        {
+                            BirthDate = new DateTime(1987, 8, 1),
+                            SpouseExist = false,
+                            EducationLevel = 7, // Master's
+                            TypeOfFirstExam = 1, // IELTS
+                            SpeakingPoints = 7.0,
+                            ListeningPoints = 8.0,
+                            ReadingPoints = 7.5,
+                            WritingPoints = 6.5,
+                            CanadianEducation = 3,
+                            CanadianExperience = 0,
+                            ExperienceOutsideCanada = 3,
+                            CanadianProvincialOrTerritorialNomination = true,
+                            CanadianFamilyMember = true,
+                            CanadianArrangedEmployment = 1
+                        },
+                        ExpectedPointsSummary = new PointsSummaryViewModel
+                        {
+                            PointsForAge = 99,
+                            PointsForEducation = 135,
+                            PointsForFirstLanguage = 116,
+                            PointsInSectionA = 350,
+                            PointsInSectionB = 0,
+                            PointsInSectionC = 50,
+                            PointsInSectionD = 845,
+                            TotalPointsForExpressEntry = 1245,
+                        }
+                    }
                 })
                 .BDDfy();
         }
