@@ -18,6 +18,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{0FE855C4
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpressEntryCalculator.AcceptanceTests", "ExpressEntryCalculator.AcceptanceTests\ExpressEntryCalculator.AcceptanceTests.csproj", "{28AC818A-3379-4DDD-84BC-A01E8952CCDA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpressEntryCalculator.Api", "ExpressEntryCalculator.Api\ExpressEntryCalculator.Api.csproj", "{FFD41CF0-22AF-4165-A3B2-471400B055E7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,6 +42,10 @@ Global
 		{28AC818A-3379-4DDD-84BC-A01E8952CCDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28AC818A-3379-4DDD-84BC-A01E8952CCDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28AC818A-3379-4DDD-84BC-A01E8952CCDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFD41CF0-22AF-4165-A3B2-471400B055E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFD41CF0-22AF-4165-A3B2-471400B055E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFD41CF0-22AF-4165-A3B2-471400B055E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFD41CF0-22AF-4165-A3B2-471400B055E7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
