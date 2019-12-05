@@ -11,7 +11,7 @@
           Canada Express Entry, canadian Provincial Nominee Program, Provincial Nominee Program, Skilled worker in Canada, Express Entry profile, permanent residence in Canada, Canadian permanent residence, Comprehensive Ranking System" />
 
     <!--<environment include="Development">-->
-    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/lib/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
     <link rel="stylesheet" href="/css/site.css" />
     <link rel="stylesheet" href="/lib/fontello/css/github.css" type="text/css" />
@@ -823,13 +823,13 @@
 
     <!--<environment include="Development">-->
     <script src="/lib/modernizr/modernizr-custom.js"></script>
-    <script src="/lib/jquery/dist/jquery.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"></script>
     <script src="/lib/moment/moment-with-locales.js"></script>
-    <script src="/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"></script>
     <script src="/lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
-    <script src="/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
     <script src="/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
-    <script src="/js/site.js" asp-append-version="true"></script>
+    <script src="/js/site.js"></script>
     <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <!--</environment>-->
@@ -857,7 +857,7 @@
     </environment>-->
     <!--@RenderSection("Scripts", required: false)-->
     <script type="text/javascript">
-        const apiBaseUrl = 'http://localhost:7071/api'; // TODO:DK shouldn't be hardcoded
+        const apiBaseUrl = 'https://expressentrycalculatorapi.azurewebsites.net/api'; // TODO:DK shouldn't be hardcoded
         var lastStats;
 
         $(function () {
@@ -868,8 +868,6 @@
             axios.get(`${apiBaseUrl}/stats`)
                 .then(resp => {
                     lastStats = resp.data;
-
-                    console.log(lastStats);
 
                     $('#lowestScore').text(lastStats.lowestScore);
                     $('#sadLowestScore').text(lastStats.lowestScore);
@@ -890,8 +888,6 @@
             axios.post(`${apiBaseUrl}/calculate`, data)
                 .then(resp => {
                     var pointsSummary = resp.data;
-
-                    console.log(pointsSummary);
 
                     $.each(pointsSummary, function (key, value) {
                         $('#' + key).text(value);
