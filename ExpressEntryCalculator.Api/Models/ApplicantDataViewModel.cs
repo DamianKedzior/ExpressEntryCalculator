@@ -7,7 +7,6 @@ namespace ExpressEntryCalculator.Api.Models
     public class ApplicantDataViewModel
     {
         [Required]
-        [DataType(DataType.Date)] // TODO:DK might not be needed
         public DateTime? BirthDate { get; set; }
         public bool SpouseExist { get; set; }
 

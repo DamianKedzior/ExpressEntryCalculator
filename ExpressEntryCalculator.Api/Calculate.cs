@@ -22,16 +22,11 @@ namespace ExpressEntryCalculator.Api
 
             var model = JsonConvert.DeserializeObject<ApplicantDataViewModel>(requestBody);
 
+            // TODO:DK validation to return 400?
             //if (!ModelState.IsValid)
             //{
             //    return View("Index", model);
             //}
-
-            //// save model to temp data
-            //// by clicking browser's back button user expects to see form populated with data
-            //// so user can quickly change one/more form params and calculate again
-            //// need to serialize model because TempData can't serialize complex objects
-            //TempData[APPLICANT_DATA_MODEL_KEY] = JsonConvert.SerializeObject(model);
 
             int age = AgeHelper.CountAge(model.BirthDate.Value);
             int pointForAge;
@@ -186,13 +181,8 @@ namespace ExpressEntryCalculator.Api
             points.PointsInSectionC = sectionC;
             points.PointsInSectionD = sectionD;
             points.TotalPointsForExpressEntry = totalPointsForExpressEntry;
-            //points.LastExpressEntryStats = _expressEntryStats; // TODO:DK
 
-            return (ActionResult)new OkObjectResult(points);
-
-            //return name != null
-            //    ? (ActionResult)new OkObjectResult($"Hello, {name}")
-            //    : new BadRequestObjectResult("Please pass a name on the query string or in the request body");
+            return new OkObjectResult(points);
         }
     }
 }
