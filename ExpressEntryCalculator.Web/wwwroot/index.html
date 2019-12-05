@@ -558,7 +558,7 @@
                         </div>
                     </div>
                     <div class="col-xs-12">
-                        <button type="submit" class="btn btn-lg btn-primary center-block" onclick="calculate()">Calculate</button>
+                        <button type="button" class="btn btn-lg btn-primary center-block" onclick="calculate();">Calculate</button>
                     </div>
                 </form>
             </div>
@@ -874,15 +874,20 @@
                     $('#lowestScore').text(lastStats.lowestScore);
                     $('#sadLowestScore').text(lastStats.lowestScore);
                     $('#goodLowestScore').text(lastStats.lowestScore);
-                    $('#roundDate').text(lastStats.roundDate);
+                    $('#roundDate').text(lastStats.roundDate.slice(0, 10));
                 });
         }
 
         function calculate() {
             var $form = $("#frmCalculation");
+            var validator = $form.validate();
+            if (!validator.form()) {
+                return;
+            }
+
             var data = getFormData($form);
 
-            return axios.post(`${apiBaseUrl}/calculate`, data)
+            axios.post(`${apiBaseUrl}/calculate`, data)
                 .then(resp => {
                     var pointsSummary = resp.data;
 
