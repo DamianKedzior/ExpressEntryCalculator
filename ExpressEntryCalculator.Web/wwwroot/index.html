@@ -72,8 +72,8 @@
             <div class="col-xs-12">
 
                 <div class="alert alert-info" role="alert">
-                    Last round of invitations to apply for permanent residence under the Express Entry was on <strong style="white-space: nowrap">2018-05-23</strong>.
-                    The lowest score to be invited was <strong>440</strong>.
+                    Last round of invitations to apply for permanent residence under the Express Entry was on <strong id="roundDate" style="white-space: nowrap">yyyy-MM-dd</strong>.
+                    The lowest score to be invited was <strong id="lowestScore">---</strong>.
                     <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/become-candidate/rounds-invitations.html" target="_blank" style="text-decoration:underline">Click here for more information</a>.
                 </div>
             </div>
@@ -82,7 +82,7 @@
         <div class="row" id="calculator">
             <div class="col-md-12 col-xs-12">
                 <h1>Express Entry Calculator</h1>
-                <div class="form-horizontal">
+                <form id="frmCalculation" class="form-horizontal">
                     <div class="form-group">
                         <label class="col-xs-12 col-md-6" for="BirthDate">Please provide your date of birth.</label>
                         <div class="col-xs-12 col-md-3">
@@ -558,11 +558,70 @@
                         </div>
                     </div>
                     <div class="col-xs-12">
-                        <button type="submit" class="btn btn-lg btn-primary center-block">Calculate</button>
+                        <button type="button" class="btn btn-lg btn-primary center-block" onclick="calculate()">Calculate</button>
                     </div>
-                </div>
+                </form>
             </div>
 
+        </div>
+
+        <div id="pointsResults" class="row" style="display:none">
+            <div class="col-xs-12">
+
+                <div class="panel panel-default">
+                    <div class="panel-heading text-center"><strong style="text-transform:uppercase; font-size:18px;">Summary points for Express Entry</strong></div>
+                    <div class="panel-body">
+                        <ol id="summary">
+                            <li>
+                                <strong>Points earned by you in section A. Core / human capital factors: <span id="pointsInSectionA">@Model.PointsInSectionA</span></strong>
+                                <div class="bs-callout bs-callout-default">
+                                    <ul>
+                                        <li>Points for age: <strong id="pointsForAge">@Model.PointsForAge</strong></li>
+                                        <li>Points for education: <strong id="pointsForEducation">@Model.PointsForEducation</strong></li>
+                                        <li>Points for 1st language: <strong id="pointsForFirstLanguage">@Model.PointsForFirstLanguage</strong></li>
+                                        <li>Points for second language: <strong id="pointsForSecondLanguage">@Model.PointsForSecondLanguage</strong></li>
+                                        <li>Points for experience in the Canadian labour market: <strong id="pointsForCanadianExperience">@Model.PointsForCanadianExperience</strong> </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <strong>Points earned by spouse or common-law partner in section B. Spouse or common-law partner factors: <span id="pointsInSectionB">@Model.PointsInSectionB</span></strong>
+                                <div class="bs-callout bs-callout-default">
+                                    <ul>
+                                        <li>Points for education of spouse or common-law partner: <strong id="pointsForSpouseEducation">@Model.PointsForSpouseEducation</strong></li>
+                                        <li>Points for language of spouse or common-law partner: <strong id="pointsForSpouseLanguageExam">@Model.PointsForSpouseLanguageExam</strong></li>
+                                        <li>Points for experience of spouse or common-law partner: <strong id="pointsForSpouseCanadianExperience">@Model.PointsForSpouseCanadianExperience</strong></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li> <strong>Points earned by you in section C. Skill transferability factors: <span id="pointsInSectionC">@Model.PointsInSectionC</span></strong></li>
+                            <li> <strong>Points earned by you in section D. Additional points: <span id="pointsInSectionD">@Model.PointsInSectionD</span></strong></li>
+                        </ol>
+                    </div>
+                    <div class="panel-footer text-center">
+                        <span style="text-transform:uppercase">Points earned for Express Entry:</span> <strong style="font-size:24pt" id="totalPointsForExpressEntry">@Model.TotalPointsForExpressEntry</strong>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div id="sadMessage" class="row" style="display:none">
+            <div class="col-xs-12">
+                <div class="alert alert-warning" role="alert">
+                    Your overall score (<span id="sadTotalPointsForExpressEntry">@Model.TotalPointsForExpressEntry</span>) is lower than the lowest score (<span id="sadLowestScore">@Model.LastExpressEntryStats.LowestScore</span>) from last round of invitations.
+                </div>
+            </div>
+        </div>
+
+        <div id="goodMessage" class="row" style="display:none">
+            <div class="col-xs-12">
+                <div class="alert alert-success" role="alert">
+                    <strong>Congratulations!</strong> Your overall score (<span id="goodTotalPointsForExpressEntry">@Model.TotalPointsForExpressEntry</span>) is higher or equal to the lowest score (<span id="goodLowestScore">@Model.LastExpressEntryStats.LowestScore</span>) from last round of invitations.
+                    You have big chances to be invited to apply for permanent residence in Canada in the next round of invitations. Create your <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/application/account.html" target="_blank">Express Entry profile</a> right away.
+                </div>
+            </div>
         </div>
 
         <div class="row" id="disclaimer">
@@ -772,6 +831,7 @@
     <script src="/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
     <script src="/js/site.js" asp-append-version="true"></script>
     <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <!--</environment>-->
     <!--<environment exclude="Development">
         <script src="/lib/modernizr/modernizr-custom.js"></script>
@@ -796,6 +856,72 @@
         <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
     </environment>-->
     <!--@RenderSection("Scripts", required: false)-->
+    <script type="text/javascript">
+        const apiBaseUrl = 'http://localhost:7071/api'; // TODO:DK shouldn't be hardcoded
+        var lastStats;
+
+        $(function () {
+            getLastStats();
+        });
+
+        function getLastStats() {
+            axios.get(`${apiBaseUrl}/stats`)
+                .then(resp => {
+                    lastStats = resp.data;
+
+                    console.log(lastStats);
+
+                    $('#lowestScore').text(lastStats.lowestScore);
+                    $('#sadLowestScore').text(lastStats.lowestScore);
+                    $('#goodLowestScore').text(lastStats.lowestScore);
+                    $('#roundDate').text(lastStats.roundDate);
+                });
+        }
+
+        function calculate() {
+            var $form = $("#frmCalculation");
+            var data = getFormData($form);
+
+            return axios.post(`${apiBaseUrl}/calculate`, data)
+                .then(resp => {
+                    var pointsSummary = resp.data;
+
+                    console.log(pointsSummary);
+
+                    $.each(pointsSummary, function (key, value) {
+                        $('#' + key).text(value);
+                    });
+
+                    setPanels(pointsSummary);
+                });
+        }
+
+        function getFormData($form) {
+            var unindexed_array = $form.serializeArray();
+            var indexed_array = {};
+
+            $.map(unindexed_array, function (n, i) {
+                indexed_array[n['name']] = n['value'];
+            });
+
+            return indexed_array;
+        }
+
+        function setPanels(pointsSummary) {
+            $('#pointsResults').show();
+
+            $('#sadTotalPointsForExpressEntry').text(pointsSummary.totalPointsForExpressEntry);
+            $('#goodTotalPointsForExpressEntry').text(pointsSummary.totalPointsForExpressEntry);
+
+            if (pointsSummary.totalPointsForExpressEntry < lastStats.lowestScore) {
+                $('#sadMessage').show();
+                $('#goodMessage').hide();
+            } else {
+                $('#sadMessage').hide();
+                $('#goodMessage').show();
+            }
+        }
+    </script>
 </body>
 
 </html>
