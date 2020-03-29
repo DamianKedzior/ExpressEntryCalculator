@@ -8,15 +8,16 @@ using Microsoft.Azure.WebJobs.Host;
 using Newtonsoft.Json;
 using ExpressEntryCalculator.Core;
 using ExpressEntryCalculator.Api.Models;
+using Microsoft.Extensions.Logging;
 
 namespace ExpressEntryCalculator.Api
 {
     public static class Calculate
     {
         [FunctionName("calculate")]
-        public static IActionResult Run([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)]HttpRequest req, TraceWriter log)
+        public static IActionResult Run([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)]HttpRequest req, ILogger log)
         {
-            log.Info("C# HTTP trigger function processed a request.");
+            log.LogInformation("C# HTTP trigger function processed a request.");
 
             string requestBody = new StreamReader(req.Body).ReadToEnd();
 
