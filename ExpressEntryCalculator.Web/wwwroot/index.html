@@ -10,7 +10,6 @@
     <meta name="keywords" content="Immigration to Canada, Canada immigration system, Express Entry points, Express Entry calculator, Express Entry,
           Canada Express Entry, canadian Provincial Nominee Program, Provincial Nominee Program, Skilled worker in Canada, Express Entry profile, permanent residence in Canada, Canadian permanent residence, Comprehensive Ranking System" />
 
-    <!--<environment include="Development">-->
     <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/lib/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
     <link rel="stylesheet" href="/css/site.css" />
@@ -25,17 +24,6 @@
 
         gtag('config', 'UA-112807661-1');
     </script>
-    <!--</environment>-->
-    <!--<environment exclude="Development">
-
-        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
-              asp-fallback-href="/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="/lib/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
-        <link rel="stylesheet" href="/css/site.min.css" asp-append-version="true" />
-        <link rel="stylesheet" href="/lib/fontello/css/github.min.css" type="text/css" />
-        <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
-    </environment>-->
 </head>
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -822,7 +810,6 @@
         </footer>
     </div>
 
-    <!--<environment include="Development">-->
     <script src="/lib/modernizr/modernizr-custom.js"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"></script>
     <script src="/lib/moment/moment-with-locales.js"></script>
@@ -833,32 +820,8 @@
     <script src="/js/site.js"></script>
     <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <!--</environment>-->
-    <!--<environment exclude="Development">
-        <script src="/lib/modernizr/modernizr-custom.js"></script>
-        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
-                asp-fallback-src="/lib/jquery/dist/jquery.min.js"
-                asp-fallback-test="window.jQuery"
-                crossorigin="anonymous"
-                integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
-        </script>
-        <script src="/lib/moment/moment-with-locales.min.js"></script>
-        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
-                asp-fallback-src="/lib/bootstrap/dist/js/bootstrap.min.js"
-                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
-                crossorigin="anonymous"
-                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
-        </script>
-        <script src="/lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
-        <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"
-                asp-fallback-src="/lib/jquery-validation/dist/jquery.validate.js"></script>
-        <script src="/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
-        <script src="/js/site.min.js" asp-append-version="true"></script>
-        <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
-    </environment>-->
-    <!--@RenderSection("Scripts", required: false)-->
     <script type="text/javascript">
-        const apiBaseUrl = 'https://expressentrycalculatorapi.azurewebsites.net/api'; // TODO:DK shouldn't be hardcoded
+        const apiBaseUrl = 'https://expressentrycalculatorapi.azurewebsites.net/api'; // 'http://localhost:7071/api'; // TODO:DK shouldn't be hardcoded
         var lastStats;
 
         $(function () {
