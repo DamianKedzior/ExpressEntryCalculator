@@ -1,0 +1,929 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Express Entry Calculator, Canada Immigration</title>
+    <meta name="description" content="Express Entry Calculator calculates points for Canadian immigration system called
+          Express Entry based on Comprehensive Ranking System (CRS) Criteria." />
+    <meta name="keywords" content="Immigration to Canada, Canada immigration system, Express Entry points, Express Entry calculator, Express Entry,
+          Canada Express Entry, canadian Provincial Nominee Program, Provincial Nominee Program, Skilled worker in Canada, Express Entry profile, permanent residence in Canada, Canadian permanent residence, Comprehensive Ranking System" />
+
+    <!--<environment include="Development">-->
+    <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/lib/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
+    <link rel="stylesheet" href="/css/site.css" />
+    <link rel="stylesheet" href="/lib/fontello/css/github.css" type="text/css" />
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112807661-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-112807661-1');
+    </script>
+    <!--</environment>-->
+    <!--<environment exclude="Development">
+
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+              asp-fallback-href="/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="/lib/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
+        <link rel="stylesheet" href="/css/site.min.css" asp-append-version="true" />
+        <link rel="stylesheet" href="/lib/fontello/css/github.min.css" type="text/css" />
+        <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    </environment>-->
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="/" class="navbar-brand"><img src="/images/Flag_of_Canada.svg" alt="Canadian Flag" style="width:50px; float:left; margin-right:10px" />ExpressEntryCalculator</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="#calculator">Calculator</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Express Entry Calculator</h1>
+            <p>
+                This tool will help you calculate points for <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/become-candidate/criteria-comprehensive-ranking-system/grid.html" target="_blank">Comprehensive Ranking System (CRS)</a>.
+                Based on your score you are ranked in Canadian immigration system called Express Entry.
+            </p>
+        </div>
+    </div>
+
+    <div class="container body-content">
+
+        <div class="row">
+            <div class="col-xs-12">
+
+                <div class="alert alert-info" role="alert">
+                    Last round of invitations to apply for permanent residence under the Express Entry was on <strong id="roundDate" style="white-space: nowrap">yyyy-MM-dd</strong>.
+                    The lowest score to be invited was <strong id="lowestScore">---</strong>.
+                    <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/become-candidate/rounds-invitations.html" target="_blank" style="text-decoration:underline">Click here for more information</a>.
+                </div>
+            </div>
+        </div>
+
+        <div class="row" id="calculator">
+            <div class="col-md-12 col-xs-12">
+                <h1>Express Entry Calculator</h1>
+                <form id="frmCalculation" class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-xs-12 col-md-6" for="BirthDate">Please provide your date of birth.</label>
+                        <div class="col-xs-12 col-md-3">
+                            <input class="form-control" type="date" data-val="true" data-val-required="The birth date field is required." id="BirthDate" name="BirthDate" value="" />
+                            <span class="text-danger field-validation-valid" data-valmsg-for="BirthDate" data-valmsg-replace="true"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-12 col-md-6">
+                            <label>
+                                Please select the level of your education.
+                            </label>
+                            <span class="help-block">(Choose one of the eight options) </span>
+                            <span class="help-block">
+                                <strong>Warning:</strong>
+                                If you earned degree, diploma or certificate outside Canada, you will need to get an Educational Credential Assessments
+                                (ECA) for your degree, diploma or certificate from designated organizations (ECA report must not be more than five years old.).
+                                <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/become-candidate/eligibility/education-assessed.html" target="_blank">Read more</a>
+                            </span>
+                        </div>
+
+                        <div class="col-xs-12 col-md-6">
+                            <div class="radio">
+                                <label><input name="EducationLevel" type="radio" value="1" />Less than secondary school.</label>
+                            </div>
+                            <div class="radio">
+                                <label><input name="EducationLevel" type="radio" value="2" />Secondary diploma (high school graduation).</label>
+                            </div>
+                            <div class="radio">
+                                <label><input name="EducationLevel" type="radio" value="3" />One-year degree, diploma or certificate from a university, college, trade or technical school, or other institute.</label>
+                            </div>
+                            <div class="radio">
+                                <label><input name="EducationLevel" type="radio" value="4" />Two-year program at a university, college, trade or technical school, or other institute.</label>
+                            </div>
+                            <div class="radio">
+                                <label><input name="EducationLevel" type="radio" value="5" />Bachelor&#x27;s degree OR a three or more year program at a university, college, trade or technical school, or other institute.</label>
+                            </div>
+                            <div class="radio">
+                                <label><input name="EducationLevel" type="radio" value="6" />Two or more certificates, diplomas, or degrees. One must be for a program of three or more years.</label>
+                            </div>
+                            <div class="radio">
+                                <label><input name="EducationLevel" type="radio" value="7" />Master&#x27;s degree, OR professional degree needed to practice in a licensed profession (For &#x201C;professional degree,&#x201D; the degree program must have been in: medicine, veterinary medicine, dentistry, optometry, law, chiropractic medicine, or pharmacy.).</label>
+                            </div>
+                            <div class="radio">
+                                <label><input name="EducationLevel" type="radio" value="8" />Doctoral level university degree (Ph.D.).</label>
+                            </div>
+                            <span class="text-danger field-validation-valid" data-valmsg-for="EducationLevel" data-valmsg-replace="true"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-12 col-md-6">
+                            <label for="TypeOfFirstExam">
+                                What type of exam did you pass?
+                            </label>
+                            <span class="help-block">
+                                <strong>Warning:</strong>
+                                You must take an approved language test to be eligible for Express Entry!
+                            </span>
+                            <span class="help-block">
+                                Read more about approved language test:
+                                <a href="https://www.ielts.org/" target="_blank">IELTS</a>,
+                                <a href="https://www.celpip.ca/" target="_blank">CELPIP</a>,
+                                <a href="https://www.lefrancaisdesaffaires.fr/tests-diplomes/test-evaluation-francais-tef/tef-canada/" target="_blank">TEF</a>,
+                                <a href="http://www.ciep.fr/tcf-canada" target="_blank">TCF</a>.
+                            </span>
+                            <span class="help-block">
+                                Your test results must be less than two years old. <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/become-candidate/eligibility/language-requirements/language-testing.html" role="button" target="_blank">Read more</a>
+                            </span>
+
+                        </div>
+                        <div class="col-xs-12 col-md-3">
+                            <select class="form-control" onchange="showhideTypeOfExam(this)" id="TypeOfFirstExam" name="TypeOfFirstExam">
+                                <option value="">none</option>
+                                <option value="1">IELTS - General Training</option>
+                                <option value="2">CELPIP - General test</option>
+                                <option value="3">TEF Canada</option>
+                                <option value="4">TCF Canada</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div style="display:none" id="examPointsForm">
+                        <div class="form-group">
+                            <label class="col-xs-12 col-md-6" for="SpeakingPoints">How many points did you get for speaking?</label>
+                            <div class="col-xs-12 col-md-2">
+                                <input class="form-control" type="text" data-val="true" data-val-number="The field speaking points must be a number." data-val-required="The speaking points field is required." id="SpeakingPoints" name="SpeakingPoints" value="0" />
+                            </div>
+                            <div class="col-xs-12 col-md-4">
+                                <span class="text-danger field-validation-valid" data-valmsg-for="SpeakingPoints" data-valmsg-replace="true"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-xs-12 col-md-6" for="WritingPoints">How many points did you get for writing?</label>
+                            <div class="col-xs-12 col-md-2">
+                                <input class="form-control" type="text" data-val="true" data-val-number="The field writing points must be a number." data-val-required="The writing points field is required." id="WritingPoints" name="WritingPoints" value="0" />
+                            </div>
+                            <div class="col-xs-12 col-md-4">
+                                <span class="text-danger field-validation-valid" data-valmsg-for="WritingPoints" data-valmsg-replace="true"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-xs-12 col-md-6" for="ReadingPoints">How many points did you get for reading?</label>
+                            <div class="col-xs-12 col-md-2">
+                                <input class="form-control" type="text" data-val="true" data-val-number="The field reading points must be a number." data-val-required="The reading points field is required." id="ReadingPoints" name="ReadingPoints" value="0" />
+                            </div>
+                            <div class="col-xs-12 col-md-4">
+                                <span class="text-danger field-validation-valid" data-valmsg-for="ReadingPoints" data-valmsg-replace="true"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-xs-12 col-md-6" for="ListeningPoints">How many points did you get for listening?</label>
+                            <div class="col-xs-12 col-md-2">
+                                <input class="form-control" type="text" data-val="true" data-val-number="The field listening points must be a number." data-val-required="The listening points field is required." id="ListeningPoints" name="ListeningPoints" value="0" />
+                            </div>
+                            <div class="col-xs-12 col-md-4">
+                                <span class="text-danger field-validation-valid" data-valmsg-for="ListeningPoints" data-valmsg-replace="true"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-xs-12 col-md-6" for="SecondLanguage">Did you pass second language exam? </label>
+                            <div class="col-xs-12 col-md-2">
+                                <input onchange="showHideSecondLanguage(this)" data-toggle="toggle" data-on="Yes" data-off="No" type="checkbox" data-val="true" data-val-required="The SecondLanguage field is required." id="SecondLanguage" name="SecondLanguage" value="true" />
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div style="display:none" id="secondLanguageForm">
+
+                        <div class="form-group">
+                            <div class="col-xs-12 col-md-6">
+                                <label for="TypeOfSecondExam">What type of second exam did you pass?</label>
+                                <span class="help-block">
+                                    <strong>Warning:</strong>
+                                    You must take an approved language test to be eligible for Express Entry!
+                                </span>
+                                <span class="help-block">
+                                    Read more about approved language test:
+                                    <a href="https://www.ielts.org/" target="_blank">IELTS</a>,
+                                    <a href="https://www.celpip.ca/" target="_blank">CELPIP</a>,
+                                    <a href="https://www.lefrancaisdesaffaires.fr/tests-diplomes/test-evaluation-francais-tef/tef-canada/" target="_blank">TEF</a>,
+                                    <a href="http://www.ciep.fr/tcf-canada" target="_blank">TCF</a>.
+                                </span>
+                                <span class="help-block">
+                                    Your test results must be less than two years old. <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/become-candidate/eligibility/language-requirements/language-testing.html" role="button" target="_blank">Read more</a>
+                                </span>
+                            </div>
+                            <div class="col-xs-12 col-md-3">
+                                <select class="form-control" data-val="true" data-val-required="The TypeOfSecondExam field is required." id="TypeOfSecondExam" name="TypeOfSecondExam"></select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-xs-12 col-md-6" for="SpeakingPointsSecondLanguage">How many points did you get for speaking in second exam?</label>
+                            <div class="col-xs-12 col-md-2">
+                                <input class="form-control" type="text" data-val="true" data-val-number="The field speaking points must be a number." data-val-required="The speaking points field is required." id="SpeakingPointsSecondLanguage" name="SpeakingPointsSecondLanguage" value="0" />
+                            </div>
+                            <div class="col-xs-12 col-md-4">
+                                <span class="text-danger field-validation-valid" data-valmsg-for="SpeakingPointsSecondLanguage" data-valmsg-replace="true"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-xs-12 col-md-6" for="WritingPointsSecondLanguage">How many points did you get for writing in second exam?</label>
+                            <div class="col-xs-12 col-md-2">
+                                <input class="form-control" type="text" data-val="true" data-val-number="The field writing points must be a number." data-val-required="The writing points field is required." id="WritingPointsSecondLanguage" name="WritingPointsSecondLanguage" value="0" />
+                            </div>
+                            <div class="col-xs-12 col-md-4">
+                                <span class="text-danger field-validation-valid" data-valmsg-for="WritingPointsSecondLanguage" data-valmsg-replace="true"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-xs-12 col-md-6" for="ReadingPointsSecondLanguage">How many points did you get for reading in second exam?</label>
+                            <div class="col-xs-12 col-md-2">
+                                <input class="form-control" type="text" data-val="true" data-val-number="The field reading points must be a number." data-val-required="The reading points field is required." id="ReadingPointsSecondLanguage" name="ReadingPointsSecondLanguage" value="0" />
+                            </div>
+                            <div class="col-xs-12 col-md-4">
+                                <span class="text-danger field-validation-valid" data-valmsg-for="ReadingPointsSecondLanguage" data-valmsg-replace="true"></span>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-xs-12 col-md-6" for="ListeningPointsSecondLanguage">How many points did you get for listening in second exam?</label>
+                            <div class="col-xs-12 col-md-2">
+                                <input class="form-control" type="text" data-val="true" data-val-number="The field listening points must be a number." data-val-required="The listening points field is required." id="ListeningPointsSecondLanguage" name="ListeningPointsSecondLanguage" value="0" />
+                            </div>
+                            <div class="col-xs-12 col-md-4">
+                                <span class="text-danger field-validation-valid" data-valmsg-for="ListeningPointsSecondLanguage" data-valmsg-replace="true"></span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-xs-12 col-md-6">
+                            <label for="CanadianExperience">How many years of skilled work experience do you have in the Canadian labour market in the last ten years?</label>
+                            <span class="help-block">
+                                <strong>Warning:</strong>
+                                To be eligible for Express Entry, your work experience (your occupation) must be classified in the National Occupational Classification
+                                <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/become-candidate/eligibility/find-national-occupation-code.html" target=" _blank">(NOC)</a>.
+                            </span>
+                            <span class="help-block">
+                                Your work experience must also be paid work and classified as Skill Type 0, or Skill Levels A or B.
+                                <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/become-candidate/eligibility/federal-skilled-workers.html" target="_blank">Read more</a>
+                            </span>
+                            <span class="help-block">
+                                Your work experience is calculated after having completed the full year worked. If you have worked less than a year, choose "none or less than a year". There is no rounding up.
+                                1 year full time (1,560 hours total) means
+                                30 hours/week for 12 months (full-time work which could be performed for more then one employer) or
+                                15 hours/week for 24 months (part-time work)
+                                <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/become-candidate/eligibility/federal-skilled-workers.html" target="_blank">Read more</a>
+                            </span>
+                        </div>
+                        <div class="col-xs-12 col-md-3">
+                            <select class="form-control" data-val="true" data-val-required="The CanadianExperience field is required." id="CanadianExperience" name="CanadianExperience">
+                                <option selected="selected" value="0">none or less than a year</option>
+                                <option value="1">1 year</option>
+                                <option value="2">2 years</option>
+                                <option value="3">3 years</option>
+                                <option value="4">4 years</option>
+                                <option value="5">5 years or more</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-xs-12 col-md-6">
+                            <label for="ExperienceOutsideCanada">How many years of foreign skilled work experiencein (outside Canada) do you have in the last ten years?</label>
+                            <span class="help-block">
+                                <strong>Warning:</strong>
+                                To be eligible for Express Entry, your work experience (your occupation) must be classified in the National Occupational Classification
+                                <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/become-candidate/eligibility/find-national-occupation-code.html" target=" _blank">(NOC)</a>.
+                            </span>
+                            <span class="help-block">
+                                Your work experience must also be paid work and classified as Skill Type 0, or Skill Levels A or B.
+                                <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/become-candidate/eligibility/federal-skilled-workers.html" target="_blank">Read more</a>
+                            </span>
+                            <span class="help-block">
+                                Your work experience is calculated after having completed the full year worked. If you have worked less than a year, choose "none or less than a year". There is no rounding up.
+                                1 year full time (1,560 hours total) means
+                                30 hours/week for 12 months (full-time work which could be performed for more then one employer) or
+                                15 hours/week for 24 months (part-time work)
+                                <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/become-candidate/eligibility/federal-skilled-workers.html" target="_blank">Read more</a>
+                            </span>
+                        </div>
+                        <div class="col-xs-12 col-md-3">
+                            <select class="form-control" data-val="true" data-val-required="The ExperienceOutsideCanada field is required." id="ExperienceOutsideCanada" name="ExperienceOutsideCanada">
+                                <option selected="selected" value="0">none or less than a year</option>
+                                <option value="1">1 year</option>
+                                <option value="2">2 years</option>
+                                <option value="3">3 years or more</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-xs-12 col-md-6" for="CanadianFamilyMember">Do you or your spouse or common law partner (who will be included in your application under Express Entry) have brother or sister living in Canada who is a citizen or permanent resident of Canada? </label>
+                        <div class="col-xs-12 col-md-2">
+                            <input data-toggle="toggle" data-on="Yes" data-off="No" type="checkbox" data-val="true" data-val-required="The CanadianFamilyMember field is required." id="CanadianFamilyMember" name="CanadianFamilyMember" value="true" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-xs-12 col-md-6" for="CanadianEducation">Have you graduated post-secondary education in Canada?</label>
+                        <div class="col-xs-12 col-md-5">
+                            <select class="form-control" data-val="true" data-val-required="The CanadianEducation field is required." id="CanadianEducation" name="CanadianEducation">
+                                <option selected="selected" value="-1">No</option>
+                                <option value="0">Secondary (high school) or less</option>
+                                <option value="1">1- or 2- years diploma or certificate</option>
+                                <option value="3">3- years or longer degree, diploma or certificate</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-xs-12 col-md-6">
+                            <label for="CanadianArrangedEmployment">Do you have arranged employment in Canada (valid job offer)?</label>
+                            <span class="help-block">
+                                Your valid job offer must be classified in the National Occupational Classification (NOC) as Skill Type 0, or Skill Level A or B
+                                and not be from an embassy, high commission or consulate in Canada. It must be also full-time, paid work.
+                                <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/become-candidate/eligibility/offer-employment.html" target="_blank">Check</a>
+                                other requirements that the job offer must meet to be valid.
+                            </span>
+                            <span class="help-block">
+                                Your valid job offer must be supported by a Labour Market Impact Assessment (LMIA).
+                                <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/become-candidate/eligibility/offer-employment/lmia-exempt.html" target="_blank">Check</a>
+                                the exclusions for this requirement.
+                            </span>
+                        </div>
+                        <div class="col-xs-12 col-md-3">
+                            <select class="form-control" data-val="true" data-val-required="The CanadianArrangedEmployment field is required." id="CanadianArrangedEmployment" name="CanadianArrangedEmployment">
+                                <option selected="selected" value="0">No</option>
+                                <option value="1">Yes, NOC 00</option>
+                                <option value="2">Yes, any other NOC 0, A or B</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class=" form-group">
+                        <label class="col-xs-12 col-md-6" for="CanadianProvincialOrTerritorialNomination">Have you got provincial or territorial nomination? </label>
+                        <div class="col-xs-12 col-md-2">
+                            <input data-toggle="toggle" data-on="Yes" data-off="No" type="checkbox" data-val="true" data-val-required="The CanadianProvincialOrTerritorialNomination field is required." id="CanadianProvincialOrTerritorialNomination" name="CanadianProvincialOrTerritorialNomination" value="true" />
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-xs-12 col-md-6">
+                            <label for="SpouseExist">
+                                Do you have spouse or common - law partner who will be included in your application under Express Entry?
+                            </label>
+                            <span class="help-block"> <strong>Warning:</strong> If your spouse or common - law partner is citizen or permanent resident of Canada can not be included in your application under Express Entry.</span>
+                        </div>
+                        <div class="col-xs-12 col-md-2">
+                            <input onchange="showHideSpouseExist(this)" data-toggle="toggle" data-on="Yes" data-off="No" type="checkbox" data-val="true" data-val-required="The SpouseExist field is required." id="SpouseExist" name="SpouseExist" value="true" />
+                        </div>
+                    </div>
+
+                    <div style="display:none" id="spouseExistForm">
+                        <div class="form-group">
+                            <div class="col-xs-12 col-md-6">
+                                <label>Please select the level of education of spouse or common-law partner. </label>
+                                <span class="help-block">(Choose one of the eight options)</span>
+                                <span class="help-block">
+                                    <strong>Warning:</strong>
+                                    If your spouse or common-law partner earned degree, diploma or certificate outside Canada, it will be needed to get an Educational Credential Assessments
+                                    (ECA) for your spouse's or common-law partner's degree, diploma or certificate from designated organizations (ECA report must not be more than five years old.).
+                                    <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/become-candidate/eligibility/education-assessed.html" target="_blank">Read more</a>
+                                </span>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <div class="radio">
+                                    <label><input name="SpouseEducationLevel" type="radio" value="1" /> Less than secondary school.</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input name="SpouseEducationLevel" type="radio" value="2" /> Secondary diploma (high school graduation).</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input name="SpouseEducationLevel" type="radio" value="3" /> One-year degree, diploma or certificate from a university, college, trade or technical school, or other institute.</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input name="SpouseEducationLevel" type="radio" value="4" /> Two-year program at a university, college, trade or technical school, or other institute.</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input name="SpouseEducationLevel" type="radio" value="5" /> Bachelor&#x27;s degree OR a three or more year program at a university, college, trade or technical school, or other institute.</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input name="SpouseEducationLevel" type="radio" value="6" /> Two or more certificates, diplomas, or degrees. One must be for a program of three or more years.</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input name="SpouseEducationLevel" type="radio" value="7" /> Master&#x27;s degree, OR professional degree needed to practice in a licensed profession (For &#x201C;professional degree,&#x201D; the degree program must have been in: medicine, veterinary medicine, dentistry, optometry, law, chiropractic medicine, or pharmacy.).</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input name="SpouseEducationLevel" type="radio" value="8" /> Doctoral level university degree (Ph.D.).</label>
+                                </div>
+                                <span class="text-danger field-validation-valid" data-valmsg-for="SpouseEducationLevel" data-valmsg-replace="true"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-xs-12 col-md-6">
+                                <label for="TypeOfSpouseExam">What type of exam did your spouse or common-law partner pass?</label>
+                                <span class="help-block">
+                                    <strong>Warning:</strong>
+                                    Your spouse or common-law partner must take an approved language test to be eligible for Express Entry!
+                                </span>
+                                <span class="help-block">
+                                    Read more about approved language test:
+                                    <a href="https://www.ielts.org/" target="_blank">IELTS</a>,
+                                    <a href="https://www.celpip.ca/" target="_blank">CELPIP</a>,
+                                    <a href="https://www.lefrancaisdesaffaires.fr/tests-diplomes/test-evaluation-francais-tef/tef-canada/" target="_blank">TEF</a>,
+                                    <a href="http://www.ciep.fr/tcf-canada" target="_blank">TCF</a>.
+                                </span>
+                                <span class="help-block">
+                                    Your spouse's or common-law partner's test results must be less than two years old. <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/become-candidate/eligibility/language-requirements/language-testing.html" role="button" target="_blank">Read more</a>
+                                </span>
+                            </div>
+                            <div class="col-xs-12 col-md-3">
+                                <select class="form-control" onchange="showhideTypeOfSpouseExam(this)" id="TypeOfSpouseExam" name="TypeOfSpouseExam">
+                                    <option value="">none</option>
+                                    <option value="1">IELTS - General Training</option>
+                                    <option value="2">CELPIP - General test</option>
+                                    <option value="3">TEF Canada</option>
+                                    <option value="4">TCF Canada</option>
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <div style="display:none" id="spouseExamPointsForm">
+                            <div class="form-group">
+                                <label class="col-xs-12 col-md-6" for="SpouseSpeakingPoints"> How many points did your spouse or common-law partner get for speaking?</label>
+                                <div class="col-xs-12 col-md-2">
+                                    <input class="form-control" type="text" data-val="true" data-val-number="The field speaking points must be a number." data-val-required="The speaking points field is required." id="SpouseSpeakingPoints" name="SpouseSpeakingPoints" value="0" />
+                                </div>
+                                <div class="col-xs-12 col-md-4">
+                                    <span class="text-danger field-validation-valid" data-valmsg-for="SpouseSpeakingPoints" data-valmsg-replace="true"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-xs-12 col-md-6" for="SpouseWritingPoints">How many points did your spouse or common-law partner get for writing?</label>
+                                <div class="col-xs-12 col-md-2">
+                                    <input class="form-control" type="text" data-val="true" data-val-number="The field writing points must be a number." data-val-required="The writing points field is required." id="SpouseWritingPoints" name="SpouseWritingPoints" value="0" />
+                                </div>
+                                <div class="col-xs-12 col-md-4">
+                                    <span class="text-danger field-validation-valid" data-valmsg-for="SpouseWritingPoints" data-valmsg-replace="true"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-xs-12 col-md-6" for="SpouseReadingPoints">How many points did your spouse or common-law partner get for reading?</label>
+                                <div class="col-xs-12 col-md-2">
+                                    <input class="form-control" type="text" data-val="true" data-val-number="The field reading points must be a number." data-val-required="The reading points field is required." id="SpouseReadingPoints" name="SpouseReadingPoints" value="0" />
+                                </div>
+                                <div class="col-xs-12 col-md-4">
+                                    <span class="text-danger field-validation-valid" data-valmsg-for="SpouseReadingPoints" data-valmsg-replace="true"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-xs-12 col-md-6" for="SpouseListeningPoints">How many points did your spouse or common-law partner get for listening?</label>
+                                <div class="col-xs-12 col-md-2">
+                                    <input class="form-control" type="text" data-val="true" data-val-number="The field listening points must be a number." data-val-required="The listening points field is required." id="SpouseListeningPoints" name="SpouseListeningPoints" value="0" />
+                                </div>
+                                <div class="col-xs-12 col-md-4">
+                                    <span class="text-danger field-validation-valid" data-valmsg-for="SpouseListeningPoints" data-valmsg-replace="true"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-xs-12 col-md-6">
+                                <label for="SpouseCanadianExperience">How many years of skilled work experience in the Canadian labour market has your spouse or common-law partner in the last ten years?</label>
+                                <span class="help-block">
+                                    <strong>Warning:</strong>
+                                    To be eligible for Express Entry, your spouse's or common-law partner's work experience (occupation) must be classified in the National Occupational Classification
+                                    <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/become-candidate/eligibility/find-national-occupation-code.html" target=" _blank">(NOC)</a>.
+                                </span>
+                                <span class="help-block">
+                                    Your spouse's or common-law partner's work experience must also be paid work and classified as Skill Type 0, or Skill Levels A or B.
+                                    <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/become-candidate/eligibility/federal-skilled-workers.html" target="_blank">Read more</a>
+                                </span>
+                                <span class="help-block">
+                                    Your spouse's or common-law partner's work experience is calculated after having completed the full year worked. If your spouse or common-law partner has worked less than a year, choose "none or less than a year". There is no rounding up.
+                                    1 year full time (1,560 hours total) means
+                                    30 hours/week for 12 months (full-time work which could be performed for more then one employer) or
+                                    15 hours/week for 24 months (part-time work)
+                                    <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/become-candidate/eligibility/federal-skilled-workers.html" target="_blank">Read more</a>
+                                </span>
+                            </div>
+                            <div class="col-xs-12 col-md-3">
+                                <select class="form-control" data-val="true" data-val-required="The SpouseCanadianExperience field is required." id="SpouseCanadianExperience" name="SpouseCanadianExperience">
+                                    <option selected="selected" value="0">none or less than a year</option>
+                                    <option value="1">1 year</option>
+                                    <option value="2">2 years</option>
+                                    <option value="3">3 years</option>
+                                    <option value="4">4 years</option>
+                                    <option value="5">5 years or more</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <button type="button" class="btn btn-lg btn-primary center-block" onclick="calculate();">Calculate</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+        <div id="pointsResults" class="row" style="display:none; margin-top:15px;">
+            <div class="col-xs-12">
+
+                <div class="panel panel-default">
+                    <div class="panel-heading text-center"><strong style="text-transform:uppercase; font-size:18px;">Summary points for Express Entry</strong></div>
+                    <div class="panel-body">
+                        <ol id="summary">
+                            <li>
+                                <strong>Points earned by you in section A. Core / human capital factors: <span id="pointsInSectionA">@Model.PointsInSectionA</span></strong>
+                                <div class="bs-callout bs-callout-default">
+                                    <ul>
+                                        <li>Points for age: <strong id="pointsForAge">@Model.PointsForAge</strong></li>
+                                        <li>Points for education: <strong id="pointsForEducation">@Model.PointsForEducation</strong></li>
+                                        <li>Points for 1st language: <strong id="pointsForFirstLanguage">@Model.PointsForFirstLanguage</strong></li>
+                                        <li>Points for second language: <strong id="pointsForSecondLanguage">@Model.PointsForSecondLanguage</strong></li>
+                                        <li>Points for experience in the Canadian labour market: <strong id="pointsForCanadianExperience">@Model.PointsForCanadianExperience</strong> </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <strong>Points earned by spouse or common-law partner in section B. Spouse or common-law partner factors: <span id="pointsInSectionB">@Model.PointsInSectionB</span></strong>
+                                <div class="bs-callout bs-callout-default">
+                                    <ul>
+                                        <li>Points for education of spouse or common-law partner: <strong id="pointsForSpouseEducation">@Model.PointsForSpouseEducation</strong></li>
+                                        <li>Points for language of spouse or common-law partner: <strong id="pointsForSpouseLanguageExam">@Model.PointsForSpouseLanguageExam</strong></li>
+                                        <li>Points for experience of spouse or common-law partner: <strong id="pointsForSpouseCanadianExperience">@Model.PointsForSpouseCanadianExperience</strong></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li> <strong>Points earned by you in section C. Skill transferability factors: <span id="pointsInSectionC">@Model.PointsInSectionC</span></strong></li>
+                            <li> <strong>Points earned by you in section D. Additional points: <span id="pointsInSectionD">@Model.PointsInSectionD</span></strong></li>
+                        </ol>
+                    </div>
+                    <div class="panel-footer text-center">
+                        <span style="text-transform:uppercase">Points earned for Express Entry:</span> <strong style="font-size:24pt" id="totalPointsForExpressEntry">@Model.TotalPointsForExpressEntry</strong>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div id="sadMessage" class="row" style="display:none">
+            <div class="col-xs-12">
+                <div class="alert alert-warning" role="alert">
+                    Your overall score (<span id="sadTotalPointsForExpressEntry">@Model.TotalPointsForExpressEntry</span>) is lower than the lowest score (<span id="sadLowestScore">@Model.LastExpressEntryStats.LowestScore</span>) from last round of invitations.
+                </div>
+            </div>
+        </div>
+
+        <div id="goodMessage" class="row" style="display:none">
+            <div class="col-xs-12">
+                <div class="alert alert-success" role="alert">
+                    <strong>Congratulations!</strong> Your overall score (<span id="goodTotalPointsForExpressEntry">@Model.TotalPointsForExpressEntry</span>) is higher or equal to the lowest score (<span id="goodLowestScore">@Model.LastExpressEntryStats.LowestScore</span>) from last round of invitations.
+                    You have big chances to be invited to apply for permanent residence in Canada in the next round of invitations. Create your <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/application/account.html" target="_blank">Express Entry profile</a> right away.
+                </div>
+            </div>
+        </div>
+
+        <div class="row" id="disclaimer">
+            <div class="col-xs-12">
+                <div class="alert alert-warning" style="margin-top:25px">
+                    <strong>Disclaimer!</strong> The information contained in this website is provided for general information purposes only.
+                    Before relying on information contained in this website, users should carefully evaluate its accuracy, completeness, availability,
+                    reliability and relevance to their particular purpose. Nothing contained in this website is to be used as professional advice and this
+                    website is not a substitute for the advice of a lawyer, especially qualified Canadian immigration lawyer. Any reliance you place on
+                    such information is therefore strictly at your own risk. The creator of the Express Entry Calculator is not responsible for, and
+                    expressly disclaims all liability for any loss or damage incurred by use of or reliance on the Express Entry Calculator or the information
+                    contained within this website and cannot guarantee and assumes no legal liability or responsibility for the accuracy or completeness of
+                    the information and up-to-date. Through this website you are able to link to other websites which are not under the control of creator
+                    of the Express Entry Calculator. The Creator of the Express Entry Calculator is not responsible for the accuracy or content of information
+                    contained in these sites and have no control over the nature, content and availability of those sites.
+                </div>
+            </div>
+        </div>
+
+        <div class="row" id="faq">
+            <div class="col-xs-12">
+                <h1>FAQ</h1>
+                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="questionOne">
+                            <h4 class="panel-title">
+                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    What is Express Entry?
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="questionOne">
+                            <div class="panel-body">
+                                <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry.html" target="_blank">Express Entry</a> is a Canadian immigration system to manage how people with skilled work experience apply to immigrate to Canada.
+                                Express Entry is using to manage applications for permanent residence for these <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/works.html" target="_blank">programs</a>:
+                                <ul style="list-style-type:disc">
+                                    <li><a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/become-candidate/eligibility/federal-skilled-workers.html" target="_blank">Federal Skilled Worker Program</a></li>
+                                    <li><a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/become-candidate/eligibility/skilled-trades.html" target="_blank">Federal Skilled Trades Program</a></li>
+                                    <li><a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/become-candidate/eligibility/canadian-experience-class.html" target="_blank">Canadian Experience Class</a></li>
+                                </ul>
+                                Provinces and territories can also recruit candidates from the Express Entry pool through the Provincial Nominee Program (PNP)
+                                to meet local labour market needs.
+                                <a href="https://www.canada.ca/en/immigration-refugees-citizenship/corporate/mandate/policies-operational-instructions-agreements/ministerial-instructions.html" target="_blank">Ministerial Instructions</a> set out the rules for the Express Entry application management system.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="questionTwo">
+                            <h4 class="panel-title">
+                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    What is the Provincial Nominee Program?
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="questionTwo">
+                            <div class="panel-body">
+                                <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/provincial-nominees.html" target="_blank">Provincial Nominee Program</a> is a program by means of which most provinces and territories in Canada can nominate immigrants.
+                                These immigrants must have the skills, education and work experience to contribute to the economy of that province or territory,
+                                and must want to live there. Each province and territory has its own “streams” (immigration programs that target certain groups)
+                                and criteria for their PNP. For example, in a program stream, provinces and territories may target students, business people,
+                                skilled workers or semi-skilled workers.
+                                The province of Quebec does not have a PNP. See their immigration website to learn more about <a href="http://www.immigration-quebec.gouv.qc.ca/en/" target="_blank">their programs</a>.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="questionThree">
+                            <h4 class="panel-title">
+                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    What is the Comprehensive Ranking System?
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="questionThree">
+                            <div class="panel-body">
+                                <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/become-candidate/criteria-comprehensive-ranking-system.html" target="_blank">The Comprehensive Ranking System</a> is the points-based system using to assess and score your profile and rank you in the Express Entry pool.
+                                <ul>
+                                    <li>
+                                        The CRS gives you a score from the information in your profile, including your:
+                                        <ul>
+                                            <li>skills</li>
+                                            <li>education</li>
+                                            <li>language ability</li>
+                                            <li>work experience</li>
+                                            <li>other factors</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        The CRS also gives you points for:
+                                        <ul>
+                                            <li>Canadian degrees, diplomas or certificates</li>
+                                            <li>a valid job offer</li>
+                                            <li>a nomination from a province or territory</li>
+                                            <li>other factors</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                The Government regularly send invitations to apply to the highest-ranking candidates in the pool. If you are invited, you can apply to immigrate as a permanent resident.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="questionFour">
+                            <h4 class="panel-title">
+                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                    How can you immigrate to Canada?
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="questionFour">
+                            <div class="panel-body">
+                                <ol>
+                                    <li>Check your number of points for Express Entry using <a href="#">Express Entry Calculator</a>.</li>
+                                    <li>
+                                        Create your <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/become-candidate/fill-profile.html" target="_blank">Express Entry profile</a>.
+                                        <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/works.html" target="_blank">An Express Entry</a> profile is a form where you give Canadian Government information about your:
+                                        <ul>
+                                            <li>skills</li>
+                                            <li>education</li>
+                                            <li>language ability</li>
+                                            <li>work experience</li>
+                                            <li>other details</li>
+                                        </ul>
+                                        Once you start an Express Entry profile, you have 60 days to complete it.
+                                        The information in your profile will help Canadian Government see if you are eligible for an immigration program managed by Express Entry.
+                                        If you meet the criteria, Canadian Government will accept you into its <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/become-candidate/how-pool-works.html" target="_blank">pool of candidates</a>.
+                                        Getting into the pool doesn't mean that Canadian Government will invite you to apply for permanent residence.
+                                        To be chosen from the pool you need to have one of the highest-ranking scores when Canadian Government send out invitations.
+                                        If you are invited, you can apply for permanent residence.
+                                        When you apply for permanent residence, you will also need to meet eligibility and admissibility requirements under Canada's immigration law.
+                                    </li>
+
+                                    <li>
+                                        Get to the group of the highest-ranking candidates in the pool to apply for permanent residence and receive an invitation from the Canadian Government.<br />
+                                        Canadian Government send
+                                        <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/become-candidate/invitations-apply.html" target="_blank">invitations to apply</a> to the candidates with the highest scores in the pool. If Government invite you to apply,
+                                        you will have 60 (before 90) days to submit an online
+                                        <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/apply-permanent-residence.html" target="_blank">application for permanent residence</a>.
+                                        Canadian Government will process most complete applications that have all the supporting documents in six months or less.
+                                        You can stay in the pool for up to 12 months as long as you meet the criteria for one of the federal programs.
+                                        You should update your profile anytime as your case changes.
+                                        If Canadian Government don’t invite you to apply for permanent residence within 12 months of submitting an Express Entry profile, you can submit a new profile.
+                                        If you still meet the criteria, you will re-enter the pool.
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="questionFive">
+                            <h4 class="panel-title">
+                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                    How many points do you need to immigrate to Canada?
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="questionFive">
+                            <div class="panel-body">
+                                There is no fixed minimum number of points, which is enough to guarantee an invitation to apply for permanent residence.
+                                However, you can check <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/become-candidate/rounds-invitations.html" target="_blank">the CRS score of the lowest-ranked</a> candidate invited to applying for permanent residence at previous rounds of invitations.
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="questionSix">
+                            <h4 class="panel-title">
+                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                                    What is the Express Entry Calculator?
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseSix" class="panel-collapse collapse" role="tabpanel" aria-labelledby="questionSix">
+                            <div class="panel-body">
+                                Express Entry Calculator is a program to calculate points for Express Entry based on Comprehensive Ranking System (CRS) Criteria.
+                                Thus, this calculator can estimate your CSR score before creating an Express Entry profile.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr />
+        <footer>
+            <div class="col-xs-12">
+                <div class="pull-left">
+                    <p>&copy; <script>document.write(new Date().getFullYear())</script> - Express Entry Calculator v.3.0.0</p>
+                </div>
+                <div class=" pull-right">
+                    <a href="https://github.com/annaked/ExpressEntryCalculator" target="_blank" title="Express Entry Calculator GitHub repo">
+                        <i class="icon icon-github-circled"></i>
+                    </a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!--<environment include="Development">-->
+    <script src="/lib/modernizr/modernizr-custom.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"></script>
+    <script src="/lib/moment/moment-with-locales.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"></script>
+    <script src="/lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
+    <script src="/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script src="/js/site.js"></script>
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!--</environment>-->
+    <!--<environment exclude="Development">
+        <script src="/lib/modernizr/modernizr-custom.js"></script>
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+                asp-fallback-src="/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
+        </script>
+        <script src="/lib/moment/moment-with-locales.min.js"></script>
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
+                asp-fallback-src="/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+        </script>
+        <script src="/lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"
+                asp-fallback-src="/lib/jquery-validation/dist/jquery.validate.js"></script>
+        <script src="/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+        <script src="/js/site.min.js" asp-append-version="true"></script>
+        <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+    </environment>-->
+    <!--@RenderSection("Scripts", required: false)-->
+    <script type="text/javascript">
+        const apiBaseUrl = 'https://expressentrycalculatorapi.azurewebsites.net/api'; // TODO:DK shouldn't be hardcoded
+        var lastStats;
+
+        $(function () {
+            getLastStats();
+        });
+
+        function getLastStats() {
+            axios.get(`${apiBaseUrl}/stats`)
+                .then(resp => {
+                    lastStats = resp.data;
+
+                    $('#lowestScore').text(lastStats.lowestScore);
+                    $('#sadLowestScore').text(lastStats.lowestScore);
+                    $('#goodLowestScore').text(lastStats.lowestScore);
+                    $('#roundDate').text(lastStats.roundDate.slice(0, 10));
+                });
+        }
+
+        function calculate() {
+            var $form = $("#frmCalculation");
+            var validator = $form.validate();
+            if (!validator.form()) {
+                return;
+            }
+
+            var data = getFormData($form);
+
+            axios.post(`${apiBaseUrl}/calculate`, data)
+                .then(resp => {
+                    var pointsSummary = resp.data;
+
+                    $.each(pointsSummary, function (key, value) {
+                        $('#' + key).text(value);
+                    });
+
+                    setPanels(pointsSummary);
+                });
+        }
+
+        function getFormData($form) {
+            var unindexed_array = $form.serializeArray();
+            var indexed_array = {};
+
+            $.map(unindexed_array, function (n, i) {
+                indexed_array[n['name']] = n['value'];
+            });
+
+            return indexed_array;
+        }
+
+        function setPanels(pointsSummary) {
+            $('#pointsResults').show();
+
+            $('#sadTotalPointsForExpressEntry').text(pointsSummary.totalPointsForExpressEntry);
+            $('#goodTotalPointsForExpressEntry').text(pointsSummary.totalPointsForExpressEntry);
+
+            if (pointsSummary.totalPointsForExpressEntry < lastStats.lowestScore) {
+                $('#sadMessage').show();
+                $('#goodMessage').hide();
+            } else {
+                $('#sadMessage').hide();
+                $('#goodMessage').show();
+            }
+        }
+    </script>
+</body>
+
+</html>
