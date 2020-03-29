@@ -20,9 +20,9 @@ namespace ExpressEntryCalculator.Api
 
             var lastStats = new ExpressEntryStats
             {
-                InvitationsIssued = 3600,
-                LowestScore = 471,
-                RoundDate = new DateTime(2019, 11, 27)
+                InvitationsIssued = 3232,
+                LowestScore = 467,
+                RoundDate = new DateTime(2020, 3, 23)
             };
 
             return new OkObjectResult(lastStats);
