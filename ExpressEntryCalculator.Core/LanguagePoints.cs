@@ -2,23 +2,21 @@
 
 namespace ExpressEntryCalculator.Core
 {
+    public interface ILanguagePointsCalculator
+    {
+        int ClbspeakingPoints { get; }
+        int ClbwritingPoints { get; }
+        int ClbreadingPoints { get; }
+        int ClblisteningPoints { get; }
+        void Calculate();
+    }
+
     public class LanguagePoints
     {
-        public LanguagePoints()
-        {
-
-        }
-
-        public LanguagePoints(LanguageExamTypes examType, double speakingPoints, double writingPoints, double readingPoints, double listeningPoints)
-        {
-            this.languageExamType = examType;
-            this.speakingPoints = speakingPoints;
-            this.readingPoints = readingPoints;
-            this.writingPoints = writingPoints;
-            this.listeningPoints = listeningPoints;
-
-            CalculateCLBPoints();
-        }
+        double speakingPoints;
+        double writingPoints;
+        double readingPoints;
+        double listeningPoints;
 
         public enum LanguageExamTypes
         {
@@ -26,6 +24,21 @@ namespace ExpressEntryCalculator.Core
             CELPIP,
             TEF,
             TCF
+        }
+
+        public LanguagePoints()
+        {
+        }
+
+        public LanguagePoints(LanguageExamTypes examType, double speakingPoints, double writingPoints, double readingPoints, double listeningPoints)
+        {
+            this.LanguageExamType = examType;
+            this.speakingPoints = speakingPoints;
+            this.readingPoints = readingPoints;
+            this.writingPoints = writingPoints;
+            this.listeningPoints = listeningPoints;
+
+            CalculateCLBPoints();
         }
 
         public static LanguageExamTypes IdentifyingTheTypeOfExam(string exam)
@@ -45,462 +58,49 @@ namespace ExpressEntryCalculator.Core
             }
         }
 
-        public static LanguagePoints.LanguageExamTypes IdentifyingTheTypeOfExam(int exam)
+        public static LanguageExamTypes IdentifyingTheTypeOfExam(int exam)
         {
             return IdentifyingTheTypeOfExam(exam.ToString());
         }
 
-        LanguageExamTypes languageExamType;
-        double speakingPoints;
-        double writingPoints;
-        double readingPoints;
-        double listeningPoints;
+        public LanguageExamTypes LanguageExamType { get; private set; }
 
-        int clbspeakingPoints;
-        int clbwritingPoints;
-        int clbreadingPoints;
-        int clblisteningPoints;
+        public int CLBSpeakingPoints { get; private set; }
 
-        public LanguageExamTypes LanguageExamType
-        {
-            get
-            {
-                return languageExamType;
-            }
-            set
-            {
-                languageExamType = value;
-            }
-        }
+        public int CLBWritingPoints { get; private set; }
 
+        public int CLBReadingPoints { get; private set; }
 
-        public int CLBSpeakingPoints
-        {
-            get
-            {
-                return clbspeakingPoints;
-            }
-        }
+        public int CLBListeningPoints { get; private set; }
 
-        public int CLBWritingPoints
-        {
-            get
-            {
-                return clbwritingPoints;
-            }
-        }
-
-        public int CLBReadingPoints
-        {
-            get
-            {
-                return clbreadingPoints;
-            }
-        }
-
-        public int CLBListeningPoints
-        {
-            get
-            {
-                return clblisteningPoints;
-            }
-        }
-         
         private void CalculateCLBPoints()
         {
-            
+            ILanguagePointsCalculator calculator = null;
+
             switch (LanguageExamType)
             {
                 case LanguageExamTypes.IELTS:
-                    CalculateCLBPointsForIELTS();
+                    calculator = new IeltsPointsCalculator(speakingPoints, writingPoints, readingPoints, listeningPoints);
                     break;
                 case LanguageExamTypes.CELPIP:
-                    CalculateCLBPointsForCELPIP();
+                    calculator = new CelpipPointsCalculator(speakingPoints, writingPoints, readingPoints, listeningPoints);
                     break;
                 case LanguageExamTypes.TEF:
-                    CalculateCLBPointsForTEF();
+                    calculator = new TefPointsCalculator(speakingPoints, writingPoints, readingPoints, listeningPoints);
                     break;
                 case LanguageExamTypes.TCF:
-                    CalculateCLBPointsForTCF();
+                    calculator = new TcfPointsCalculator(speakingPoints, writingPoints, readingPoints, listeningPoints);
                     break;
                 default:
-                    break;
-            }
-        }
-
-        private int CalculateIELTStoCLB(double pointsIELTS)
-        {
-            if (pointsIELTS >= 7.5)
-            {
-                return 10;
-            }
-            else if (pointsIELTS == 7.0)
-            {
-                return 9;
-            }
-            else if (pointsIELTS == 6.5)
-            {
-                return 8;
-            }
-            else if (pointsIELTS == 6)
-            {
-                return 7;
-            }
-            else if (pointsIELTS == 5.5)
-            {
-                return 6;
-            }
-            else if (pointsIELTS == 5)
-            {
-                return 5;
-            }
-            else if (pointsIELTS < 5 && pointsIELTS >= 4)
-            {
-                return 4;
-            }
-            else
-            {
-                return 0;
-            }
-        }
-
-        private void CalculateCLBPointsForIELTS()
-        {
-            clbspeakingPoints = CalculateIELTStoCLB(speakingPoints);
-            clbwritingPoints = CalculateIELTStoCLB(writingPoints);
-       
-            if (readingPoints >= 8)
-            {
-                clbreadingPoints = 10;
-            }
-            else if (readingPoints >= 7 && readingPoints < 8)
-            {
-                clbreadingPoints = 9;
-            }
-            else if (readingPoints == 6.5)
-            {
-                clbreadingPoints = 8;
-            }
-            else if (readingPoints == 6)
-            {
-                clbreadingPoints = 7;
-            }
-            else if (readingPoints >= 5 && readingPoints < 6)
-            {
-                clbreadingPoints = 6;
-            }
-            else if (readingPoints >= 4 && readingPoints < 5)
-            {
-                clbreadingPoints = 5;
-            }
-            else if (readingPoints == 3.5)
-            {
-                clbreadingPoints = 4;
-            }
-            else
-            {
-                clbreadingPoints = 0;
+                    throw new NotImplementedException("Language test calculation not supported");
             }
 
-            if (listeningPoints >= 8.5)
-            {
-                clblisteningPoints = 10;
-            }
-            else if (listeningPoints == 8)
-            {
-                clblisteningPoints = 9;
-            }
-            else if (listeningPoints == 7.5)
-            {
-                clblisteningPoints = 8;
-            }
-            else if (listeningPoints >= 6 && listeningPoints < 7.5)
-            {
-                clblisteningPoints = 7;
-            }
-            else if (listeningPoints == 5.5)
-            {
-                clblisteningPoints = 6;
-            }
-            else if (listeningPoints == 5)
-            {
-                clblisteningPoints = 5;
-            }
-            else if (listeningPoints == 4.5)
-            {
-                clblisteningPoints = 4;
-            }
-            else
-            {
-                clblisteningPoints = 0;
-            }
-        }
+            calculator.Calculate();
 
-        private int CalculateCELPIPtoCLB (double pointsCELPIP)
-        {
-            if (pointsCELPIP >= 10)
-            {
-                return 10;
-            }
-            else if (pointsCELPIP == 9)
-            {
-                return 9;
-            }
-            else if (pointsCELPIP == 8)
-            {
-                return 8;
-            }
-            else if (pointsCELPIP == 7)
-            {
-                return 7;
-            }
-            else if (pointsCELPIP == 6)
-            {
-                return 6;
-            }
-            else if (pointsCELPIP == 5)
-            {
-                return 5;
-            }
-            else if (pointsCELPIP == 4)
-            {
-                return 4;
-            }
-            else
-            {
-                return 0;
-            }
-        }
-
-        private void CalculateCLBPointsForCELPIP()
-        {
-            clbspeakingPoints = CalculateCELPIPtoCLB(speakingPoints);
-            clbwritingPoints = CalculateCELPIPtoCLB(writingPoints);
-            clbreadingPoints = CalculateCELPIPtoCLB(readingPoints);
-            clblisteningPoints = CalculateCELPIPtoCLB(listeningPoints);
-        }
-
-        private int CalculateTEFtoCLB(double pointsTEF)
-        {
-            if (pointsTEF >= 393 && pointsTEF <= 415)
-            {
-                return 10;
-            }
-            else if (pointsTEF >= 371 && pointsTEF <= 392)
-            {
-                return 9;
-            }
-            else if (pointsTEF >= 349 && pointsTEF <= 370)
-            {
-                return 8;
-            }
-            else if (pointsTEF >= 310 && pointsTEF <= 348)
-            {
-                return 7;
-            }
-            else if (pointsTEF >= 271 && pointsTEF <= 309)
-            {
-                return 6;
-            }
-            else if (pointsTEF >= 226 && pointsTEF <= 270)
-            {
-                return 5;
-            }
-            else if (pointsTEF >= 181 && pointsTEF <= 225)
-            {
-                return 4;
-            }
-            else
-            {
-                return 0;
-            }
-        }
-
-        private void CalculateCLBPointsForTEF()
-        {
-            clbspeakingPoints = CalculateTEFtoCLB(speakingPoints);
-            clbwritingPoints = CalculateTEFtoCLB(writingPoints);
-
-            // calculate reading points
-            if (readingPoints >= 263 && readingPoints <= 277)
-            {
-                clbreadingPoints = 10;
-            }
-            else if (readingPoints >= 248 && readingPoints <= 262)
-            {
-                clbreadingPoints = 9;
-            }
-            else if (readingPoints >= 233 && readingPoints <= 247)
-            {
-                clbreadingPoints = 8;
-            }
-            else if (readingPoints >= 207 && readingPoints <= 232)
-            {
-                clbreadingPoints = 7;
-            }
-            else if (readingPoints >= 181 && readingPoints <= 206)
-            {
-                clbreadingPoints = 6;
-            }
-            else if (readingPoints >= 151 && readingPoints <= 180)
-            {
-                clbreadingPoints = 5;
-            }
-            else if (readingPoints >= 121 && readingPoints <= 150)
-            {
-                clbreadingPoints = 4;
-            }
-            else
-            {
-                clbreadingPoints = 0;
-            }
-
-            // calculate listening points
-            if (listeningPoints >= 316 && listeningPoints <= 333)
-            {
-                clblisteningPoints = 10;
-            }
-            else if (listeningPoints >= 298 && listeningPoints <= 315)
-            {
-                clblisteningPoints = 9;
-            }
-            else if (listeningPoints >= 280 && listeningPoints <= 297)
-            {
-                clblisteningPoints = 8;
-            }
-            else if (listeningPoints >= 249 && listeningPoints <= 279)
-            {
-                clblisteningPoints = 7;
-            }
-            else if (listeningPoints >= 217 && listeningPoints <= 248)
-            {
-                clblisteningPoints = 6;
-            }
-            else if (listeningPoints >= 181 && listeningPoints <= 216)
-            {
-                clblisteningPoints = 5;
-            }
-            else if (listeningPoints >= 145 && listeningPoints <= 180)
-            {
-                clblisteningPoints = 4;
-            }
-            else
-            {
-                clblisteningPoints = 0;
-            }
-        }
-
-        private void CalculateCLBPointsForTCF()
-        {
-            // calculate reading 
-            if (readingPoints < 342)
-            {
-                clbreadingPoints = 0;
-            }
-            else if (readingPoints >= 342 && readingPoints <= 374)
-            {
-                clbreadingPoints = 4;
-            }
-            else if (readingPoints >= 375 && readingPoints <= 405)
-            {
-                clbreadingPoints = 5;
-            }
-            else if (readingPoints >= 406 && readingPoints <= 452)
-            {
-                clbreadingPoints = 6;
-            }
-            else if (readingPoints >= 453 && readingPoints <= 498)
-            {
-                clbreadingPoints = 7;
-            }
-            else if (readingPoints >= 499 && readingPoints <= 523)
-            {
-                clbreadingPoints = 8;
-            }
-            else if (readingPoints >= 524 && readingPoints <= 548)
-            {
-                clbreadingPoints = 9;
-            }
-            else
-            {
-                clbreadingPoints = 10;
-            }
-
-            // calculate writing
-            clbwritingPoints = CalculateCLBPointsForTCF(writingPoints);
-
-            //calculate listening
-            if (listeningPoints < 331)
-            {
-                clblisteningPoints = 0;
-            }
-            else if (listeningPoints >= 331 && listeningPoints <= 368)
-            {
-                clblisteningPoints = 4;
-            }
-            else if (listeningPoints >= 369 && listeningPoints <= 397)
-            {
-                clblisteningPoints = 5;
-            }
-            else if (listeningPoints >= 398 && listeningPoints <= 457)
-            {
-                clblisteningPoints = 6;
-            }
-            else if (listeningPoints >= 458 && listeningPoints <= 502)
-            {
-                clblisteningPoints = 7;
-            }
-            else if (listeningPoints >= 503 && listeningPoints <= 522)
-            {
-                clblisteningPoints = 8;
-            }
-            else if (listeningPoints >= 523 && listeningPoints <= 548)
-            {
-                clblisteningPoints = 9;
-            }
-            else
-            {
-                clblisteningPoints = 10;
-            }
-
-            //calculate speaking
-            clbspeakingPoints = CalculateCLBPointsForTCF(speakingPoints);
-        }
-
-        private int CalculateCLBPointsForTCF(double points)
-        {
-            if (points < 4)
-            {
-                return 0;
-            }
-            else if (points >= 4 && points <= 5)
-            {
-                return 4;
-            }
-            else if (points == 6)
-            {
-                return 5;
-            }
-            else if (points >= 7 && points <= 9)
-            {
-                return 6;
-            }
-            else if (points >= 10 && points <= 11)
-            {
-                return 7;
-            }
-            else if (points >= 12 && points <= 13)
-            {
-                return 8;
-            }
-            else if (points >= 14 && points <= 15)
-            {
-                return 9;
-            }
-            else
-            {
-                return 10;
-            }
+            CLBListeningPoints = calculator.ClblisteningPoints;
+            CLBSpeakingPoints = calculator.ClbspeakingPoints;
+            CLBWritingPoints = calculator.ClbwritingPoints;
+            CLBReadingPoints = calculator.ClbreadingPoints;
         }
     }
 }

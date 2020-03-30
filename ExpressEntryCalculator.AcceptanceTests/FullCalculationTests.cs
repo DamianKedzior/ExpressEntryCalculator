@@ -12,6 +12,8 @@ using Xunit;
 
 namespace ExpressEntryCalculator.AcceptanceTests
 {
+    // TODO:DK this class should test new Calculate function in ExpressEntryCalculator.Api
+    // TODO:DK we need to mock current date so the test will always work; now when you run them in few months they may fail becuase points for age are different
     public class FullCalculationTests
     {
         public ApplicantDataViewModel ApplicantData { get; set; }
@@ -42,14 +44,14 @@ namespace ExpressEntryCalculator.AcceptanceTests
                         },
                         ExpectedPointsSummary = new PointsSummaryViewModel
                         {
-                            PointsForAge = 99,
+                            PointsForAge = 94,
                             PointsForEducation = 135,
                             PointsForFirstLanguage = 116,
-                            PointsInSectionA = 350,
+                            PointsInSectionA = 345,
                             PointsInSectionB = 0,
                             PointsInSectionC = 50,
                             PointsInSectionD = 0,
-                            TotalPointsForExpressEntry = 400,
+                            TotalPointsForExpressEntry = 395
                         }
                     },
                     {
@@ -113,14 +115,14 @@ namespace ExpressEntryCalculator.AcceptanceTests
                         },
                         ExpectedPointsSummary = new PointsSummaryViewModel
                         {
-                            PointsForAge = 99,
+                            PointsForAge = 94,
                             PointsForEducation = 135,
                             PointsForFirstLanguage = 116,
-                            PointsInSectionA = 350,
+                            PointsInSectionA = 345,
                             PointsInSectionB = 0,
                             PointsInSectionC = 50,
                             PointsInSectionD = 0,
-                            TotalPointsForExpressEntry = 400,
+                            TotalPointsForExpressEntry = 395
                         }
                     },
                     {
@@ -141,14 +143,14 @@ namespace ExpressEntryCalculator.AcceptanceTests
                         },
                         ExpectedPointsSummary = new PointsSummaryViewModel
                         {
-                            PointsForAge = 99,
+                            PointsForAge = 94,
                             PointsForEducation = 135,
                             PointsForFirstLanguage = 116,
-                            PointsInSectionA = 350,
+                            PointsInSectionA = 345,
                             PointsInSectionB = 0,
                             PointsInSectionC = 50,
                             PointsInSectionD = 615,
-                            TotalPointsForExpressEntry = 1015,
+                            TotalPointsForExpressEntry = 1010
                         }
                     },
                     {
@@ -170,14 +172,14 @@ namespace ExpressEntryCalculator.AcceptanceTests
                         },
                         ExpectedPointsSummary = new PointsSummaryViewModel
                         {
-                            PointsForAge = 99,
+                            PointsForAge = 94,
                             PointsForEducation = 135,
                             PointsForFirstLanguage = 116,
-                            PointsInSectionA = 350,
+                            PointsInSectionA = 345,
                             PointsInSectionB = 0,
                             PointsInSectionC = 50,
                             PointsInSectionD = 815,
-                            TotalPointsForExpressEntry = 1215,
+                            TotalPointsForExpressEntry = 1210
                         }
                     },
                     {
@@ -200,14 +202,14 @@ namespace ExpressEntryCalculator.AcceptanceTests
                         },
                         ExpectedPointsSummary = new PointsSummaryViewModel
                         {
-                            PointsForAge = 99,
+                            PointsForAge = 94,
                             PointsForEducation = 135,
                             PointsForFirstLanguage = 116,
-                            PointsInSectionA = 350,
+                            PointsInSectionA = 345,
                             PointsInSectionB = 0,
                             PointsInSectionC = 50,
                             PointsInSectionD = 845,
-                            TotalPointsForExpressEntry = 1245,
+                            TotalPointsForExpressEntry = 1240
                         }
                     }
                 })
