@@ -18,11 +18,12 @@
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112807661-1"></script>
     <script>
+        window.ga_measurement_id = 'UA-112807661-1';
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
 
-        gtag('config', 'UA-112807661-1');
+        gtag('config', window.ga_measurement_id);
     </script>
 </head>
 <body>
@@ -841,6 +842,8 @@
         }
 
         function calculate() {
+            gtag('config', window.ga_measurement_id, { 'page_path': '/summary' });
+
             var $form = $("#frmCalculation");
             var validator = $form.validate();
             if (!validator.form()) {
