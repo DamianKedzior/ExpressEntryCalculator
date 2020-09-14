@@ -1,9 +1,7 @@
-﻿using ExpressEntryCalculator.Web;
-using ExpressEntryCalculator.Web.Controllers;
-using ExpressEntryCalculator.Web.Models;
+﻿using ExpressEntryCalculator.Api;
+using ExpressEntryCalculator.Api.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ViewFeatures;
-using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Logging;
 using Moq;
 using Shouldly;
 using System;
@@ -12,10 +10,11 @@ using Xunit;
 
 namespace ExpressEntryCalculator.AcceptanceTests
 {
-    // TODO:DK this class should test new Calculate function in ExpressEntryCalculator.Api
     // TODO:DK we need to mock current date so the test will always work; now when you run them in few months they may fail becuase points for age are different
     public class FullCalculationTests
     {
+        private readonly ILogger logger = TestFactory.CreateLogger();
+
         public ApplicantDataViewModel ApplicantData { get; set; }
         public PointsSummaryViewModel PointsSummary { get; set; }
         public PointsSummaryViewModel ExpectedPointsSummary { get; set; }
@@ -218,13 +217,10 @@ namespace ExpressEntryCalculator.AcceptanceTests
 
         private void WhenICalculateMyPoints()
         {
-            var controller = new HomeController(Options.Create(new ExpressEntryStats()))
-            {
-                TempData = new Mock<ITempDataDictionary>().Object
-            };
+            var request = TestFactory.CreateHttpRequest(ApplicantData);
+            var response = (OkObjectResult)Calculate.Run(request, logger);
 
-            var response = controller.Summary(ApplicantData) as ViewResult;
-            PointsSummary = response.ViewData.Model as PointsSummaryViewModel;
+            PointsSummary = response.Value as PointsSummaryViewModel;
         }
 
         private void ThenPointsShouldBeEqualTo()
