@@ -27,12 +27,12 @@ namespace ExpressEntryCalculator.Api
             var lastDrawInfo = myBlob.Split('\n');
             if (lastDrawInfo.Length < 2)
             {
-                return new OkObjectResult(new ExpressEntryStats
+                return await Task.FromResult(new OkObjectResult(new ExpressEntryStats
                 {
                     InvitationsIssued = defaultInvitationIssued,
                     LowestScore = defaultLowestScore,
                     RoundDate = defaultRoundDate
-                });
+                }));
             }
 
             DateTime roundDate;
@@ -60,7 +60,7 @@ namespace ExpressEntryCalculator.Api
                 RoundDate = roundDate
             };
 
-            return new OkObjectResult(lastStats);
+            return await Task.FromResult(new OkObjectResult(lastStats));
         }
     }
 }
