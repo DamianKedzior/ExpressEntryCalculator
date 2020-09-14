@@ -6,7 +6,12 @@ namespace ExpressEntryCalculator.Core
     {
         public static int CountAge(DateTime birthday)
         {
-            DateTime now = DateTime.UtcNow;
+            return CountAge(birthday, DateTime.UtcNow);
+        }
+
+        public static int CountAge(DateTime birthday, DateTime currentTime)
+        {
+            DateTime now = currentTime;
             int age = now.Year - birthday.Year;
 
             if (now.Month < birthday.Month)

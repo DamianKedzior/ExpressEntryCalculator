@@ -7,13 +7,22 @@ using Newtonsoft.Json;
 using ExpressEntryCalculator.Core;
 using ExpressEntryCalculator.Api.Models;
 using Microsoft.Extensions.Logging;
+using ExpressEntryCalculator.Api.Services;
+using System.Threading.Tasks;
 
 namespace ExpressEntryCalculator.Api
 {
-    public static class Calculate
+    public class Calculate
     {
+        private readonly ISystemTime _systemTime;
+
+        public Calculate(ISystemTime systemTime)
+        {
+            _systemTime = systemTime;
+        }
+
         [FunctionName("calculate")]
-        public static IActionResult Run(
+        public async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)]HttpRequest req, 
             ILogger log)
         {
@@ -29,7 +38,7 @@ namespace ExpressEntryCalculator.Api
             //    return View("Index", model);
             //}
 
-            int age = AgeHelper.CountAge(model.BirthDate.Value);
+            int age = AgeHelper.CountAge(model.BirthDate.Value, _systemTime.UtcNow);
             int pointForAge;
             if (model.SpouseExist == false)
             {
@@ -183,7 +192,7 @@ namespace ExpressEntryCalculator.Api
             points.PointsInSectionD = sectionD;
             points.TotalPointsForExpressEntry = totalPointsForExpressEntry;
 
-            return new OkObjectResult(points);
+            return await Task.FromResult(new OkObjectResult(points));
         }
     }
 }

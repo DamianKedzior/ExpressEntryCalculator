@@ -4,12 +4,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Shouldly;
 using System;
+using System.Threading.Tasks;
 using TestStack.BDDfy;
 using Xunit;
 
 namespace ExpressEntryCalculator.AcceptanceTests
 {
-    // TODO:DK we need to mock current date so the test will always work; now when you run them in few months they may fail becuase points for age are different
     public class FullCalculationTests
     {
         private readonly ILogger logger = TestFactory.CreateLogger();
@@ -214,10 +214,12 @@ namespace ExpressEntryCalculator.AcceptanceTests
                 .BDDfy();
         }
 
-        private void WhenICalculateMyPoints()
+        private async Task WhenICalculateMyPoints()
         {
             var request = TestFactory.CreateHttpRequest(ApplicantData);
-            var response = (OkObjectResult)Calculate.Run(request, logger);
+            var calculator = new Calculate(new TestSystemTime(new DateTime(2020, 1, 10)));
+
+            var response = (OkObjectResult)await calculator.Run(request, logger);
 
             PointsSummary = response.Value as PointsSummaryViewModel;
         }
