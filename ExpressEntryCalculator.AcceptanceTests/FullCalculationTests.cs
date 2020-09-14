@@ -2,7 +2,6 @@
 using ExpressEntryCalculator.Api.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Moq;
 using Shouldly;
 using System;
 using TestStack.BDDfy;
